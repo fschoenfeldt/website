@@ -4,8 +4,4 @@ description: a little photo gallery
 layout: layouts/base.njk
 ---
 
-{% set image = "src/images/example.jpg" %}
-
-<img src="{% getUrl image | resize({ width: 1440 }) | webp  %}" />
-
 hello gallery !

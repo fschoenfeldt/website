@@ -14,10 +14,12 @@
                     <div aria-hidden="true">frederikschoenfeldt@gmail.com</div>
                 </a>
             </li>
-            <li class="col-span-5">
-                <a class="" href="{{"/fotohaecker" | url }}" title="learn more">
-                    fotohäcker
-                    <div aria-hidden="true">learn more</div>
+            <li class="col-span-5 relative">
+                {% set image = "src/images/fotohaecker_bg.jpg" | sharp %}
+                <img class="absolute top-0 object-cover h-full w-full rounded" src="{% getUrl image | resize({ width: 500 }) | webp %}" aria-hidden="true"/>
+                <a class="relative z-10" href="{{ "/fotohaecker" | url }}" title="learn more">
+                    <span class="gray-bg">fotohäcker</span>
+                    <div class="gray-bg" aria-hidden="true">learn more</div>
                 </a>
             </li>
             <li class="col-span-5">
@@ -27,7 +29,7 @@
                 </a>
             </li>
             <li class="col-span-7">
-                <a class="" href="{{"/gallery" | url }}" rel="noopener noreferrer" title="my photos">
+                <a class="" href="{{ "/gallery" | url }}" rel="noopener noreferrer" title="my photos">
                     photography
                     <div aria-hidden="true">gallery</div>
                 </a>
