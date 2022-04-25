@@ -15,7 +15,7 @@
 
 @layer base {
   * {
-    @apply text-gray-800 font-serif;
+    @apply font-serif text-gray-800;
   }
   h1 {
     @apply font-heading text-4xl;
@@ -39,7 +39,7 @@
 
 @layer components {
   .thick-heading {
-    @apply text-[30vw] md:text-12xl uppercase break-all leading-none;
+    @apply break-all text-[30vw] uppercase leading-none md:text-12xl;
   }
   .menu {
     @apply flex flex-col gap-2 text-lg;
@@ -48,17 +48,17 @@
       grid-template-columns: repeat(12, 1fr);
     }
     .gray-bg {
-      @apply bg-gray-800 w-max text-white;
+      @apply w-max bg-gray-800 text-white;
     }
     li {
-      @apply bg-gray-800 hover:opacity-90 transition-opacity text-white rounded;
+      @apply rounded bg-gray-800 text-white transition-opacity hover:opacity-90;
       &:hover {
         a div {
           @apply underline;
         }
       }
       a {
-        @apply flex flex-col justify-between p-4 w-full md:h-60 break-all text-white gap-2;
+        @apply flex w-full flex-col justify-between gap-2 break-all p-4 text-white md:h-60;
       }
       div {
         @apply text-white;
@@ -66,7 +66,7 @@
     }
   }
   #fotohaecker {
-    @apply flex flex-col gap-2 sm:grid h-full sm:max-w-2xl lg:max-w-4xl xl:max-w-6xl self-center mx-auto;
+    @apply mx-auto flex h-full flex-col gap-2 self-center sm:grid sm:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
     @screen sm {
       grid-template-columns: 1fr 2fr;
     }
@@ -88,7 +88,7 @@
   }
   .skills-list {
     li {
-      @apply inline-block bg-blue-600 text-white rounded-lg px-1 font-sans font-bold text-sm;
+      @apply inline-block rounded-lg bg-blue-600 px-1 font-sans text-sm font-bold text-white;
     }
   }
   .external {
