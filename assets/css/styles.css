@@ -50,7 +50,7 @@
     .gray-bg {
       @apply w-max bg-gray-800 text-white;
     }
-    li {
+    > li {
       @apply rounded bg-gray-800 text-white transition-opacity hover:opacity-90;
       &:hover {
         a div {
@@ -86,7 +86,7 @@
 
     @apply pt-6 sm:text-10xl lg:text-[12rem] xl:text-[17rem];
   }
-  .skills-list {
+  .technologies-used-list {
     li {
       @apply inline-block rounded-lg bg-blue-600 px-1 font-sans text-sm font-bold text-white;
     }
