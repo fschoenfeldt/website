@@ -12,7 +12,26 @@
     <link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet"> <!-- Open Graph -->
+    <!-- HTML Meta Tags -->
+    <!-- Facebook Meta Tags --> <meta property="og:url" content="https://fschoenfeldt.de/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title }} – Frederik Schönfeldt">
+    {% if description %}
+      <meta name="og:description" content="{{ description }}"/>
+    {% endif %}
+    <meta
+    property="og:image" content="{{ "/img/o_graph.jpg" | url }}"> <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="fschoenfeldt.de">
+    <meta property="twitter:url" content="https://fschoenfeldt.de/">
+    <meta name="twitter:title" content="{{ title }} – Frederik Schönfeldt">
+    {% if description %}
+      <meta name="twitter:description" content="{{ description }}"/>
+    {% endif %}
+    <meta
+    name="twitter:image" content="{{ "/img/o_graph.jpg" | url }}">
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
     <script defer src="{{ hash['/js/scripts.js'] | url }}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
