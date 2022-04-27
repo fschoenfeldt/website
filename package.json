@@ -22,6 +22,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-upgrade-help": "^1.0.1",
+    "@tailwindcss/typography": "^0.5.2",
     "alpinejs": "^3.10.2",
     "autoprefixer": "^10.4.4",
     "concurrently": "^7.1.0",

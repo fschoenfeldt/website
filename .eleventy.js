@@ -9,6 +9,16 @@ module.exports = function (eleventyConfig) {
    */
   //eleventyConfig.addPlugin(UpgradeHelper);
 
+  // Single Universal Shortcode
+  eleventyConfig.addShortcode("personalDetails", (type) => {
+    switch (type) {
+      case "address":
+        return process.env.PERSONAL_ADDRESS;
+      case "phone":
+        return process.env.PERSONAL_PHONE;
+    }
+  });
+
   /**
    * https://github.com/luwes/eleventy-plugin-sharp
    */
