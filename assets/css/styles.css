@@ -14,6 +14,9 @@
 @tailwind utilities;
 
 @layer base {
+  @page {
+    margin: 0;
+  }
   * {
     @apply font-serif text-gray-800;
   }
@@ -93,5 +96,47 @@
   }
   .external {
     @apply flex items-center gap-0.5;
+  }
+
+  #cv {
+    @apply flex flex-wrap gap-10 bg-gray-700 p-10 shadow-xl print:block print:gap-0 print:space-y-0 print:bg-transparent print:p-0 print:shadow-none;
+    h2 {
+      @apply text-xl font-bold;
+    }
+    h3 {
+      @apply text-lg;
+    }
+    .a4 {
+      width: 21cm;
+      height: 29.7cm;
+      @apply overflow-hidden bg-white;
+    }
+    .thick-heading {
+      @apply text-6xl;
+    }
+    .introduction {
+      @apply grid;
+      grid-template-columns: 8.3cm 1fr;
+      &__side {
+        @apply flex flex-col justify-between gap-y-4 bg-gray-900 p-4;
+        * {
+          @apply text-white;
+        }
+        .side__contact {
+          @apply space-y-1;
+          li {
+            @apply flex items-center gap-2 text-white;
+            .icon {
+              @apply h-4 w-4 rounded-full bg-gray-100;
+            }
+          }
+        }
+      }
+      &__text {
+        @apply p-4;
+      }
+    }
+    .projects {
+    }
   }
 }

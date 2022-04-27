@@ -23,7 +23,16 @@ module.exports = {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            h2: {
+              marginTop: `1.5rem`,
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
