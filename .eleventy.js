@@ -16,6 +16,8 @@ module.exports = function (eleventyConfig) {
         return process.env.PERSONAL_ADDRESS;
       case "phone":
         return process.env.PERSONAL_PHONE;
+      case "vacation_date":
+        return process.env.PERSONAL_VACATION_DATE;
     }
   });
 
