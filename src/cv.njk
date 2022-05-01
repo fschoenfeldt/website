@@ -5,6 +5,7 @@ templateEngineOverride: njk,md
 ---
 
 {% set me_image = "src/images/me.jpg" | sharp %}
+{% set project_fotohaecker = "src/images/project_fotohaecker.png" | sharp %}
 <div id="cv">
     <section class="a4 introduction">
         <aside class="introduction__side">
@@ -86,11 +87,22 @@ templateEngineOverride: njk,md
         </div>
         <div>
             <h2>Webapp „Fotohäcker“</h2>
+            <img class="block" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="project fotohaecker"/>
             <p>
                 Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
                 „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
                 ich weiterhin dabei, sie zu entwickeln.
             </p>
+            <h2>Verwendete Techniken</h2>
+            <ul class="list-disc list-inside">
+                <li>Nodejs</li>
+                <li>Express</li>
+                <li>SQLite</li>
+                <li>Twig/Nunjucks</li>
+                <li>HTML+CSS</li>
+                <li>Jest/Playwright</li>
+                <li>Supervisor</li>
+            </ul>
         </div>
     </section>
 </div>
