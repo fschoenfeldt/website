@@ -6,7 +6,7 @@ Ich bin Frederik, sechsundzwanzig Jahre jung, Webentwickler und Accessibility En
 
 **2012-2014** schloss ich an der Eckener Schule Flensburg meine Ausbildung als Informations- und Kommunikationstechnischen Assistenten ab.
 
-**2014-2021** absolvierte ich mein Studium der Medieninformatik an der Hochschule Fkensburg. In den Bereichen UI/UX-Design, Konzeptentwicklung und Webentwicklung eignete ich mir dort wichtige Grundlagen an, die ich heute noch regelmäßig ausbaue. Meine Bachelorarbeit befasst sich mit _barrierefreien Webkomponenten im Bezug auf digital-anamnestische Anwendungen_.
+**2014-2021** absolvierte ich mein Studium der Medieninformatik an der Hochschule Flensburg. In den Bereichen UI/UX-Design, Konzeptentwicklung und Webentwicklung eignete ich mir dort wichtige Grundlagen an, die ich heute noch regelmäßig ausbaue. Meine Bachelorarbeit befasst sich mit _barrierefreien Webkomponenten im Bezug auf digital-anamnestische Anwendungen_.
 
 ## Berufliche Erfahrung & Skills
 
