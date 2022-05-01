@@ -11,85 +11,86 @@ templateEngineOverride: njk,md
             <div class="space-y-6">
                 <div class="flex">
                     <h1 class="thick-heading">Frederik Schoenfeldt</h1>
-                    <img class="block h-40 w-40 mx-auto rounded-full" src="{% getUrl me_image | resize({ width: 400 }) | webp %}" alt="photo of me"></div>
-                    <ul
-                        class="side__contact">
-                        <!-- <li>
-                            <div class="icon"></div>Frederik Schönfeldt</li> -->
-                        <li>
-                            <div class="icon"></div>
-                            {% personalDetails "address" %}</li>
-                        <li>
-                            <div class="icon"></div>
-                            {% personalDetails "phone" %}</li>
-                        <li>
-                            <div class="icon"></div>frederikschoenfeldt@gmail.com</li>
-                        <li>
-                            <div class="icon"></div>fschoenfeldt.de</li>
-                        <li>
-                            <div class="icon"></div>unsplash.com/fschoenfeldt</li>
-                    </ul>
+                    <img class="block h-40 w-40 mx-auto rounded-full" src="{% getUrl me_image | resize({ width: 400 }) | webp %}" alt="photo of me"/>
                 </div>
-                <div>
-                    <h2>Skills</h2>
-                    <ul class="space-y-2">
-                        <li>
-                            Frontend Entwicklung
-                            <div class="relative bg-gray-800 h-4 w-full">
-                                <div class="absolute top-0 h-4 w-full bg-gray-400"></div>
-                            </div>
-                        </li>
-                        <li>
-                            Backend Entwicklung
-                            <div class="relative bg-gray-800 h-4 w-full">
-                                <div class="absolute top-0 h-4 w-10/12 bg-gray-400"></div>
-                            </div>
-                        </li>
-                        <li>
-                            Webdesign
-                            <div class="relative bg-gray-800 h-4 w-full">
-                                <div class="absolute top-0 h-4 w-9/12 bg-gray-400"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="space-y-2">
-                    <h2>Berufliche Erfahrung</h2>
-                    <ul class="space-y-2 text-sm">
-                        <li>
-                            <h3>Heroic Recordings</h3>
-                            <p>Leading & Executive Designer</p>
-                        </li>
-                        <li>
-                            <h3>Freelancer</h3>
-                            <p>Frontendentwicklung, Konzeptentwicklung, Web- und Grafikdesign, Fotografie, SEO</p>
-                        </li>
-                        <li>
-                            <h3>Minijobs und Werkstudent</h3>
-                            <p>Webshop- und Frontendentwicklung, agiles Arbeiten nach Scrum in kleinen und mittleren Unternehmen</p>
-                        </li>
-                        <li>
-                            <h3>Elixir Fullstack Developer</h3>
-                            <p>Front- und Backendentwicklung mit Phoenix Framework</p>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <div class="introduction__text">
-                <div class="prose prose-stone">{% include 'cv/intro.md' %}</div>
-            </div>
-        </section>
-        <section class="a4 projects">
-            <div class="bg-gray-900 p-4">
-                <h2 class="text-white">Kurzportfolio Webentwicklung</h2>
+                <ul
+                    class="side__contact">
+                    <!-- <li>
+                        <div class="icon"></div>Frederik Schönfeldt</li> -->
+                    <li>
+                        <div class="icon"></div>
+                        {% personalDetails "address" %}</li>
+                    <li>
+                        <div class="icon"></div>
+                        {% personalDetails "phone" %}</li>
+                    <li>
+                        <div class="icon"></div>frederikschoenfeldt@gmail.com</li>
+                    <li>
+                        <div class="icon"></div>fschoenfeldt.de</li>
+                    <li>
+                        <div class="icon"></div>unsplash.com/fschoenfeldt</li>
+                </ul>
             </div>
             <div>
-                <h2>Webapp „Fotohäcker“</h2>
-                <p>
-                    Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
-                    „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
-                    ich weiterhin dabei, sie zu entwickeln.
-                </p>
+                <h2>Skills</h2>
+                <ul class="space-y-2">
+                    <li>
+                        Frontend Entwicklung
+                        <div class="relative bg-gray-800 h-4 w-full">
+                            <div class="absolute top-0 h-4 w-full bg-gray-400"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Backend Entwicklung
+                        <div class="relative bg-gray-800 h-4 w-full">
+                            <div class="absolute top-0 h-4 w-10/12 bg-gray-400"></div>
+                        </div>
+                    </li>
+                    <li>
+                        Webdesign
+                        <div class="relative bg-gray-800 h-4 w-full">
+                            <div class="absolute top-0 h-4 w-9/12 bg-gray-400"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </section>
-    </div>
+            <div class="space-y-2">
+                <h2>Berufliche Erfahrung</h2>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <h3>Heroic Recordings</h3>
+                        <p>Leading & Executive Designer</p>
+                    </li>
+                    <li>
+                        <h3>Freelancer</h3>
+                        <p>Frontendentwicklung, Konzeptentwicklung, Web- und Grafikdesign, Fotografie, SEO</p>
+                    </li>
+                    <li>
+                        <h3>Minijobs und Werkstudent</h3>
+                        <p>Webshop- und Frontendentwicklung, agiles Arbeiten nach Scrum in kleinen und mittleren Unternehmen</p>
+                    </li>
+                    <li>
+                        <h3>Elixir Fullstack Developer</h3>
+                        <p>Front- und Backendentwicklung mit Phoenix Framework</p>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="introduction__text">
+            <div class="prose prose-stone">{% include 'cv/intro.md' %}</div>
+        </div>
+    </section>
+    <section class="a4 projects">
+        <div class="bg-gray-900 p-4">
+            <h2 class="text-white">Kurzportfolio Webentwicklung</h2>
+        </div>
+        <div>
+            <h2>Webapp „Fotohäcker“</h2>
+            <p>
+                Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
+                „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
+                ich weiterhin dabei, sie zu entwickeln.
+            </p>
+        </div>
+    </section>
+</div>
