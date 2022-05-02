@@ -85,24 +85,30 @@ templateEngineOverride: njk,md
         <div class="bg-gray-900 p-4">
             <h2 class="text-white">Kurzportfolio Webentwicklung</h2>
         </div>
-        <div>
-            <h2>Webapp „Fotohäcker“</h2>
-            <img class="block" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="project fotohaecker"/>
+        <div class="p-4 space-y-4">
+            <h2>Webapp „Fotohäcker“
+                <a href="{{ "/fotohaecker" | url }}">(Info & Demo)</a>
+            </h2>
             <p>
                 Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
                 „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
                 ich weiterhin dabei, sie zu entwickeln.
             </p>
-            <h2>Verwendete Techniken</h2>
-            <ul class="list-disc list-inside">
-                <li>Nodejs</li>
-                <li>Express</li>
-                <li>SQLite</li>
-                <li>Twig/Nunjucks</li>
-                <li>HTML+CSS</li>
-                <li>Jest/Playwright</li>
-                <li>Supervisor</li>
-            </ul>
+            <div class="flex space-x-4">
+                <img class="block rounded" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="project fotohaecker"/>
+                <div>
+                    <h2>Verwendete Techniken</h2>
+                    <ul class="list-disc list-inside">
+                        <li>Nodejs</li>
+                        <li>Express</li>
+                        <li>SQLite</li>
+                        <li>Twig/Nunjucks</li>
+                        <li>HTML+CSS</li>
+                        <li>Jest/Playwright</li>
+                        <li>Supervisor</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 </div>
