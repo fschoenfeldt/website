@@ -6,6 +6,7 @@ templateEngineOverride: njk,md
 
 {% set me_image = "src/images/me.jpg" | sharp %}
 {% set project_fotohaecker = "src/images/project_fotohaecker.png" | sharp %}
+{% set project_rundgang_hsfl = "src/images/project_rundgang_hsfl.png" | sharp %}
 <div id="cv">
     <section class="a4 introduction">
         <aside class="introduction__side">
@@ -85,17 +86,19 @@ templateEngineOverride: njk,md
         <div class="bg-gray-900 p-4">
             <h2 class="text-white">Kurzportfolio Webentwicklung</h2>
         </div>
-        <div class="p-4 space-y-4">
-            <h2>Webapp „Fotohäcker“
-                <a href="{{ "/fotohaecker" | url }}">(Info & Demo)</a>
-            </h2>
-            <p>
-                Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
-                „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
-                ich weiterhin dabei, sie zu entwickeln.
-            </p>
-            <div class="flex space-x-4">
-                <img class="block rounded" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="project fotohaecker"/>
+        <div class="project">
+            <div class="project__header">
+                <h2>Webapp „Fotohäcker“
+                    <a href="{{ "/fotohaecker" | url }}">(Info & Demo)</a>
+                </h2>
+                <p>
+                    Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
+                    „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
+                    ich weiterhin dabei, sie zu entwickeln.
+                </p>
+            </div>
+            <div class="project__info">
+                <img class="block rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="Projekt Fotohäcker"/>
                 <div>
                     <h2>Verwendete Techniken</h2>
                     <ul class="list-disc list-inside">
@@ -103,9 +106,33 @@ templateEngineOverride: njk,md
                         <li>Express</li>
                         <li>SQLite</li>
                         <li>Twig/Nunjucks</li>
-                        <li>HTML+CSS</li>
-                        <li>Jest/Playwright</li>
+                        <li>HTML+CSS+Bootstrap</li>
+                        <li>Javascript</li>
+                        <li>Jest/Playwright (End-to-End Testing)</li>
                         <li>Supervisor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="project">
+            <div class="project__header">
+                <h2>Website „Rundgang Filmanalyse“
+                    <a href="https://fschoenfeldt.de/html/rundgang_hsfl/">(Demo)</a>
+                </h2>
+                <p>
+                    Lorem Ipsum
+                </p>
+            </div>
+            <div class="project__info">
+                <img class="block rounded shadow-sm" src="{% getUrl project_rundgang_hsfl | resize({ width: 400 }) | webp %}" alt="Projekt Rundgang HSFL"/>
+                <div>
+                    <h2>Verwendete Techniken</h2>
+                    <ul class="list-disc list-inside">
+                        <li>Nodejs</li>
+                        <li>Eleventy</li>
+                        <li>Markdown</li>
+                        <li>Twig/Nunjucks</li>
+                        <li>HTML+CSS</li>
                     </ul>
                 </div>
             </div>

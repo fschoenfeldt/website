@@ -137,6 +137,15 @@
       }
     }
     .projects {
+      .project {
+        @apply space-y-4 p-4;
+        &__header {
+          @apply space-y-1;
+        }
+        &__info {
+          @apply flex space-x-6;
+        }
+      }
     }
   }
 }
