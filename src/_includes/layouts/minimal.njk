@@ -12,20 +12,8 @@
     <link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet">
-    <!-- Open Graph -->
-    <script defer src="{{ hash['/js/scripts.js'] | url }}"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      type="text/plain"
-      data-cookiecategory="analytics"
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-51WZFYSLT7"></script>
-    <script type="text/plain" data-cookiecategory="analytics">
-      window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date());
-      gtag('config', 'G-51WZFYSLT7');
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet">
+    <script defer src="{{ hash['/js/app_minimal.js'] | url }}"></script>
     {% block head %}{% endblock %}
   </head>
   <body class="antialiased">
