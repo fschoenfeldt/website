@@ -49,6 +49,12 @@ templateEngineOverride: njk,md
                         </div>
                     </li>
                     <li>
+                        Testing & Accessibility
+                        <div class="relative bg-gray-800 h-4 w-full">
+                            <div class="absolute top-0 h-4 w-9/12 bg-gray-400"></div>
+                        </div>
+                    </li>
+                    <li>
                         Webdesign
                         <div class="relative bg-gray-800 h-4 w-full">
                             <div class="absolute top-0 h-4 w-9/12 bg-gray-400"></div>
@@ -92,13 +98,13 @@ templateEngineOverride: njk,md
                     <a href="{{ "/fotohaecker" | url }}">(Info & Demo)</a>
                 </h2>
                 <p>
-                    Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Um Rahmen des Fachs
+                    Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Im Rahmen des Fachs
                     „WWW-Programmierung“ während des Studiums entstanden. Da mir die Arbeit an der Plattform so viel Freude bereitet, bin
                     ich weiterhin dabei, sie zu entwickeln.
                 </p>
             </div>
             <div class="project__info">
-                <img class="block rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ width: 400 }) | webp %}" alt="Projekt Fotohäcker"/>
+                <img class="block rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ height: 200 }) | webp %}" alt="Projekt Fotohäcker"/>
                 <div>
                     <h2>Verwendete Techniken</h2>
                     <ul class="list-disc list-inside">
@@ -120,16 +126,18 @@ templateEngineOverride: njk,md
                     <a href="https://fschoenfeldt.de/html/rundgang_hsfl/">(Demo)</a>
                 </h2>
                 <p>
-                    Lorem Ipsum
+                    Statische Website zur Darstellung verschiedener Projektergebnisse. Im Rahmen des Fachs „Filmanalyse“ während des
+                    Studiums entstanden. Das Projekt war dazu gedacht, die Ergebnisse der Studierenden für einen digitalen Rundgang
+                    auszustellen.
                 </p>
             </div>
             <div class="project__info">
-                <img class="block rounded shadow-sm" src="{% getUrl project_rundgang_hsfl | resize({ width: 400 }) | webp %}" alt="Projekt Rundgang HSFL"/>
+                <img class="block rounded shadow-sm" src="{% getUrl project_rundgang_hsfl | resize({ height: 200 }) | webp %}" alt="Projekt Rundgang HSFL"/>
                 <div>
                     <h2>Verwendete Techniken</h2>
                     <ul class="list-disc list-inside">
                         <li>Nodejs</li>
-                        <li>Eleventy</li>
+                        <li>Eleventy SSG</li>
                         <li>Markdown</li>
                         <li>Twig/Nunjucks</li>
                         <li>HTML+CSS</li>
