@@ -11,7 +11,7 @@ templateEngineOverride: njk,md
 <div id="cv">
     <section class="a4 introduction">
         <aside class="introduction__side">
-            <div class="space-y-6">
+            <div class="space-y-6 max-w-sm md:max-w-none">
                 <div class="flex">
                     <h1 class="thick-heading">Frederik Schoenfeldt</h1>
                     <img class="block h-40 w-40 mx-auto rounded-full" src="{% getUrl me_image | resize({ width: 400 }) | webp %}" alt="photo of me"/>
@@ -34,7 +34,7 @@ templateEngineOverride: njk,md
                         <div class="icon"></div>unsplash.com/fschoenfeldt</li>
                 </ul>
             </div>
-            <div>
+            <div class="max-w-sm md:max-w-none">
                 <h2>Skills</h2>
                 <ul class="space-y-2">
                     <li>
@@ -63,7 +63,7 @@ templateEngineOverride: njk,md
                     </li>
                 </ul>
             </div>
-            <div class="space-y-2">
+            <div class="space-y-2 max-w-sm md:max-w-none">
                 <h2>Berufliche Erfahrung</h2>
                 <ul class="space-y-2 text-sm">
                     <li>
