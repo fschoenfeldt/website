@@ -9,17 +9,19 @@ module.exports = function (eleventyConfig) {
    */
   //eleventyConfig.addPlugin(UpgradeHelper);
 
-  // Single Universal Shortcode
-  eleventyConfig.addShortcode("personalDetails", (type) => {
-    switch (type) {
-      case "address":
-        return process.env.PERSONAL_ADDRESS;
-      case "phone":
-        return process.env.PERSONAL_PHONE;
-      case "vacation_date":
-        return process.env.PERSONAL_VACATION_DATE;
-    }
-  });
+  // https://www.11ty.dev/docs/languages/nunjucks/#generic-global
+  eleventyConfig.addNunjucksGlobal(
+    "personal_address",
+    process.env.PERSONAL_ADDRESS
+  );
+  eleventyConfig.addNunjucksGlobal(
+    "personal_phone",
+    process.env.PERSONAL_PHONE
+  );
+  eleventyConfig.addNunjucksGlobal(
+    "personal_vacation_date",
+    process.env.PERSONAL_VACATION_DATE
+  );
 
   /**
    * https://github.com/luwes/eleventy-plugin-sharp

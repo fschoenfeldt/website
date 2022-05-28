@@ -16,22 +16,36 @@ templateEngineOverride: njk,md
                     <h1 class="thick-heading">Frederik Schoenfeldt</h1>
                     <img class="block h-40 w-40 mx-auto rounded-full" src="{% getUrl me_image | resize({ width: 400 }) | webp %}" alt="photo of me"/>
                 </div>
-                <ul
-                    class="side__contact">
-                    <!-- <li>
-                        <div class="icon"></div>Frederik Schönfeldt</li> -->
+                <ul class="side__contact">
                     <li>
-                        <div class="icon"></div>
-                        {% personalDetails "address" %}</li>
+                        <span class="material-icons !text-[20px]">home</span>
+                        {{ personal_address }}</li>
                     <li>
-                        <div class="icon"></div>
-                        {% personalDetails "phone" %}</li>
+                        <span class="material-icons !text-[20px]">
+                            phone
+                        </span>
+                        <a href="tel:{{ personal_phone }}">
+                            {{ personal_phone }}
+                        </a>
+                    </li>
                     <li>
-                        <div class="icon"></div>frederikschoenfeldt@gmail.com</li>
+                        <span class="material-icons !text-[20px]">
+                            alternate_email
+                        </span>
+                        <a href="mailto:frederikschoenfeldt@gmail.com">frederikschoenfeldt@gmail.com</a>
+                    </li>
                     <li>
-                        <div class="icon"></div>fschoenfeldt.de</li>
+                        <span class="material-icons !text-[20px]">
+                            launch
+                        </span>
+                        <a href="https://fschoenfeldt.de/">fschoenfeldt.de</a>
+                    </li>
                     <li>
-                        <div class="icon"></div>unsplash.com/fschoenfeldt</li>
+                        <span class="material-icons !text-[20px]">
+                            photo_camera
+                        </span>
+                        <a href="https://unsplash.com/fschoenfeldt">unsplash.com/fschoenfeldt</a>
+                    </li>
                 </ul>
             </div>
             <div class="max-w-sm md:max-w-none">
@@ -152,8 +166,8 @@ templateEngineOverride: njk,md
                     <a href="https://github.com/fschoenfeldt/accessible_components">(Source)</a>
                 </h2>
                 <p>
-                    Die Barrierefreien Komponenten sind ein Ergebnis meiner Bachelorthesis zum Thema „Barrierefreie Webkomponenten im Bezug
-                    auf digital-anamnestische Anwendungen“. Inhaltlich handelt es sich um verschiedene Formularelemente, die barrierefrei
+                    Die Barrierefreien Komponenten sind ein Ergebnis meiner Bachelorthesis „Barrierefreie Webkomponenten im Bezug auf
+                    digital-anamnestische Anwendungen“. Inhaltlich handelt es sich um verschiedene Formularelemente, die barrierefrei
                     dargestellt und getestet sind. Die Gestaltung der Komponenten wurde nur soweit vorgenommen, wie sie für die
                     Barrierefreiheit notwendig ist.
                 </p>
@@ -173,3 +187,5 @@ templateEngineOverride: njk,md
         </div>
     </section>
 </div>
+{# TODO: this is dirty #}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

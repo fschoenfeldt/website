@@ -10,6 +10,6 @@ Ich bin Frederik, sechsundzwanzig Jahre jung, Webentwickler und Accessibility En
 
 ## Berufliche Erfahrung & Skills
 
-**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team ein 20 köpfiges, internationales Team, dessen Design & Entwicklungs Abteilung (ca. 5 Personen) ich dann geleitet habe.
+**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team ein 20 köpfiges, internationales Team, dessen Design & Entwicklungs Abteilung (ca. 5 Personen) ich zuletzt geleitet habe.
 
-**seit 2016** erledigte ich zunächst viele kleinere Freelance-Jobs, später Vollzeitjobs und arbeitete dort mit den verschiedensten Anwendungen: WordPress, Drupal, Plenty, Zend & NodeJS. Mit Webentwicklung habe ich die meiste Erfahrung, also beherrsche ich Layoutsprachen wie HTML & CSS fließend. Tiefergehende Kenntnisse wie JavaScript, React & Elixir sind vorhanden.
+**seit 2016** erledigte ich zunächst viele kleinere Freelance-Jobs, später Vollzeitjobs und arbeitete dort mit den verschiedensten Anwendungen: WordPress, Drupal, Plenty, dem Phoenix Stack & NodeJS. Mit Webentwicklung habe ich die meiste Erfahrung, also beherrsche ich Layoutsprachen wie HTML & CSS fließend. Tiefergehende Kenntnisse wie TypeScript, React & Elixir sind vorhanden.
