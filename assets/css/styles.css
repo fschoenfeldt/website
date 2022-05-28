@@ -110,7 +110,10 @@
       @screen md {
         width: 21cm;
         height: 29.7cm;
-        @apply overflow-hidden;
+      }
+      @media print {
+        width: 21cm;
+        height: 29.7cm;
       }
       @apply bg-white;
     }
@@ -123,8 +126,12 @@
         grid-template-columns: 8.3cm 1fr;
         width: 21cm;
       }
+      @media print {
+        grid-template-columns: 8.3cm 1fr;
+        width: 21cm;
+      }
       &__side {
-        @apply flex flex-col justify-between gap-y-4 bg-gray-900 p-6 md:p-4;
+        @apply flex flex-col justify-between gap-y-4 bg-gray-900 p-6 print:p-4 md:p-4;
         * {
           @apply text-white;
         }
@@ -139,17 +146,18 @@
         }
       }
       &__text {
-        @apply p-6 md:p-4;
+        @apply h-full p-6 print:p-4 md:p-4 md:pb-0;
       }
     }
     .projects {
+      width: 21cm;
       .project {
         @apply space-y-4 p-4;
         &__header {
           @apply space-y-1;
         }
         &__info {
-          @apply space-x-6 space-y-6 md:flex md:space-y-0;
+          @apply space-x-6 space-y-6 print:flex print:space-y-0 md:flex md:space-y-0;
         }
       }
     }
