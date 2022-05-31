@@ -112,7 +112,7 @@
       @apply text-lg;
     }
     .a4 {
-      @screen md {
+      @screen canDisplayA4 {
         width: 21cm;
         height: 29.7cm;
       }
@@ -136,7 +136,7 @@
         width: 21cm;
       }
       &__side {
-        @apply flex flex-col justify-between gap-y-4 bg-gray-900 p-6 print:p-4 md:p-4;
+        @apply flex flex-col gap-y-4 bg-gray-900 p-6 print:p-4 md:p-4 canDisplayA4:justify-between;
         * {
           @apply text-white;
         }

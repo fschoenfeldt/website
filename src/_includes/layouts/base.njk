@@ -12,16 +12,19 @@
     <link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet"> <!-- Open Graph -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather&display=swap" rel="stylesheet">
+    <!-- Open Graph -->
     <!-- HTML Meta Tags -->
-    <!-- Facebook Meta Tags --> <meta property="og:url" content="https://fschoenfeldt.de/">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://fschoenfeldt.de/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ title }} – Frederik Schönfeldt">
     {% if description %}
       <meta name="og:description" content="{{ description }}"/>
     {% endif %}
     <meta
-    property="og:image" content="{{ "/img/o_graph.jpg" | url }}"> <!-- Twitter Meta Tags -->
+    property="og:image" content="{{ "/img/o_graph.jpg" | url }}">
+    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="fschoenfeldt.de">
     <meta property="twitter:url" content="https://fschoenfeldt.de/">
@@ -32,6 +35,7 @@
     <meta
     name="twitter:image" content="{{ "/img/o_graph.jpg" | url }}">
     <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+    {% include 'favicons.njk' %}
     <script defer src="{{ hash['/js/app.js'] | url }}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -40,7 +44,11 @@
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-51WZFYSLT7"></script>
     <script type="text/plain" data-cookiecategory="analytics">
-      window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
       gtag('config', 'G-51WZFYSLT7');
     </script>
     {% block head %}{% endblock %}
