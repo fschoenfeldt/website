@@ -19,6 +19,10 @@ module.exports = function (eleventyConfig) {
     process.env.PERSONAL_PHONE
   );
   eleventyConfig.addNunjucksGlobal(
+    "personal_actual_vacation_date",
+    process.env.PERSONAL_ACTUAL_VACATION_DATE
+  );
+  eleventyConfig.addNunjucksGlobal(
     "personal_vacation_date",
     process.env.PERSONAL_VACATION_DATE
   );
