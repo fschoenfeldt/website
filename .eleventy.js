@@ -26,6 +26,10 @@ module.exports = function (eleventyConfig) {
     "personal_vacation_date",
     process.env.PERSONAL_VACATION_DATE
   );
+  eleventyConfig.addNunjucksGlobal(
+    "external_vacation_date",
+    process.env.EXTERNAL_VACATION_DATE
+  );
 
   /**
    * https://github.com/luwes/eleventy-plugin-sharp
