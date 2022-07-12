@@ -1,7 +1,12 @@
 const fs = require("fs");
 const md5 = require("md5");
 
-const assets = ["/css/styles.css", "/js/app.js", "/js/app_vacation.js"];
+const assets = [
+  "/css/styles.css",
+  "/js/app.js",
+  "/js/app_vacation.js",
+  "/js/app_manager.js",
+];
 
 const dataFile = "_data/hash.json";
 

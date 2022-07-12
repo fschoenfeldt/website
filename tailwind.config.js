@@ -16,6 +16,7 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.stone,
+      slate: colors.slate,
       blue: colors.sky,
     },
     extend: {
