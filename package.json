@@ -5,10 +5,10 @@
   "scripts": {
     "clean": "del _site",
     "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
-    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_minimal.js --outdir=./_site/js/ --bundle --target=es2018 --watch",
+    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js --outdir=./_site/js/ --bundle --target=es2018 --watch",
     "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
-    "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_minimal.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
+    "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
     "build": "NODE_ENV=production concurrently \"npm:build-*\" && node hash && ELEVENTY_ENV=production eleventy"
   },
   "keywords": [
