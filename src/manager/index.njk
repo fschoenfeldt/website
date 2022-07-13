@@ -7,12 +7,12 @@ eleventyExcludeFromCollections: true
 <div class="wrapper">
     <div class="modal" x-show="$store.manager.modalVisible" @show.window="$store.manager.showModal">
         <div class="modal__content" @click.outside="$store.manager.modalVisible = false">
-            <div class="w-full flex items-center text-xl space-x-2">
+            <div class="w-full flex items-center text-xl space-x-2 h-full">
                 <img x-ref="modalIcon" src=""/>
                 <div class="text-cyan-200 font-sans" x-ref="modalTitle"></div>
                 <button label="close" 
                         class="font-sans p-2 border-2 border-red-400 !text-red-400 
-                               font-bold flex items-center justify-center h-12 w-12 !ml-auto" 
+                               font-bold flex items-center justify-center h-12 w-12 shrink-0 !ml-auto" 
                         @click="$store.manager.modalVisible = false">
                     ✕
                 </button>
