@@ -4,7 +4,7 @@
     @apply bg-transparent hover:bg-cyan-100/20;
   }
   .wrapper {
-    @apply relative h-screen w-full border-2 border-cyan-200 bg-slate-900 p-2;
+    @apply relative min-h-screen w-full border-2 border-cyan-200 bg-slate-900 p-2 pb-20;
     .ressources {
       @apply grid justify-center gap-4;
       grid-template-columns: repeat(auto-fit, 10rem);
