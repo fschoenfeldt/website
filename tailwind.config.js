@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./src/**/*.njk", "./src/**/*.md"],
+  content: ["./src/**/*.{njk,md}"],
   theme: {
     fontSize: {
       ...defaultTheme.fontSize,

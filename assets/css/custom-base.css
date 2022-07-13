@@ -1,0 +1,24 @@
+@page {
+  margin: 0;
+}
+* {
+  @apply font-serif text-gray-800;
+}
+h1 {
+  @apply font-heading text-4xl;
+}
+a {
+  @apply text-blue-700 hover:text-blue-900;
+
+  &.external {
+    @apply inline-flex items-center gap-0.5;
+    svg {
+      @apply inline-block fill-blue-700;
+    }
+    &:hover {
+      svg {
+        @apply fill-blue-900;
+      }
+    }
+  }
+}
