@@ -19,7 +19,7 @@
     {% block head %}{% endblock %}
   </head>
   <body class="antialiased">
-    <div id="manager" x-data="manager">
+    <div id="manager" x-data="manager" x-effect="$store.manager.persist($store.manager.ressources)">
       {% block content %}
         {{ content | safe }}
       {% endblock %}

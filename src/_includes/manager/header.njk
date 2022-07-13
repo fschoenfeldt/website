@@ -1,5 +1,29 @@
 <header class="w-full bg-cyan-200 tracking-wider py-4 mb-2
-               flex items-center">
-    <h1 class="flex-1 text-center font-sans uppercase font-bold text-xl -mr-16">Space Haven Manager</h1>
-    <img class="mx-4 h-8 lg:h-10 w-8 lg:w-10 invisible" src="{{ "/img/settings.svg" | url }}"/>
+               space-y-4"
+        x-data="{settingsMenuVisible: false}">
+    <div class="flex items-center">
+        <h1 class="flex-1 text-center font-sans uppercase font-bold text-xl -mr-16">Space Haven Manager</h1>
+        <img @click="settingsMenuVisible = !settingsMenuVisible" class="mx-4 h-8 lg:h-10 w-8 lg:w-10" src="{{ "/img/settings.svg" | url }}"/>
+    </div>
+    <div id="settingsMenu" 
+         x-show="settingsMenuVisible"
+         class="bg-slate-800 w-11/12 max-w-lg mx-auto lg:ml-auto lg:mr-4 p-4">
+        <ul class="flex flex-col">
+            <li class="text-cyan-200 font-sans">
+                Menu/Options:
+            </li>
+            <li>
+                <button @click="$store.manager.clearStorage" class="font-sans text-xl text-cyan-200 uppercase w-max p-2 border border-red-300 max-w-full">
+                    ☢️ clear saved ressources and reload
+                </button>
+            </li>
+            <li class="font-sans text-cyan-300 mt-2">
+                🚀 Thanks to Testers:
+                <ul class="list-disc list-inside">
+                    <li class="font-sans text-cyan-300">Battlestation G-37 Scientist</li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
 </header>

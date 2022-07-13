@@ -1,4 +1,4 @@
-<ul class="ressources">
+<ul class="ressources" :class="{ 'ressources--changing' : $store.manager.changeVisibility }">
     <template x-for="r in $store.manager.ressources">
         <template x-if="r.visible || $store.manager.changeVisibility">
             <li class="ressources__item" :class="{ 'ressources__item--change' : !r.visible}" @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)">

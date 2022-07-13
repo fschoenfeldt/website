@@ -6,25 +6,58 @@ import {
 } from "./manager/utils";
 import Chart from "chart.js/auto";
 
+const version = 1;
+
 export const store = {
+  init() {
+    const ressourcesFromStorage = localStorage.getItem("ressources");
+
+    if (ressourcesFromStorage && ressourcesFromStorage.length) {
+      console.info("Loading your ressources from local storage...");
+      const ressourcesToStore = JSON.parse(ressourcesFromStorage);
+      this.ressources = ressourcesToStore;
+      console.log("✅ Loading Done!");
+    } else {
+      const initialItems = [
+        "Crystal",
+        "Energy Rod",
+        "Hyperium",
+        "Hyperfuel",
+        "Electronics Component",
+        "Raw Chemicals",
+        "Chemicals",
+      ]
+        .map(transform)
+        .map((r) => ({
+          ...r,
+          ...minMaxAveragePrice(r.priceHistory),
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+      this.ressources = initialItems;
+    }
+  },
+  persist(_ressources) {
+    const previousState = JSON.parse(localStorage.getItem("ressources"));
+    console.log({ previousState });
+    const stateToSave = this.ressources;
+    console.log({ stateToSave });
+
+    if (JSON.stringify(previousState) !== JSON.stringify(stateToSave)) {
+      console.info("Saving your state...");
+      localStorage.setItem("ressources", JSON.stringify(stateToSave));
+      console.log("✅ Saving Done!");
+    }
+  },
+  clearStorage() {
+    console.info("Clearing your state...");
+    localStorage.clear();
+    location.reload();
+  },
   modalVisible: false,
   changeVisibility: false,
-  ressources: [
-    "Crystal",
-    "Energy Rod",
-    "Hyperium",
-    "Hyperfuel",
-    "Electronics Component",
-    "Raw Chemicals",
-    "Chemicals",
-  ]
-    .map(transform)
-    .map((r) => ({
-      ...r,
-      ...minMaxAveragePrice(r.priceHistory),
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name)),
-
+  ressources: [],
+  version: version,
   toggleRessourceVisibility({ name }) {
     this.ressources = this.ressources.map((r) => {
       if (r.name === name) {
@@ -44,6 +77,7 @@ export const store = {
     console.log(ressource);
 
     const ctx = this.$root.querySelector("#priceHistoryChart");
+    Chart.defaults.font.size = 16;
     this.$store.manager.priceHistoryChart = new Chart(ctx, {
       type: "line",
       data: {
@@ -58,7 +92,7 @@ export const store = {
         ],
       },
       options: {
-        animation: null,
+        animation: false,
         elements: {
           line: {
             tension: 0.3,
