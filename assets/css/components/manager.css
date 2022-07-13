@@ -1,0 +1,29 @@
+/* this is a test */
+#manager {
+  button {
+    @apply bg-transparent hover:bg-cyan-100/20;
+  }
+  .wrapper {
+    @apply relative h-screen w-full border-2 border-cyan-200 bg-slate-900 p-2;
+    .ressources__item {
+      @apply flex cursor-pointer select-none flex-col items-center justify-center border-2
+             border-cyan-200 hover:bg-cyan-100/20 active:bg-cyan-100/20;
+      img {
+        @apply h-10 w-11;
+      }
+      * {
+        @apply font-sans text-cyan-200;
+      }
+    }
+    .modal {
+      @apply absolute left-0 top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)];
+      &__content {
+        @apply mx-auto mt-2 max-w-sm border border-amber-200
+                 bg-slate-800 p-6 xl:mt-12;
+      }
+      button {
+        @apply text-xl text-cyan-200;
+      }
+    }
+  }
+}

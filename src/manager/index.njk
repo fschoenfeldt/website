@@ -4,6 +4,65 @@ layout: layouts/manager.njk
 eleventyExcludeFromCollections: true
 ---
 
-<div class="h-screen bg-slate-800">
-    <h1 class="text-white">Trade Manager!</h1>
+<div class="wrapper">
+    <div class="modal" x-show="$store.manager.modalVisible" @show.window="$store.manager.showModal">
+        <div class="modal__content" @click.outside="$store.manager.modalVisible = false">
+            <div class="w-full flex items-center text-xl space-x-2">
+                <img x-ref="modalIcon" src=""/>
+                <div class="text-cyan-200 font-sans" x-ref="modalTitle"></div>
+                <button label="close" 
+                        class="font-sans p-2 border-2 border-red-400 !text-red-400 
+                               font-bold flex items-center justify-center h-12 w-12 !ml-auto" 
+                        @click="$store.manager.modalVisible = false">
+                    ✕
+                </button>
+            </div>
+
+            <form class="flex flex-col space-y-4" @submit.prevent="$store.manager.handleModal">
+                <label class="font-sans text-cyan-200 text-lg" 
+                       for="number_input">
+                       value:
+                </label>
+                <input x-ref="name" type="text" hidden/>
+                <input class="text-3xl font-sans bg-transparent border border-cyan-200
+                            bg-slate-700 p-2 text-cyan-200 text-center" 
+                       x-ref="input" 
+                       type="number" 
+                       name="value" 
+                       id="number_input"
+                       min="1"
+                       required>
+                <button class="font-sans p-2 border">Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <header class="w-full bg-cyan-200 font-sans uppercase font-bold 
+                   tracking-wider text-xl text-center py-4 mb-2">
+        Space Haven Manager
+    </header>
+    <ul class="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-4">
+        <template x-for="r in $store.manager.ressources">
+            <li class="ressources__item" @click="$dispatch('show', {name: r.name})">
+                <div class="py-2 text-center">
+                    <img class="inline" :src="r.path"/>
+                    <div x-text="r.name"></div>
+                </div>
+                <template x-if="r.priceHistory.length" x-data="{expanded: false}">
+                    <ul class="w-full border-t border-cyan-200">
+                        <li class="w-full flex justify-between items-center border-b border-cyan-200 px-2">
+                            <div class="" x-text="r.min && `↓${r.min}`"></div>
+                            <div class="" x-text="r.average && `⌀${r.average}`"></div>
+                            <div class="!text-amber-200 text-lg font-bold" x-text="r.max && `↑${r.max}`"></div>
+                        </li>
+                        <template x-if="expanded">
+                            <template x-for="h in r.priceHistory">
+                                <li x-text="h.value"></li>
+                            </template>
+                        </template>
+                    </ul>
+                </template>
+            </li>
+        </template>
+    </ul>
 </div>

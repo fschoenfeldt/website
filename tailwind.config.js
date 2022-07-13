@@ -18,6 +18,9 @@ module.exports = {
       gray: colors.stone,
       slate: colors.slate,
       blue: colors.sky,
+      cyan: colors.cyan,
+      amber: colors.amber,
+      red: colors.red,
     },
     extend: {
       screens: {
