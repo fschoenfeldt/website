@@ -1,0 +1,27 @@
+<ul class="ressources">
+    <template x-for="r in $store.manager.ressources">
+        <template x-if="r.visible || $store.manager.changeVisibility">
+            <li class="ressources__item" :class="{ 'ressources__item--change' : !r.visible}" @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)">
+                <div class="py-2 text-center" :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}">
+                    <img class="inline" :src="r.path"/>
+                    <div x-text="r.name"></div>
+                </div>
+                <template x-if="r.priceHistory.length && !$store.manager.changeVisibility" x-data="{logExpanded: false}">
+                    <ul class="ressources__item__priceinfo">
+                        <li class="w-full flex justify-between items-center px-2 py-0.5">
+                            <div class="" x-text="r.min && `↓${r.min}`"></div>
+                            <div class="" x-text="r.average && `⌀${r.average}`"></div>
+                            <div class="!text-amber-200 text-lg font-bold" x-text="r.max && `↑${r.max}`"></div>
+                        </li>
+                        <template x-if="logExpanded">
+                            <template x-for="h in r.priceHistory">
+                                <li x-text="h.value"></li>
+                            </template>
+                        </template>
+                    </ul>
+                </template>
+            </li>
+        </template>
+    </template>
+    <li class="ressources__item ressources__item--add" @click="$store.manager.changeVisibility = !$store.manager.changeVisibility" x-text="$store.manager.changeVisibility ? '-' : '+'"></li>
+</ul>
