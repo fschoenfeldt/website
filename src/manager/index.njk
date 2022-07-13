@@ -5,7 +5,7 @@ eleventyExcludeFromCollections: true
 ---
 
 <div class="wrapper">
-    <div class="modal" x-show="$store.manager.modalVisible" @show.window="$store.manager.showModal">
+    <div class="modal" x-show="$store.manager.modalVisible" @showaddmodal.window="$store.manager.showModal">
         <div class="modal__content" @click.outside="$store.manager.modalVisible = false">
             <div class="w-full flex items-center text-xl space-x-2 h-full">
                 <img x-ref="modalIcon" src=""/>
@@ -41,28 +41,31 @@ eleventyExcludeFromCollections: true
                    tracking-wider text-xl text-center py-4 mb-2">
         Space Haven Manager
     </header>
-    <ul class="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-4">
+    <ul class="ressources">
         <template x-for="r in $store.manager.ressources">
-            <li class="ressources__item" @click="$dispatch('show', {name: r.name})">
-                <div class="py-2 text-center">
-                    <img class="inline" :src="r.path"/>
-                    <div x-text="r.name"></div>
-                </div>
-                <template x-if="r.priceHistory.length" x-data="{expanded: false}">
-                    <ul class="w-full border-t border-cyan-200">
-                        <li class="w-full flex justify-between items-center border-b border-cyan-200 px-2">
-                            <div class="" x-text="r.min && `↓${r.min}`"></div>
-                            <div class="" x-text="r.average && `⌀${r.average}`"></div>
-                            <div class="!text-amber-200 text-lg font-bold" x-text="r.max && `↑${r.max}`"></div>
-                        </li>
-                        <template x-if="expanded">
-                            <template x-for="h in r.priceHistory">
-                                <li x-text="h.value"></li>
+            <template x-if="r.visible || $store.manager.changeVisibility">
+                <li class="ressources__item" :class="{ 'ressources__item--change' : !r.visible}" @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddmodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)">
+                    <div class="py-2 text-center" :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}">
+                        <img class="inline" :src="r.path"/>
+                        <div x-text="r.name"></div>
+                    </div>
+                    <template x-if="r.priceHistory.length && !$store.manager.changeVisibility" x-data="{logExpanded: false}">
+                        <ul class="ressources__item__priceinfo">
+                            <li class="w-full flex justify-between items-center px-2 py-0.5">
+                                <div class="" x-text="r.min && `↓${r.min}`"></div>
+                                <div class="" x-text="r.average && `⌀${r.average}`"></div>
+                                <div class="!text-amber-200 text-lg font-bold" x-text="r.max && `↑${r.max}`"></div>
+                            </li>
+                            <template x-if="logExpanded">
+                                <template x-for="h in r.priceHistory">
+                                    <li x-text="h.value"></li>
+                                </template>
                             </template>
-                        </template>
-                    </ul>
-                </template>
-            </li>
+                        </ul>
+                    </template>
+                </li>
+            </template>
         </template>
+        <li class="ressources__item ressources__item--add" @click="$store.manager.changeVisibility = !$store.manager.changeVisibility" x-text="$store.manager.changeVisibility ? '-' : '+'"></li>
     </ul>
 </div>

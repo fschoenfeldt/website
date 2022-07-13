@@ -1,87 +1,40 @@
-// TODO use `pathPrefix` from `.eleventy.js`
-const addPathPrefix = (path, pathPrefix = "/html/website/") =>
-  `${pathPrefix}img/${path}`;
-
-const getByName = ({ ressources }, name) =>
-  ressources.find((r) => r.name === name);
-
-const minMaxAveragePrice = (priceHistory) => {
-  const prices = priceHistory.map(({ value }) => parseInt(value));
-  const min = Math.min(...prices);
-  const max = Math.max(...prices);
-  const average = Math.round(
-    prices.reduce((acc, curr) => acc + curr, 0) / prices.length
-  );
-  return { min, max, average };
-};
-
-const addPriceHistory = (store, ressourceName, { value }) => {
-  const ressourceFound = getByName(store, ressourceName);
-  const priceHistory = [...ressourceFound.priceHistory, { value }];
-
-  const modifiedRessource = {
-    ...ressourceFound,
-    priceHistory,
-    ...minMaxAveragePrice(priceHistory),
-  };
-
-  console.log({ modifiedRessource });
-
-  // return replaced ressources
-  return store.ressources.map((r) =>
-    r.name === ressourceName ? modifiedRessource : r
-  );
-};
+import { transform } from "./manager/transform_source";
+import {
+  addPriceHistory,
+  minMaxAveragePrice,
+  getByName,
+} from "./manager/utils";
 
 export const store = {
   modalVisible: false,
+  changeVisibility: false,
   ressources: [
-    {
-      name: "Crystal",
-      path: addPathPrefix("crystal.png"),
-      priceHistory: [
-        /* {
-          value: 89,
-        },
-        {
-          value: 90,
-        },
-        {
-          value: 97,
-        }, */
-      ],
-    },
-    {
-      name: "Energy Rod",
-      path: addPathPrefix("energy_rod.png"),
-      priceHistory: [
-        /* {
-          value: 154,
-        },
-        {
-          value: 142,
-        },
-        {
-          value: 160,
-        }, */
-      ],
-    },
-    {
-      name: "Hyperium",
-      path: addPathPrefix("hyperium.png"),
-      priceHistory: [],
-    },
-    {
-      name: "Hyperfuel",
-      path: addPathPrefix("hyper_fuel.png"),
-      priceHistory: [],
-    },
-    {
-      name: "Electronics Component",
-      path: addPathPrefix("electronics.png"),
-      priceHistory: [],
-    },
-  ],
+    "Crystal",
+    "Energy Rod",
+    "Hyperium",
+    "Hyperfuel",
+    "Electronics Component",
+    "Raw Chemicals",
+    "Chemicals",
+  ]
+    .map(transform)
+    .map((r) => ({
+      ...r,
+      ...minMaxAveragePrice(r.priceHistory),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+
+  toggleRessourceVisibility({ name }) {
+    this.ressources = this.ressources.map((r) => {
+      if (r.name === name) {
+        return {
+          ...r,
+          visible: !r.visible,
+        };
+      }
+      return r;
+    });
+  },
   showModal({ detail: { name } }) {
     this.$store.manager.modalVisible = true;
     const { path } = getByName(this.$store.manager, name);
