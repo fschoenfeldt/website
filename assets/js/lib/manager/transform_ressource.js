@@ -29,6 +29,18 @@ export const transform = (
           {
             value: Math.floor(Math.random() * (150 - 40 + 1)) + 40,
           },
+          {
+            value: Math.floor(Math.random() * (150 - 40 + 1)) + 40,
+          },
+          {
+            value: Math.floor(Math.random() * (150 - 40 + 1)) + 40,
+          },
+          {
+            value: Math.floor(Math.random() * (150 - 40 + 1)) + 40,
+          },
+          {
+            value: Math.floor(Math.random() * (150 - 40 + 1)) + 40,
+          },
         ]
       : [],
   };

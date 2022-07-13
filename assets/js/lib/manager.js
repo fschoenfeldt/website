@@ -1,9 +1,10 @@
-import { transform } from "./manager/transform_source";
+import { transform } from "./manager/transform_ressource";
 import {
   addPriceHistory,
   minMaxAveragePrice,
   getByName,
 } from "./manager/utils";
+import Chart from "chart.js/auto";
 
 export const store = {
   modalVisible: false,
@@ -35,14 +36,40 @@ export const store = {
       return r;
     });
   },
-  showModal({ detail: { name } }) {
+  showAddPriceModal({ detail: { name } }) {
     this.$store.manager.modalVisible = true;
-    const { path } = getByName(this.$store.manager, name);
+    const ressource = getByName(this.$store.manager, name);
+    const { priceHistory } = ressource;
+
+    console.log(ressource);
+
+    const ctx = this.$root.querySelector("#priceHistoryChart");
+    this.$store.manager.priceHistoryChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [...priceHistory.keys()],
+        datasets: [
+          {
+            label: "Prices of " + name,
+            backgroundColor: "rgba(165, 243, 252, 0.8)",
+            borderColor: "rgba(165, 243, 252, 0.8)",
+            data: priceHistory.map((p) => p.value),
+          },
+        ],
+      },
+      options: {
+        animation: null,
+        elements: {
+          line: {
+            tension: 0.3,
+          },
+        },
+      },
+    });
 
     this.$nextTick(() => {
+      this.ressource = ressource;
       this.$refs.name.value = name;
-      this.$refs.modalTitle.innerHTML = `new price for ${name}`;
-      this.$refs.modalIcon.src = path;
       this.$refs.input.focus();
     });
   },
@@ -63,12 +90,18 @@ export const store = {
     this.$nextTick(() => {
       this.$store.manager.modalVisible = false;
       this.$refs.input.value = "";
+      this.$store.manager.priceHistoryChart.destroy();
     });
 
     /*  console.log("adding to", name);
     
 
     console.log(this.$store.manager.ressources[0]); */
+  },
+  hideAddPriceModal(_e) {
+    this.$store.manager.modalVisible = false;
+    this.$refs.input.value = "";
+    this.$store.manager.priceHistoryChart.destroy();
   },
 };
 
