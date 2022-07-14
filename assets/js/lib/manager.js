@@ -1,4 +1,7 @@
-import { transform } from "./manager/transform_ressource";
+import {
+  transform,
+  maybeUpdateRessources,
+} from "./manager/transform_ressource";
 import {
   addPriceHistory,
   minMaxAveragePrice,
@@ -7,35 +10,54 @@ import {
 import Chart from "chart.js/auto";
 
 const version = 1;
+const initialRessources = [
+  "Crystal",
+  "Energy Rod",
+  "Hyperium",
+  "Hyperfuel",
+  "Electronics Component",
+  "Raw Chemicals",
+  "Chemicals",
+  "Artificial Meat",
+  "Fabrics",
+  "Fertilizer",
+  "Fibers",
+  "Fruit",
+  "Infra Block",
+  "Nuts and Seeds",
+  "Root Vegetables",
+  "Space Food",
+  "Tech Block",
+].map(transform);
 
 export const store = {
   init() {
     const ressourcesFromStorage = localStorage.getItem("ressources");
+    let ressourcesToApply = [];
 
     if (ressourcesFromStorage && ressourcesFromStorage.length) {
       console.info("Loading your ressources from local storage...");
-      const ressourcesToStore = JSON.parse(ressourcesFromStorage);
-      this.ressources = ressourcesToStore;
+      const ressourcesFromSavegame = JSON.parse(ressourcesFromStorage);
+      console.debug({ ressourcesFromSavegame });
+
+      const ressourcesUpdateCompleted = maybeUpdateRessources(
+        ressourcesFromSavegame,
+        initialRessources
+      );
+      console.debug({ ressourcesUpdateCompleted });
+
+      ressourcesToApply = ressourcesUpdateCompleted;
       console.log("✅ Loading Done!");
     } else {
-      const initialItems = [
-        "Crystal",
-        "Energy Rod",
-        "Hyperium",
-        "Hyperfuel",
-        "Electronics Component",
-        "Raw Chemicals",
-        "Chemicals",
-      ]
-        .map(transform)
-        .map((r) => ({
-          ...r,
-          ...minMaxAveragePrice(r.priceHistory),
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
-
-      this.ressources = initialItems;
+      ressourcesToApply = initialRessources;
     }
+
+    this.ressources = ressourcesToApply
+      .map((r) => ({
+        ...r,
+        ...minMaxAveragePrice(r.priceHistory),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   },
   persist(_ressources) {
     const previousState = JSON.parse(localStorage.getItem("ressources"));

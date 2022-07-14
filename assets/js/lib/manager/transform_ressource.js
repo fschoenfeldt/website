@@ -45,3 +45,22 @@ export const transform = (
       : [],
   };
 };
+
+// Adding any new ressources that are not in the savegame
+export const maybeUpdateRessources = (
+  ressourcesFromSavegame,
+  initialRessources
+) => {
+  const newRessourcesAfterUpdate = initialRessources.filter(
+    ({ name: nameUpdate }) => {
+      console.debug(`is ${nameUpdate} in savegame?`);
+      const result = !!ressourcesFromSavegame.find(
+        ({ name: nameSavegame }) => nameUpdate === nameSavegame
+      );
+      console.debug(result);
+      return !result;
+    }
+  );
+
+  return [...ressourcesFromSavegame, ...newRessourcesAfterUpdate];
+};
