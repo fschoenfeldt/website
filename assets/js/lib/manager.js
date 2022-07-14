@@ -94,12 +94,13 @@ export const store = {
   showAddPriceModal({ detail: { name } }) {
     this.$store.manager.modalVisible = true;
     const ressource = getByName(this.$store.manager, name);
-    const { priceHistory } = ressource;
+    const { priceHistory, average } = ressource;
 
     console.log(ressource);
 
     const ctx = this.$root.querySelector("#priceHistoryChart");
     Chart.defaults.font.size = 16;
+    Chart.defaults.color = "rgba(165, 243, 252, 0.8)";
     this.$store.manager.priceHistoryChart = new Chart(ctx, {
       type: "line",
       data: {
@@ -111,10 +112,21 @@ export const store = {
             borderColor: "rgba(165, 243, 252, 0.8)",
             data: priceHistory.map((p) => p.value),
           },
+          {
+            label: "Average Price of " + name,
+            backgroundColor: "rgba(165, 243, 252, 0.6)",
+            borderColor: "rgba(165, 243, 252, 0.6)",
+            data: [...priceHistory.map((_p) => average)],
+          },
         ],
       },
       options: {
         animation: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
         elements: {
           line: {
             tension: 0.3,

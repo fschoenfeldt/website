@@ -9,26 +9,28 @@
             <div class="text-cyan-200 font-sans" x-text="ressource.name"></div>
             <button label="close" 
                         class="font-sans p-2 border-2 border-red-400 !text-red-400 
-                               font-bold flex items-center justify-center h-12 w-12 shrink-0 !ml-auto" 
+                               font-bold flex items-center justify-center h-12 w-12 shrink-0 !ml-auto hover:!bg-red-400/20" 
                         @click="$store.manager.hideAddPriceModal">
                     ✕
                 </button>
         </div>
 
-        {# <template x-if="ressource.priceHistory && ressource.priceHistory.length"> #}
         <div>
-            {# <div style="overflow-wrap: anywhere;" x-text="JSON.stringify(ressource)" class="text-white font-sans"></div> #}
+            <div class="w-full flex justify-between items-center px-2 py-0.5">
+                <div class="text-cyan-200 font-sans textl-xl" x-text="ressource.min && `↓${ressource.min}`"></div>
+                <div class="text-cyan-200 font-sans text-xl" x-text="ressource.average && `⌀${ressource.average}`"></div>
+                <div class="!text-amber-200 font-sans text-xl font-bold" x-text="ressource.max && `↑${ressource.max}`"></div>
+            </div>
             <div>
                 <canvas id="priceHistoryChart" :aria-label="`price history of ${ressource?.name || ''}`"></canvas>
             </div>
         </div>
-        {# </template> #}
 
         <form class="flex flex-col space-y-4" @submit.prevent="$store.manager.handleModal">
             <label class="font-sans text-cyan-200 text-lg" 
                        for="number_input">
                        new price:
-                </label>
+            </label>
             <input x-ref="name" type="text" hidden/>
             <input class="text-3xl font-sans bg-transparent border border-cyan-200
                             bg-slate-700 p-2 text-cyan-200 text-center" 

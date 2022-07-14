@@ -31,8 +31,8 @@
     .modal {
       @apply absolute left-0 top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)];
       &__content {
-        @apply mx-auto mt-2 max-w-sm space-y-2 border border-amber-200 bg-slate-800 p-6
-             md:max-w-md lg:max-w-xl xl:mt-12;
+        @apply mx-auto mt-2 max-w-sm space-y-4 border border-amber-200 bg-slate-800 p-6 md:max-w-md
+             lg:max-w-xl lg:space-y-6 xl:mt-12;
       }
       button {
         @apply text-xl text-cyan-200;
