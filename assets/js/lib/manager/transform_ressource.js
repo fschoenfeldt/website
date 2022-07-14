@@ -8,6 +8,39 @@ const toFileName = (ressource_name) => {
   return addPathPrefix(`${safeName}.png`);
 };
 
+const recipes = {
+  Hyperfuel: [
+    {
+      name: "Hyperium",
+      amount: 2,
+    },
+  ],
+  "Energy Rod": [
+    {
+      name: "Energium",
+      amount: 0.5,
+    },
+  ],
+  Chemicals: [
+    {
+      name: "Raw Chemicals",
+      amount: 0.5,
+    },
+  ],
+  "Electronics Component": [
+    {
+      name: "Base Metals",
+      amount: 0.2,
+    },
+    {
+      name: "Noble Metals",
+      amount: 0.2,
+    },
+  ],
+};
+
+export const getRecipe = (name) => name && recipes[name];
+
 export const transform = (
   ressource_name,
   _index,

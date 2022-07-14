@@ -1,6 +1,7 @@
 import {
   transform,
   maybeUpdateRessources,
+  getRecipe,
 } from "./manager/transform_ressource";
 import {
   addPriceHistory,
@@ -11,7 +12,7 @@ import Chart from "chart.js/auto";
 
 const version = 1;
 const initialRessources = [
-  "Crystal",
+  "Energium",
   "Energy Rod",
   "Hyperium",
   "Hyperfuel",
@@ -28,6 +29,8 @@ const initialRessources = [
   "Root Vegetables",
   "Space Food",
   "Tech Block",
+  "Base Metals",
+  "Noble Metals",
 ].map(transform);
 
 export const store = {
@@ -80,6 +83,7 @@ export const store = {
   changeVisibility: false,
   ressources: [],
   version: version,
+  getByName,
   toggleRessourceVisibility({ name }) {
     this.ressources = this.ressources.map((r) => {
       if (r.name === name) {
@@ -93,11 +97,15 @@ export const store = {
   },
   showAddPriceModal({ detail: { name } }) {
     this.$store.manager.modalVisible = true;
-    const ressource = getByName(this.$store.manager, name);
+    const ressource = {
+      ...getByName(this.$store.manager, name),
+      recipe: getRecipe(name),
+    };
     const { priceHistory, average } = ressource;
 
     console.log(ressource);
 
+    // Chart initialisation
     const ctx = this.$root.querySelector("#priceHistoryChart");
     Chart.defaults.font.size = 16;
     Chart.defaults.color = "rgba(165, 243, 252, 0.8)";
@@ -112,12 +120,12 @@ export const store = {
             borderColor: "rgba(165, 243, 252, 0.8)",
             data: priceHistory.map((p) => p.value),
           },
-          {
+          /* {
             label: "Average Price of " + name,
             backgroundColor: "rgba(165, 243, 252, 0.6)",
             borderColor: "rgba(165, 243, 252, 0.6)",
             data: [...priceHistory.map((_p) => average)],
-          },
+          }, */
         ],
       },
       options: {
@@ -167,6 +175,7 @@ export const store = {
     console.log(this.$store.manager.ressources[0]); */
   },
   hideAddPriceModal(_e) {
+    this.ressource = {};
     this.$store.manager.modalVisible = false;
     this.$refs.input.value = "";
     this.$store.manager.priceHistoryChart.destroy();

@@ -1,5 +1,8 @@
 /* this is a test */
 #manager {
+  * {
+    @apply font-sans;
+  }
   button {
     @apply bg-transparent hover:bg-cyan-100/20;
   }
