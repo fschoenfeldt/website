@@ -21,7 +21,7 @@
           @apply mt-auto w-full border-t border-b-0 border-cyan-200;
         }
         &--change {
-          @apply opacity-85 border-2 border-dashed border-cyan-400;
+          @apply border-2 border-dashed border-cyan-400 opacity-80;
         }
         &--add {
           @apply border-dashed text-6xl text-cyan-200;
