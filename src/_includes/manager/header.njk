@@ -6,6 +6,7 @@
         <img @click="settingsMenuVisible = !settingsMenuVisible" class="mx-4 h-8 lg:h-10 w-8 lg:w-10" src="{{ "/img/settings.svg" | url }}"/>
     </div>
     <div id="settingsMenu" 
+         x-cloak
          x-show="settingsMenuVisible"
          class="bg-slate-800 w-11/12 max-w-lg mx-auto lg:ml-auto lg:mr-4 p-4">
         <ul class="flex flex-col">
