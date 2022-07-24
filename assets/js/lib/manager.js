@@ -7,6 +7,8 @@ import {
   addPriceHistory,
   minMaxAveragePrice,
   getByName,
+  getKeyboardFocussableElements,
+  getFirstAndLast,
 } from "./manager/utils";
 import Chart from "chart.js/auto";
 
@@ -31,6 +33,9 @@ const initialRessources = [
   "Tech Block",
   "Base Metals",
   "Noble Metals",
+  "Optronics Component",
+  "Ice",
+  "Water",
 ].map(transform);
 
 export const store = {
@@ -145,6 +150,9 @@ export const store = {
 
     this.$nextTick(() => {
       this.ressource = ressource;
+      // remember last focused element
+      this.$store.manager.lastFocusedElement = document.activeElement;
+      // TODO remove hidden name input
       this.$refs.name.value = name;
       this.$refs.input.focus();
     });
@@ -154,6 +162,7 @@ export const store = {
     console.log(this.$refs.input.value);
     console.log(this.$refs.name.value);
 
+    // TODO remove hidden name input
     const name = this.$refs.name.value;
     const value = this.$refs.input.value;
 
@@ -167,6 +176,7 @@ export const store = {
       this.$store.manager.modalVisible = false;
       this.$refs.input.value = "";
       this.$store.manager.priceHistoryChart.destroy();
+      this.$store.manager.lastFocusedElement.focus();
     });
 
     /*  console.log("adding to", name);
@@ -179,6 +189,27 @@ export const store = {
     this.$store.manager.modalVisible = false;
     this.$refs.input.value = "";
     this.$store.manager.priceHistoryChart.destroy();
+    this.$store.manager.lastFocusedElement.focus();
+  },
+  handleTabModal(e) {
+    const elems = getKeyboardFocussableElements(this.$root);
+    const { first, last } = getFirstAndLast(elems);
+
+    // as AlpineJS doesn't support an exact modifier, we need to check on the `shiftKey`
+    // -> https://github.com/alpinejs/alpine/issues/273
+    if (document.activeElement === last && !e.shiftKey) {
+      first.focus();
+      e.preventDefault();
+    }
+  },
+  handleShiftTabModal(e) {
+    const elems = getKeyboardFocussableElements(this.$root);
+    const { first, last } = getFirstAndLast(elems);
+
+    if (document.activeElement === first) {
+      last.focus();
+      e.preventDefault();
+    }
   },
 };
 

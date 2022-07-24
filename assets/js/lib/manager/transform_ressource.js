@@ -37,6 +37,22 @@ const recipes = {
       amount: 0.2,
     },
   ],
+  "Tech Block": [
+    {
+      name: "Infra Block",
+      amount: 1,
+    },
+    {
+      name: "Optronics Component",
+      amount: 1,
+    },
+  ],
+  Water: [
+    {
+      name: "Ice",
+      amount: 0.2,
+    },
+  ],
 };
 
 export const getRecipe = (name) => name && recipes[name];
