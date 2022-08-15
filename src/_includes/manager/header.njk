@@ -3,8 +3,8 @@
         x-data="{settingsMenuVisible: false}">
     <div class="flex items-center">
         <h1 class="flex-1 text-center font-sans uppercase font-bold text-xl -mr-16">Space Haven Manager</h1>
-        <button type="button" @click="settingsMenuVisible = !settingsMenuVisible">
-            <img alt="open settings" class="mx-4 h-8 lg:h-10 w-8 lg:w-10" src="{{ "/img/settings.svg" | url }}"/>
+        <button aria-label="open settings menu" type="button" @click="settingsMenuVisible = !settingsMenuVisible">
+            <img alt="settings menu icon" aria-hidden="true" class="mx-4 h-8 lg:h-10 w-8 lg:w-10" src="{{ "/img/settings.svg" | url }}"/>
         </button>
     </div>
     <div id="settingsMenu" 

@@ -19,11 +19,12 @@
             <img alt="" :src="ressource.path"/>
             <div id="addPriceModalLabel" class="text-cyan-200 font-sans" x-text="ressource.name"></div>
             <button label="close" 
-                        class="font-sans p-2 border-2 border-red-400 !text-red-400 
-                               font-bold flex items-center justify-center h-12 w-12 shrink-0 !ml-auto hover:!bg-red-400/20" 
-                        @click="$store.manager.hideAddPriceModal">
-                    ✕
-                </button>
+                    class="font-sans p-2 border-2 border-red-400 flex items-center justify-center h-12 w-12 
+                           shrink-0 !ml-auto hover:!bg-red-400/20" 
+                    @click="$store.manager.hideAddPriceModal">
+                <span class="!text-red-400 font-bold" aria-hidden="true">✕</span>
+                <span class="sr-only">close</span>
+            </button>
         </div>
 
         <div>
