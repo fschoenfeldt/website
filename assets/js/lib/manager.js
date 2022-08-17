@@ -101,7 +101,6 @@ export const store = {
     });
   },
   showAddPriceModal({ detail: { name } }) {
-    this.$store.manager.modalVisible = true;
     const ressource = {
       ...getByName(this.$store.manager, name),
       recipe: getRecipe(name),
@@ -148,6 +147,7 @@ export const store = {
       },
     });
 
+    this.$store.manager.modalVisible = true;
     this.$nextTick(() => {
       this.ressource = ressource;
       // remember last focused element
@@ -186,10 +186,12 @@ export const store = {
   },
   hideAddPriceModal(_e) {
     this.ressource = {};
-    this.$store.manager.modalVisible = false;
     this.$refs.input.value = "";
     this.$store.manager.priceHistoryChart.destroy();
-    this.$store.manager.lastFocusedElement.focus();
+    this.$nextTick(() => {
+      this.$store.manager.modalVisible = false;
+      this.$store.manager.lastFocusedElement.focus();
+    });
   },
   handleTabModal(e) {
     const elems = getKeyboardFocussableElements(this.$root);
