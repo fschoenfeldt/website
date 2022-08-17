@@ -23,6 +23,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-upgrade-help": "^1.0.1",
+    "@axe-core/playwright": "^4.4.3",
     "@playwright/test": "^1.25.0",
     "@tailwindcss/typography": "^0.5.4",
     "alpinejs": "^3.10.2",
