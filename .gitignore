@@ -31,3 +31,6 @@ _site
 
 #Generated hash data
 _data/hash.json
+/test-results/
+/playwright-report/
+/playwright/.cache/

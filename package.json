@@ -7,6 +7,7 @@
     "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
     "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --watch",
     "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
+    "start:e2e": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve --port 8081\"  \"npm:watch-*\"",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
     "build": "NODE_ENV=production concurrently \"npm:build-*\" && node hash && ELEVENTY_ENV=production eleventy"
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-upgrade-help": "^1.0.1",
+    "@playwright/test": "^1.25.0",
     "@tailwindcss/typography": "^0.5.4",
     "alpinejs": "^3.10.2",
     "autoprefixer": "^10.4.7",
