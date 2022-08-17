@@ -8,9 +8,14 @@ test.describe("manager", async () => {
     await page.waitForLoadState("networkidle");
   });
 
-  test("page loads and has correct title", async ({ page }) => {
+  test("has correct title", async ({ page }) => {
     // verify that title is correct
     expect(await page.title()).toContain("Space Haven Manager");
+  });
+
+  test("index matches snapshop", async ({ page }) => {
+    // verify that index page matches snapshot
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 
   // https://playwright.dev/docs/accessibility-testing
