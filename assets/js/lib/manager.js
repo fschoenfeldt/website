@@ -13,7 +13,7 @@ import {
 import Chart from "chart.js/auto";
 
 const version = 1;
-const initialRessources = [
+export const initialRessources = [
   "Energium",
   "Energy Rod",
   "Hyperium",

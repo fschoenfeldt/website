@@ -40,7 +40,10 @@
             </template>
         </template>
         <li class="ressources__item ressources__item--add">
-            <button @click="$store.manager.changeVisibility = !$store.manager.changeVisibility" x-text="$store.manager.changeVisibility ? '-' : '+'" :aria-label="$store.manager.changeVisibility ? 'hide all ressources' : 'show all ressources'"></button>
+            <button @click="$store.manager.changeVisibility = !$store.manager.changeVisibility" 
+                    x-text="$store.manager.changeVisibility ? '-' : '+'" 
+                    :aria-label="$store.manager.changeVisibility ? 'hide all ressources' : 'show all ressources'"
+                    data-testid="toggleRessourceVisibility"></button>
         </li>
     </ul>
 </main>
