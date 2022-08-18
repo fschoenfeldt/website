@@ -14,6 +14,7 @@ test.describe.parallel("manager", async () => {
   });
 
   test("index matches snapshop", async ({ page }) => {
+    // TODO: as we don't have a custom font enabled for manager yet, this looks different on all machines...
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
