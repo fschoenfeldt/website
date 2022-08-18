@@ -37,8 +37,25 @@ test.describe("manager", async () => {
 
   test("can add a new ressource to watch list", async ({ page }) => {
     await page.click("data-testid=toggleRessourceVisibility");
-    await page.click(".ressources__item.ressources__item--change");
+    await page
+      .locator(".ressources__item.ressources__item--change", {
+        hasText: "Energium",
+      })
+      .click();
 
-    await page.pause();
+    await page.click("data-testid=toggleRessourceVisibility");
+
+    const visibleRessources = await page.$$(
+      "ul.ressources > li.ressources__item"
+    );
+
+    await expect(
+      page.locator("ul.ressources li.ressources__item", {
+        hasText: "Energium",
+      })
+    ).toBeVisible();
+    // "toggleRessourceVisibility" button has to be subtracted from the count
+    expect(visibleRessources.length - 1).toBe(1);
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 });
