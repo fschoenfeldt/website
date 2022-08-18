@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { initialRessources } from "../assets/js/lib/manager";
 
-test.describe("manager", async () => {
+test.describe.parallel("manager", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("manager");
     // browsersync redirects to correct page so we have to wait
@@ -57,5 +57,37 @@ test.describe("manager", async () => {
     // "toggleRessourceVisibility" button has to be subtracted from the count
     expect(visibleRessources.length - 1).toBe(1);
     expect(await page.screenshot()).toMatchSnapshot();
+  });
+
+  test("can enter price history value", async ({ page }) => {
+    // activate ressource energium
+    await page.click("data-testid=toggleRessourceVisibility");
+    await page
+      .locator(".ressources__item.ressources__item--change", {
+        hasText: "Energium",
+      })
+      .click();
+    await page.click("data-testid=toggleRessourceVisibility");
+
+    await page.locator("li.ressources__item", { hasText: "Energium" }).click();
+    expect(page.locator(".modal")).toBeVisible();
+    expect(page.locator(".modal")).toContainText("Energium");
+    expect(page.locator(".modal")).toContainText("no data for graph.. yet");
+
+    await page.fill(".modal #number_input", "90");
+    await page.click(".modal form button");
+
+    await page.locator("li.ressources__item", { hasText: "Energium" }).click();
+    await page.fill(".modal #number_input", "140");
+    await page.click(".modal form button");
+
+    expect(await page.screenshot()).toMatchSnapshot();
+    const ressource = page.locator("li.ressources__item", {
+      hasText: "Energium",
+    });
+    const priceInfos = ressource.locator(".ressources__item__priceinfo");
+    await expect(priceInfos).toContainText("90");
+    await expect(priceInfos).toContainText("140");
+    await expect(priceInfos).toContainText("115");
   });
 });
