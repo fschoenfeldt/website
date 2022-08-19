@@ -89,6 +89,7 @@ test.describe.parallel("manager", async () => {
     await expect(priceInfos).toContainText("90");
     await expect(priceInfos).toContainText("140");
     await expect(priceInfos).toContainText("115");
-    expect(await page.screenshot()).toMatchSnapshot();
+    // TODO: the diameter sign looks different on all machines...
+    expect(await page.screenshot()).toMatchSnapshot({ maxDiffPixels: 150 });
   });
 });
