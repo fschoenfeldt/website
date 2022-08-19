@@ -29,6 +29,7 @@ module.exports = {
       fontFamily: {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
+        space: ["Space Mono", ...defaultTheme.fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {

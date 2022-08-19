@@ -17,9 +17,9 @@
          @keyup.escape="$store.manager.hideAddPriceModal">
         <div class="w-full flex items-center text-xl space-x-2 h-full">
             <img alt="" :src="ressource.path"/>
-            <div id="addPriceModalLabel" class="text-cyan-200 font-sans" x-text="ressource.name"></div>
+            <div id="addPriceModalLabel" class="text-cyan-200" x-text="ressource.name"></div>
             <button label="close" 
-                    class="font-sans p-2 border-2 border-red-400 flex items-center justify-center h-12 w-12 
+                    class="p-2 border-2 border-red-400 flex items-center justify-center h-12 w-12 
                            shrink-0 !ml-auto hover:!bg-red-400/20" 
                     @click="$store.manager.hideAddPriceModal">
                 <span class="!text-red-400 font-bold" aria-hidden="true">✕</span>
@@ -30,14 +30,14 @@
         <div>
             <div class="w-full flex justify-between items-center px-2 py-0.5"
                  x-show="ressource?.priceHistory?.length">
-                <div class="text-cyan-200 font-sans textl-xl" x-text="ressource.min && `↓${ressource.min}`"></div>
-                <div class="text-cyan-200 font-sans text-xl" x-text="ressource.average && `⌀${ressource.average}`"></div>
-                <div class="!text-amber-200 font-sans text-xl font-bold" x-text="ressource.max && `↑${ressource.max}`"></div>
+                <div class="text-cyan-200 text-xl" x-text="ressource.min && `↓${ressource.min}`"></div>
+                <div class="text-cyan-200 text-xl" x-text="ressource.average && `⌀${ressource.average}`"></div>
+                <div class="!text-amber-200 text-xl font-bold" x-text="ressource.max && `↑${ressource.max}`"></div>
             </div>
             <div x-show="ressource?.priceHistory?.length">
                 <canvas id="priceHistoryChart" :aria-label="`price history of ${ressource?.name || ''}`"></canvas>
             </div>
-            <div x-show="!ressource?.priceHistory?.length" class="border border-dashed border-cyan-200 p-6 w-full text-cyan-200 font-sans text-center italic">
+            <div x-show="!ressource?.priceHistory?.length" class="border border-dashed border-cyan-200 p-6 w-full text-cyan-200 text-center italic">
                 no data for graph.. yet
             </div>
         </div>
@@ -58,7 +58,7 @@
                             <template x-if="!ingredientFound.average">
                                 <div class="text-cyan-200/60">no price data</div>
                             </template>
-                            <div x-show="ressource?.recipe?.length > 1 && index < ressource?.recipe?.length-1" class="text-cyan-200 flex items-center text-4xl font-bold font-sans">
+                            <div x-show="ressource?.recipe?.length > 1 && index < ressource?.recipe?.length-1" class="text-cyan-200 flex items-center text-4xl font-bold">
                                 +
                             </div>
                         </div>
@@ -72,18 +72,18 @@
                             <div x-data="{sum: ressource.recipe.reduce((prev, ingredient) => {
                                                 const ingredientFound = $store.manager.getByName($store.manager, ingredient.name)
                                                 return ingredientFound.average * ingredient.amount + prev;
-                                                }, 0)}" x-show="ressource?.recipe?.length > 1 && sum" class="text-cyan-200 flex items-center text-2xl font-bold font-sans">
-                                ∑⌀ = <span class="text-cyan-200 flex items-center text-2xl font-bold font-sans"
+                                                }, 0)}" x-show="ressource?.recipe?.length > 1 && sum" class="text-cyan-200 flex items-center text-2xl font-bold">
+                                ∑⌀ = <span class="text-cyan-200 flex items-center text-2xl font-bold"
                                      x-text="Math.floor(sum)"></span>
                             </div>
-                            <div class="text-cyan-200 flex items-center justify-center text-4xl font-bold font-sans">
+                            <div class="text-cyan-200 flex items-center justify-center text-4xl font-bold">
                                 →
                             </div>
                         </div>
                         <div class="flex flex-col items-center">
                             <img alt="" :src="ressource.path" class="w-12"/>
                             <div class="text-cyan-200" x-text="ressource.name"></div>
-                            <div class="text-cyan-200 font-sans text-xl" x-text="ressource.average ? `⌀${ressource.average}` : `no price data`"></div>
+                            <div class="text-cyan-200 text-xl" x-text="ressource.average ? `⌀${ressource.average}` : `no price data`"></div>
                         </div>
                     </div>
                 </template>
@@ -91,13 +91,13 @@
         </div>
 
         <form class="flex flex-col space-y-4" @submit.prevent="$store.manager.handleModal">
-            <label class="font-sans text-cyan-200 text-lg" 
+            <label class="text-cyan-200 text-lg" 
                        for="number_input">
                        new price:
             </label>
             {# TODO remove hidden name input #}
             <input x-ref="name" type="text" hidden/>
-            <input class="text-3xl font-sans bg-transparent border border-cyan-200
+            <input class="text-3xl bg-transparent border border-cyan-200
                             bg-slate-700 p-2 text-cyan-200 text-center" 
                        x-ref="input" 
                        type="number" 
@@ -106,7 +106,7 @@
                        min="1"
                        max="9999"
                        required>
-            <button class="font-sans p-2 border">Submit</button>
+            <button class="p-2 border">Submit</button>
         </form>
 
     </div>

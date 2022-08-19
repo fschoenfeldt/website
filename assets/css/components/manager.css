@@ -1,6 +1,6 @@
 #manager {
   * {
-    @apply font-sans;
+    @apply font-space;
   }
   button {
     @apply bg-transparent hover:bg-cyan-100/20;
@@ -19,7 +19,7 @@
           @apply h-10;
         }
         * {
-          @apply font-sans text-cyan-200;
+          @apply font-space text-cyan-200;
         }
         &__priceinfo {
           @apply mt-auto w-full border-t border-b-0 border-cyan-200;
