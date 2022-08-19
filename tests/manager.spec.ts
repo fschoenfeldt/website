@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { initialRessources } from "../assets/js/lib/manager";
 
@@ -37,14 +37,7 @@ test.describe.parallel("manager", async () => {
   });
 
   test("can add a new ressource to watch list", async ({ page }) => {
-    await page.click("data-testid=toggleRessourceVisibility");
-    await page
-      .locator(".ressources__item.ressources__item--change", {
-        hasText: "Energium",
-      })
-      .click();
-
-    await page.click("data-testid=toggleRessourceVisibility");
+    await activateRessource(page, "Energium");
 
     const visibleRessources = await page.$$(
       "ul.ressources > li.ressources__item"
@@ -60,36 +53,57 @@ test.describe.parallel("manager", async () => {
     expect(await page.screenshot()).toMatchSnapshot();
   });
 
+  test("can open modal for empty price history", async ({ page }) => {
+    await activateRessource(page, "Energium");
+    await openPriceHistoryModal(page, "Energium");
+    await expect(page.locator(".modal")).toBeVisible();
+    await expect(page.locator(".modal")).toContainText("Energium");
+    await expect(page.locator(".modal")).toContainText(
+      "no data for graph.. yet"
+    );
+  });
+
   test("can enter price history value", async ({ page }) => {
-    // activate ressource energium
-    await page.click("data-testid=toggleRessourceVisibility");
-    await page
-      .locator(".ressources__item.ressources__item--change", {
+    await activateRessource(page, "Energium");
+
+    await addPriceHistoryEntry(page, "Energium", 90);
+    await addPriceHistoryEntry(page, "Energium", 140);
+
+    const priceInfos = page
+      .locator("li.ressources__item", {
         hasText: "Energium",
       })
-      .click();
-    await page.click("data-testid=toggleRessourceVisibility");
-
-    await page.locator("li.ressources__item", { hasText: "Energium" }).click();
-    expect(page.locator(".modal")).toBeVisible();
-    expect(page.locator(".modal")).toContainText("Energium");
-    expect(page.locator(".modal")).toContainText("no data for graph.. yet");
-
-    await page.fill(".modal #number_input", "90");
-    await page.click(".modal form button");
-
-    await page.locator("li.ressources__item", { hasText: "Energium" }).click();
-    await page.fill(".modal #number_input", "140");
-    await page.click(".modal form button");
-
-    const ressource = page.locator("li.ressources__item", {
-      hasText: "Energium",
-    });
-    const priceInfos = ressource.locator(".ressources__item__priceinfo");
+      .locator(".ressources__item__priceinfo");
     await expect(priceInfos).toContainText("90");
     await expect(priceInfos).toContainText("140");
     await expect(priceInfos).toContainText("115");
     // TODO: the diameter sign looks different on all machines...
     expect(await page.screenshot()).toMatchSnapshot({ maxDiffPixels: 150 });
   });
+
+  const activateRessource = async (page: Page, ressourceName: string) => {
+    await page.click("data-testid=toggleRessourceVisibility");
+    await page
+      .locator(".ressources__item.ressources__item--change", {
+        hasText: ressourceName,
+      })
+      .click();
+    await page.click("data-testid=toggleRessourceVisibility");
+  };
+
+  const openPriceHistoryModal = async (page: Page, ressourceName: string) => {
+    await page
+      .locator("li.ressources__item", { hasText: ressourceName })
+      .click();
+  };
+
+  const addPriceHistoryEntry = async (
+    page: Page,
+    ressourceName: string,
+    price: number
+  ) => {
+    await openPriceHistoryModal(page, ressourceName);
+    await page.fill(".modal #number_input", price.toString());
+    await page.click(".modal form button");
+  };
 });

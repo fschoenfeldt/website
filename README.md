@@ -38,7 +38,7 @@ pnpm playwright test -u
 
 #### CI Snapshots
 
-> If you are not on the same operating system as your CI system, you can use Docker to generate/update the screenshots:
+If you are not on the same operating system as your CI system, you can use Docker to generate/update the screenshots:
 
 ```bash
 docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.25.0-focal /bin/bash
@@ -46,6 +46,8 @@ npm i -g pnpm
 pnpm install
 pnpm playwright test --update-snapshots
 ```
+
+After that, [you most probably need to recreate `node_modules`](#install) cause it now got different packages.
 
 ## Assets versioning
 
