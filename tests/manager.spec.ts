@@ -82,7 +82,6 @@ test.describe.parallel("manager", async () => {
     await page.fill(".modal #number_input", "140");
     await page.click(".modal form button");
 
-    expect(await page.screenshot()).toMatchSnapshot();
     const ressource = page.locator("li.ressources__item", {
       hasText: "Energium",
     });
@@ -90,5 +89,6 @@ test.describe.parallel("manager", async () => {
     await expect(priceInfos).toContainText("90");
     await expect(priceInfos).toContainText("140");
     await expect(priceInfos).toContainText("115");
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 });
