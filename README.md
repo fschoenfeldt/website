@@ -26,7 +26,17 @@ pnpm build
 pnpm playwright test
 ```
 
-in case screenshots changes intentionally (https://playwright.dev/docs/test-snapshots):
+### Updating Snapshots
+
+in case screenshots changes intentionally (https://playwright.dev/docs/test-snapshots)
+
+#### Regenerate
+
+```test
+pnpm playwright test -u
+```
+
+#### CI Snapshots
 
 > If you are not on the same operating system as your CI system, you can use Docker to generate/update the screenshots:
 
