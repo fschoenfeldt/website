@@ -19,9 +19,18 @@ test.describe.parallel("manager", async () => {
   });
 
   // https://playwright.dev/docs/accessibility-testing
-  test("should not have any automatically detectable accessibility issues", async ({
+  test("should not have any automatically detectable accessibility issues on the index", async ({
     page,
   }) => {
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test("should not have any automatically detectable accessibility issues on the modal", async ({
+    page,
+  }) => {
+    await activateRessource(page, "Infra Block");
+    await openPriceHistoryModal(page, "Infra Block");
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });

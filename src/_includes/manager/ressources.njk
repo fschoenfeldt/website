@@ -1,4 +1,4 @@
-<main :aria-hidden="$store.manager.modalVisible">
+<div :aria-hidden="$store.manager.modalVisible">
     <ul class="ressources" :class="{ 'ressources--changing' : $store.manager.changeVisibility }">
         <template x-for="r in $store.manager.ressources">
             <template x-if="r.visible || $store.manager.changeVisibility">
@@ -46,4 +46,4 @@
                     data-testid="toggleRessourceVisibility"></button>
         </li>
     </ul>
-</main>
+</div>

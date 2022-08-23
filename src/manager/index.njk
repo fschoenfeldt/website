@@ -6,7 +6,9 @@ eleventyExcludeFromCollections: true
 
 <div class="wrapper">
     {% include "manager/header.njk" %}
-    {% include "manager/ressources.njk" %}
+    <main>
+        {% include "manager/ressources.njk" %}
+        {% include "manager/add_price_modal.njk" %}
+    </main>
     {% include "manager/footer.njk" %}
-    {% include "manager/add_price_modal.njk" %}
 </div>
