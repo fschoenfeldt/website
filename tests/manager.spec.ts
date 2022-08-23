@@ -70,6 +70,8 @@ test.describe.parallel("manager", async () => {
     await expect(page.locator(".modal")).toContainText(
       "no data for graph.. yet"
     );
+    // TODO: why doesn't this work on safari?
+    // await expect(page.locator(`.modal #number_input`)).toBeFocused();
   });
 
   test("can enter price history value", async ({ page }) => {
