@@ -2,6 +2,7 @@ import {
   transform,
   maybeUpdateRessources,
   getRecipe,
+  ressourceToSafeName,
 } from "./manager/transform_ressource";
 import {
   addPriceHistory,
@@ -39,6 +40,12 @@ export const initialRessources = [
 ].map(transform);
 
 export const store = {
+  modalVisible: false,
+  changeVisibility: false,
+  ressources: [],
+  version: version,
+  getByName,
+  ressourceToSafeName,
   init() {
     const ressourcesFromStorage = localStorage.getItem("ressources");
     let ressourcesToApply = [];
@@ -84,11 +91,14 @@ export const store = {
     localStorage.clear();
     location.reload();
   },
-  modalVisible: false,
-  changeVisibility: false,
-  ressources: [],
-  version: version,
-  getByName,
+  onClickToggleChangeVisibility() {
+    this.$store.manager.changeVisibility =
+      !this.$store.manager.changeVisibility;
+
+    this.$nextTick(() => {
+      document.querySelector(".ressources__item > button").focus();
+    });
+  },
   toggleRessourceVisibility({ name }) {
     this.ressources = this.ressources.map((r) => {
       if (r.name === name) {

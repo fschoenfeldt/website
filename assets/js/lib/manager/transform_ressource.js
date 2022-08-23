@@ -2,10 +2,12 @@
 const addPathPrefix = (path, pathPrefix = "/html/website/") =>
   `${pathPrefix}img/manager/${path}`;
 
+// lowercase and replace spaces with underscores
+export const ressourceToSafeName = (ressource_name) =>
+  ressource_name.toLowerCase().replace(/\s/g, "_");
+
 const toFileName = (ressource_name) => {
-  // lowercase and replace spaces with underscores
-  const safeName = ressource_name.toLowerCase().replace(/\s/g, "_");
-  return addPathPrefix(`${safeName}.png`);
+  return addPathPrefix(`${ressourceToSafeName(ressource_name)}.png`);
 };
 
 const recipes = {

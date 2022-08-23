@@ -3,9 +3,20 @@
         <template x-for="r in $store.manager.ressources">
             <template x-if="r.visible || $store.manager.changeVisibility">
                 <li class="ressources__item" 
-                    :class="{ 'ressources__item--change' : !r.visible}" >
+                    :class="{ 'ressources__item--change' : !r.visible}"
+                    :id="`ressource__item_${$store.manager.ressourceToSafeName(r.name)}`">
                     <button @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
-                            :aria-label="`show information for ${r.name}`">
+                            :aria-label="
+                            if ($store.manager.changeVisibility) {
+                                if (r.visible) {
+                                    return `hide ${r.name} in price list`
+                                } else {
+                                    return `show ${r.name} in price list`
+                                }
+                            } else {
+                                return `show information for ${r.name}`
+                            }
+                            ">
                         <div class="py-2 text-center" :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}">
                             <img alt="" class="inline" :src="r.path"/>
                             <div x-text="r.name" aria-hidden="true"></div>
@@ -40,9 +51,9 @@
             </template>
         </template>
         <li class="ressources__item ressources__item--add">
-            <button @click="$store.manager.changeVisibility = !$store.manager.changeVisibility" 
+            <button @click="$store.manager.onClickToggleChangeVisibility" 
                     x-text="$store.manager.changeVisibility ? '-' : '+'" 
-                    :aria-label="$store.manager.changeVisibility ? 'hide all ressources' : 'show all ressources'"
+                    :aria-label="$store.manager.changeVisibility ? 'stop showing all ressources and get back to price list' : 'show all ressources and change their visibility in this list'"
                     data-testid="toggleRessourceVisibility"></button>
         </li>
     </ul>
