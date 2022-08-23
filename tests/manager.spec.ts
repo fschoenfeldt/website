@@ -90,6 +90,22 @@ test.describe.parallel("manager", async () => {
     expect(await page.screenshot()).toMatchSnapshot({ maxDiffPixels: 200 });
   });
 
+  test("can see price history with multiple entries", async ({ page }) => {
+    await activateRessource(page, "Energium");
+    await addPriceHistoryEntry(page, "Energium", 90);
+    await addPriceHistoryEntry(page, "Energium", 102);
+    await addPriceHistoryEntry(page, "Energium", 87);
+    await addPriceHistoryEntry(page, "Energium", 140);
+    await addPriceHistoryEntry(page, "Energium", 168);
+    await openPriceHistoryModal(page, "Energium");
+
+    // price history values (top bar)
+    expect(page.locator(".modal")).toContainText("168");
+    expect(page.locator(".modal")).toContainText("87");
+    expect(page.locator(".modal")).toContainText("117");
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
+
   const activateRessource = async (page: Page, ressourceName: string) => {
     await page.click("data-testid=toggleRessourceVisibility");
     await page
@@ -104,6 +120,7 @@ test.describe.parallel("manager", async () => {
     await page
       .locator("li.ressources__item", { hasText: ressourceName })
       .click();
+    await page.waitForSelector(".modal");
   };
 
   const addPriceHistoryEntry = async (
