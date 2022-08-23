@@ -105,5 +105,6 @@ test.describe.parallel("manager", async () => {
     await openPriceHistoryModal(page, ressourceName);
     await page.fill(".modal #number_input", price.toString());
     await page.click(".modal form button");
+    await page.waitForSelector(".modal", { state: "hidden" });
   };
 });
