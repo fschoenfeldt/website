@@ -3,8 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@11ty/eleventy': ^1.0.2
   '@11ty/eleventy-upgrade-help': ^1.0.1
-  '@axe-core/playwright': ^4.4.3
-  '@playwright/test': ^1.25.0
+  '@axe-core/playwright': ^4.4.4
+  '@playwright/test': ^1.25.1
   '@tailwindcss/typography': ^0.5.4
   alpinejs: ^3.10.3
   autoprefixer: ^10.4.8
@@ -25,8 +25,8 @@ specifiers:
 devDependencies:
   '@11ty/eleventy': 1.0.2
   '@11ty/eleventy-upgrade-help': 1.0.1
-  '@axe-core/playwright': 4.4.3
-  '@playwright/test': 1.25.0
+  '@axe-core/playwright': 4.4.4
+  '@playwright/test': 1.25.1
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   alpinejs: 3.10.3
   autoprefixer: 10.4.8_postcss@8.4.16
@@ -110,8 +110,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@axe-core/playwright/4.4.3:
-    resolution: {integrity: sha512-5H1uebutjeS8zV0klAifAsFxIOdAAF8AAGzfnC1twFY1h74TVISTDOtb+qyDzjjW3YAFd3FEbbasqS6ULcdkcQ==}
+  /@axe-core/playwright/4.4.4:
+    resolution: {integrity: sha512-VA7MR1WCqW5tFcUGCXDaaqV9pJUCdOGIR4DiZJrOxGjeRYxz3VwyMc1MDg/yiJ5fQA/QYMx+w0mvqYEr3CPx7w==}
     dependencies:
       axe-core: 4.4.3
       playwright: 1.25.0
@@ -194,13 +194,13 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@playwright/test/1.25.0:
-    resolution: {integrity: sha512-j4EZhTTQI3dBeWblE21EV//swwmBtOpIrLdOIJIRv4uqsLdHgBg1z+JtTg+AeC5o2bAXIE26kDNW5A0TimG8Bg==}
+  /@playwright/test/1.25.1:
+    resolution: {integrity: sha512-IJ4X0yOakXtwkhbnNzKkaIgXe6df7u3H3FnuhI9Jqh+CdO0e/lYQlDLYiyI9cnXK8E7UAppAWP+VqAv6VX7HQg==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@types/node': 18.7.6
-      playwright-core: 1.25.0
+      playwright-core: 1.25.1
     dev: true
 
   /@sindresorhus/slugify/1.1.2:
@@ -2410,6 +2410,12 @@ packages:
 
   /playwright-core/1.25.0:
     resolution: {integrity: sha512-kZ3Jwaf3wlu0GgU0nB8UMQ+mXFTqBIFz9h1svTlNduNKjnbPXFxw7mJanLVjqxHJRn62uBfmgBj93YHidk2N5Q==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
+  /playwright-core/1.25.1:
+    resolution: {integrity: sha512-lSvPCmA2n7LawD2Hw7gSCLScZ+vYRkhU8xH0AapMyzwN+ojoDqhkH/KIEUxwNu2PjPoE/fcE0wLAksdOhJ2O5g==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
