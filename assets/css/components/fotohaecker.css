@@ -21,7 +21,7 @@
 }
 .technologies-used-list {
   li {
-    @apply inline-block rounded-lg bg-blue-600 px-1 font-sans text-sm font-bold text-white;
+    @apply inline-block rounded-lg bg-blue-700 px-1 font-sans text-sm font-bold text-white;
   }
 }
 .external {

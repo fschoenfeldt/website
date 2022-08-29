@@ -27,9 +27,9 @@
                     <div aria-hidden="true">frederikschoenfeldt@gmail.com</div>
                 </a>
             </li>
-            <li class="col-span-5 relative">
-                <div class="relative z-10">Projects</div>
-                <div class="md:grid md:grid-cols-2">
+            <li class="projects col-span-5 relative">
+                <div class="relative z-10 flex p-4">projects</div>
+                <div class="md:grid md:grid-cols-2 bg-white">
                     <div class="relative">
                         {% set image = "src/images/fotohaecker_bg.jpg" | sharp %}
                         <img class="absolute top-0 object-cover h-full w-full rounded" src="{% getUrl image | resize({ width: 500 }) | webp %}" aria-hidden="true"/>

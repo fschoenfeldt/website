@@ -33,7 +33,7 @@ layout: layouts/base.njk
                     <path d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path>
                     <polygon points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon>
                 </svg>
-            </a>, I build a small web application that allows you to manage trading prices. Technically, AlpineJS is used as a thin layer around events and state management. For persistance, I'm using the Local Storage API.
+            </a>, I build a small web application that allows you to manage trading prices. From a technical perspective, AlpineJS is used as a thin layer around events and state management. For persistance, I'm using the Local Storage API. Testing is done via playwright and some automatic accessibility checks are done via axe-core. The tests are run on every push to the repository via GitHub Actions, this ensures consistent quality.
         </p>
         <div class="md:flex gap-4 border-t border-cyan-200 pt-4 mt-4">
             <div>
@@ -55,6 +55,7 @@ layout: layouts/base.njk
                     <li>Jest</li>
                     <li>E2E Testing</li>
                     <li>Playwright</li>
+                    <li>axe-core</li>
                 </ul>
             </div>
         </div>
