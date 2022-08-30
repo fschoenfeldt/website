@@ -12,10 +12,21 @@ layout: layouts/base.njk
     </style>
 {% endblock %}
 
-<div id="project_manager" class="bg-gray-800">
-    <h1 class="self-end">
+<div id="project_manager" x-data="projectManager">
+    <canvas id="stars" class="fixed top-0 left-0 h-screen w-screen"></canvas>
+    {% set image = "src/images/spaceship.png" | sharp %}
+    <img x-show="spaceshipVisible"
+         class="absolute max-w-xl hidden" 
+         src="{% getUrl image | resize({ width: 1000 }) | webp %}"
+         aria-hidden="true"
+         x-init="setTimeout(() => {spaceshipVisible=true}, 200)"
+         x-transition
+         x-transition.duration.2000ms
+         x-transition:leave-end="transition_finished"/>
+
+    <h1 class="self-end z-10">
         Space Haven Manager</h1>
-    <div class="self-start">
+    <div class="self-start z-10">
         <p>
             The game Space Haven is a 2D isometric space exploration game, where you can also trade with different factions.
             With Space Haven Manager
