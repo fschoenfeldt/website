@@ -13,10 +13,10 @@ layout: layouts/base.njk
 {% endblock %}
 
 <div id="project_manager" x-data="projectManager">
-    <canvas id="stars" class="fixed top-0 left-0 h-screen w-screen"></canvas>
+    <canvas id="stars" class="fixed top-0 left-0 h-screen w-screen -z-20"></canvas>
     {% set image = "src/images/spaceship.png" | sharp %}
     <img x-show="spaceshipVisible"
-         class="absolute max-w-xl hidden" 
+         class="absolute -z-10 max-w-3xl"
          src="{% getUrl image | resize({ width: 1000 }) | webp %}"
          aria-hidden="true"
          x-init="setTimeout(() => {spaceshipVisible=true}, 200)"

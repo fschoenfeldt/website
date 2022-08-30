@@ -1,5 +1,5 @@
 #project_manager {
-  @apply relative grid gap-8;
+  @apply relative md:grid md:gap-8;
   grid-template-rows: 1fr 1fr;
   * {
     @apply font-space text-cyan-200;
