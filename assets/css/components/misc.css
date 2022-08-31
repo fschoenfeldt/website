@@ -29,4 +29,23 @@
       @apply text-white;
     }
   }
+  .projects {
+    @apply transition-opacity hover:opacity-100;
+    &:hover {
+      a div {
+        @apply no-underline;
+      }
+    }
+    div > div {
+      @apply hover:opacity-90;
+      &:hover {
+        a div {
+          @apply underline;
+        }
+      }
+    }
+    a {
+      @apply h-[11.2rem];
+    }
+  }
 }

@@ -5,7 +5,7 @@ layout: layouts/base.njk
 ---
 
 <div id="fotohaecker">
-  <img src="{{ "/img/fotohaecker_logo.svg" | url }}" class="col-span-1 row-span-4">
+  <img src="{{ "/img/fotohaecker_logo.svg" | url }}" alt="fotohaecker logo" class="col-span-1 row-span-4">
   <h1 class="thick-heading" id="fotohaecker-heading">Fotohäcker.</h1>
   <p class="text-gray-600 text-lg mb-2 xl:mb-6">
     upload & share your photos. license free, for any use!
@@ -15,8 +15,9 @@ layout: layouts/base.njk
     <a class="external" href="https://fschoenf.uber.space/fotohaecker/entries" target="_blank" rel="noopener noreferrer">
       (click here for a demo)
       <svg
+        aria-label=""
+        aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
-        ariahidden="true"
         focusable="false"
         x="0px"
         y="0px"
