@@ -34,11 +34,27 @@ module.exports = function (eleventyConfig) {
     "another_vacation_date",
     process.env.ANOTHER_VACATION_DATE
   );
+  eleventyConfig.addNunjucksGlobal(
+    "cv_htaccess_user_01",
+    process.env.CV_HTACCESS_USER_01
+  );
+  eleventyConfig.addNunjucksGlobal(
+    "cv_htaccess_password_01",
+    process.env.CV_HTACCESS_PASSWORD_01
+  );
+  eleventyConfig.addNunjucksGlobal(
+    "cv_htaccess_user_02",
+    process.env.CV_HTACCESS_USER_02
+  );
+  eleventyConfig.addNunjucksGlobal(
+    "cv_htaccess_password_02",
+    process.env.CV_HTACCESS_PASSWORD_02
+  );
 
   /**
    * https://github.com/luwes/eleventy-plugin-sharp
    */
-  pathPrefix = "/html/website/";
+  pathPrefix = "/";
   eleventyConfig.addPlugin(
     sharpPlugin({
       urlPath: `${pathPrefix}/img`,

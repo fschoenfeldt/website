@@ -1,5 +1,5 @@
 // TODO use `pathPrefix` from `.eleventy.js`
-const addPathPrefix = (path, pathPrefix = "/html/website/") =>
+const addPathPrefix = (path, pathPrefix = "/") =>
   `${pathPrefix}img/manager/${path}`;
 
 // lowercase and replace spaces with underscores
@@ -102,6 +102,7 @@ export const maybeUpdateRessources = (
   ressourcesFromSavegame,
   initialRessources
 ) => {
+  // filter ressources wiht different filename
   const newRessourcesAfterUpdate = initialRessources.filter(
     ({ name: nameUpdate }) => {
       console.debug(`is ${nameUpdate} in savegame?`);
@@ -113,5 +114,20 @@ export const maybeUpdateRessources = (
     }
   );
 
-  return [...ressourcesFromSavegame, ...newRessourcesAfterUpdate];
+  // migrate path to new path
+  const newRessourcesWithNewPath = newRessourcesAfterUpdate
+    .map((ressource) => {
+      const newPath = toFileName(ressource.name);
+      return {
+        ...ressource,
+        path: newPath,
+      };
+    })
+    .filter(({ path }) => path);
+
+  return [
+    ...ressourcesFromSavegame,
+    ...newRessourcesAfterUpdate,
+    ...newRessourcesWithNewPath,
+  ];
 };
