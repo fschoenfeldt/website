@@ -1,13 +1,13 @@
 import debounce from "debounce";
 
 let stars = [];
-const settings = { amount: 150, speed: 2, baseSize: 1, direction: "right" };
 
-// generate random number between 0.8 and 1.0
-// const random = () => Math.random() * 0.2 + 0.8;
+const settings = { amount: 150, speed: 1, baseSize: 1, direction: "right" };
 
 // generate stars with random x and y coordinates based on window size
 const generateStars = () => {
+  settings.amount = window.innerWidth < 768 ? 50 : 150;
+
   const s = [];
   for (let i = 0; i < settings.amount; i++) {
     s.push({
@@ -60,7 +60,11 @@ const draw = () => {
       }
     }
 
-    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2 + 0.7})`;
+    const r = Math.floor(Math.random() * 200) + 200;
+    const g = Math.floor(Math.random() * 200) + 200;
+    const b = Math.floor(Math.random() * 200) + 200;
+
+    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.random() * 0.2 + 0.7})`;
     ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
   }
   ctx.fill();

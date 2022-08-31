@@ -16,7 +16,7 @@ layout: layouts/base.njk
     <canvas id="stars" class="fixed top-0 left-0 h-screen w-screen -z-20"></canvas>
     {% set image = "src/images/spaceship.png" | sharp %}
     <img x-show="spaceshipVisible"
-         class="absolute -z-10 max-w-3xl"
+         class="absolute -z-10 md:max-w-3xl"
          src="{% getUrl image | resize({ width: 1000 }) | webp %}"
          aria-hidden="true"
          x-init="setTimeout(() => {spaceshipVisible=true}, 200)"
