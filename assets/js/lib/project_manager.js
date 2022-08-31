@@ -23,15 +23,14 @@ const generateStars = () => {
 const draw = () => {
   const canvas = document.getElementById("stars");
   const ctx = canvas.getContext("2d");
-
   const w = window.innerWidth;
   const h = window.innerHeight;
   canvas.width = w;
   canvas.height = h;
   ctx.globalCompositeOperation = "destination-over";
-  ctx.clearRect(0, 0, w, h); // clear canvas
 
-  const time = new Date();
+  // clear canvas
+  ctx.clearRect(0, 0, w, h);
 
   ctx.beginPath();
   for (let i = 0; i < stars.length; i++) {
