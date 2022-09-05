@@ -16,7 +16,11 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.stone,
+      slate: colors.slate,
       blue: colors.sky,
+      cyan: colors.cyan,
+      amber: colors.amber,
+      red: colors.red,
     },
     extend: {
       screens: {
@@ -25,6 +29,7 @@ module.exports = {
       fontFamily: {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
+        space: ["Space Mono", ...defaultTheme.fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {

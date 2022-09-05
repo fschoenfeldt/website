@@ -1,39 +1,53 @@
-# YATAS - Yet Another Tailwind Apline Starter
-
-<a href="https://yatas.netlify.app/" target="_blank">
-  <img alt="YATAS Logo" width="350" src="./src/img/logo.svg">
-</a>
-
-Minimal 11ty starter project that build css with tailwindcss cli and [esbuild](https://esbuild.github.io/) for javascript.
-
-## [Demo](https://yatas.netlify.app/)
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yhaefliger/yatas)
-
-## Stack
-
-- TailwindCSS v3
-- Apline.js v3
+# Frederik Schönfeldt – Website
 
 ## Install
 
 ```
-npm install
+pnpm install
 ```
 
-## Local dev
+## Local Dev
 
 ```
-npm run start
+pnpm start
 ```
 
 ## Build
 
 Minified production build
 
+```bash
+pnpm build
 ```
-npm run build
+
+## E2E Tests
+
+```bash
+pnpm playwright test
 ```
+
+### Updating Snapshots
+
+in case screenshots changes intentionally (https://playwright.dev/docs/test-snapshots)
+
+#### Regenerate
+
+```test
+pnpm playwright test -u
+```
+
+#### CI Snapshots
+
+If you are not on the same operating system as your CI system, you can use Docker to generate/update the screenshots:
+
+```bash
+docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.25.0-focal /bin/bash
+npm i -g pnpm
+pnpm install
+pnpm playwright test --update-snapshots
+```
+
+After that, [you most probably need to recreate `node_modules`](#install) cause it now got different packages.
 
 ## Assets versioning
 
