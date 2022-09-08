@@ -4,12 +4,12 @@ specifiers:
   '@11ty/eleventy': ^1.0.2
   '@11ty/eleventy-upgrade-help': ^1.0.1
   '@axe-core/playwright': ^4.4.4
-  '@playwright/test': ^1.25.1
+  '@playwright/test': ^1.25.2
   '@tailwindcss/typography': ^0.5.7
   alpinejs: ^3.10.3
   autoprefixer: ^10.4.8
   chart.js: ^3.9.1
-  concurrently: ^7.3.0
+  concurrently: ^7.4.0
   debounce: ^1.2.1
   del-cli: ^5.0.0
   eleventy-plugin-sharp: ^0.1.1
@@ -30,12 +30,12 @@ devDependencies:
   '@11ty/eleventy': 1.0.2
   '@11ty/eleventy-upgrade-help': 1.0.1
   '@axe-core/playwright': 4.4.4
-  '@playwright/test': 1.25.1
+  '@playwright/test': 1.25.2
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   alpinejs: 3.10.3
   autoprefixer: 10.4.8_postcss@8.4.16
   chart.js: 3.9.1
-  concurrently: 7.3.0
+  concurrently: 7.4.0
   del-cli: 5.0.0
   eleventy-plugin-sharp: 0.1.1
   esbuild: 0.15.7
@@ -198,13 +198,13 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@playwright/test/1.25.1:
-    resolution: {integrity: sha512-IJ4X0yOakXtwkhbnNzKkaIgXe6df7u3H3FnuhI9Jqh+CdO0e/lYQlDLYiyI9cnXK8E7UAppAWP+VqAv6VX7HQg==}
+  /@playwright/test/1.25.2:
+    resolution: {integrity: sha512-6qPznIR4Fw02OMbqXUPMG6bFFg1hDVNEdihKy0t9K0dmRbus1DyP5Q5XFQhGwEHQkLG5hrSfBuu9CW/foqhQHQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@types/node': 18.7.6
-      playwright-core: 1.25.1
+      playwright-core: 1.25.2
     dev: true
 
   /@sindresorhus/slugify/1.1.2:
@@ -796,8 +796,8 @@ packages:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
-  /concurrently/7.3.0:
-    resolution: {integrity: sha512-IiDwm+8DOcFEInca494A8V402tNTQlJaYq78RF2rijOrKEk/AOHTxhN4U1cp7GYKYX5Q6Ymh1dLTBlzIMN0ikA==}
+  /concurrently/7.4.0:
+    resolution: {integrity: sha512-M6AfrueDt/GEna/Vg9BqQ+93yuvzkSKmoTixnwEJkH0LlcGrRC2eCmjeG1tLLHIYfpYJABokqSGyMcXjm96AFA==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2423,8 +2423,8 @@ packages:
     hasBin: true
     dev: true
 
-  /playwright-core/1.25.1:
-    resolution: {integrity: sha512-lSvPCmA2n7LawD2Hw7gSCLScZ+vYRkhU8xH0AapMyzwN+ojoDqhkH/KIEUxwNu2PjPoE/fcE0wLAksdOhJ2O5g==}
+  /playwright-core/1.25.2:
+    resolution: {integrity: sha512-0yTbUE9lIddkEpLHL3u8PoCL+pWiZtj5A/j3U7YoNjcmKKDGBnCrgHJMzwd2J5vy6l28q4ki3JIuz7McLHhl1A==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
