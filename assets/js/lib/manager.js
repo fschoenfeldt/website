@@ -1,43 +1,17 @@
 import {
-  transform,
-  maybeUpdateRessources,
-  getRecipe,
-  ressourceToSafeName,
-} from "./manager/transform_ressource";
-import {
   addPriceHistory,
-  minMaxAveragePrice,
   getByName,
-  getKeyboardFocussableElements,
+  maybeLoadRessourcesFromStorage,
+  recipes,
+  ressourceToSafeName,
+} from "./manager/ressources";
+import {
   getFirstAndLast,
+  getKeyboardFocussableElements,
 } from "./manager/utils";
 import Chart from "chart.js/auto";
 
 const version = 1;
-export const initialRessources = [
-  "Energium",
-  "Energy Rod",
-  "Hyperium",
-  "Hyperfuel",
-  "Electronics Component",
-  "Raw Chemicals",
-  "Chemicals",
-  "Artificial Meat",
-  "Fabrics",
-  "Fertilizer",
-  "Fibers",
-  "Fruit",
-  "Infra Block",
-  "Nuts and Seeds",
-  "Root Vegetables",
-  "Space Food",
-  "Tech Block",
-  "Base Metals",
-  "Noble Metals",
-  "Optronics Component",
-  "Ice",
-  "Water",
-].map(transform);
 
 export const store = {
   modalVisible: false,
@@ -47,32 +21,7 @@ export const store = {
   getByName,
   ressourceToSafeName,
   init() {
-    const ressourcesFromStorage = localStorage.getItem("ressources");
-    let ressourcesToApply = [];
-
-    if (ressourcesFromStorage && ressourcesFromStorage.length) {
-      console.info("Loading your ressources from local storage...");
-      const ressourcesFromSavegame = JSON.parse(ressourcesFromStorage);
-      console.debug({ ressourcesFromSavegame });
-
-      const ressourcesUpdateCompleted = maybeUpdateRessources(
-        ressourcesFromSavegame,
-        initialRessources
-      );
-      console.debug({ ressourcesUpdateCompleted });
-
-      ressourcesToApply = ressourcesUpdateCompleted;
-      console.log("✅ Loading Done!");
-    } else {
-      ressourcesToApply = initialRessources;
-    }
-
-    this.ressources = ressourcesToApply
-      .map((r) => ({
-        ...r,
-        ...minMaxAveragePrice(r.priceHistory),
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
+    this.ressources = maybeLoadRessourcesFromStorage();
   },
   persist(_ressources) {
     const previousState = JSON.parse(localStorage.getItem("ressources"));
@@ -113,7 +62,7 @@ export const store = {
   showAddPriceModal({ detail: { name } }) {
     const ressource = {
       ...getByName(this.$store.manager, name),
-      recipe: getRecipe(name),
+      recipe: name && recipes[name],
     };
     const { priceHistory, average } = ressource;
 

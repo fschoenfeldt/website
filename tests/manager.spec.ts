@@ -1,6 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { initialRessources } from "../assets/js/lib/manager";
+import { initialRessources } from "../assets/js/lib/manager/ressources";
 
 test.describe.parallel("manager", async () => {
   test.beforeEach(async ({ page }) => {
