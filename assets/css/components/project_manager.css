@@ -1,5 +1,5 @@
 #project_manager {
-  @apply relative md:grid md:gap-8;
+  @apply relative space-y-8 px-0 md:grid md:gap-8 md:space-y-0 md:px-4;
   grid-template-rows: 1fr 1fr;
   * {
     @apply font-space text-cyan-200;
