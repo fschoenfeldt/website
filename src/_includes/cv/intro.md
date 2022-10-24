@@ -1,15 +1,17 @@
 <h2>Hi,</h2>
 
-Ich bin Frederik, sechsundzwanzig Jahre jung, Webentwickler und Accessibility Enthusiast aus Hamburg. Aus einer Leidenschaft für Gestaltung von digitalen Inhalten wie Logos, Albumcover und Entwicklung von Websites enstand in den letzten zehn Jahren meine Tätigkeit.
+Ich bin Frederik, sechsundzwanzig Jahre jung, Webentwickler und (Web-)Accessibility Enthusiast aus Hamburg.
 
 ## Ausbildung
 
 **2012-2014** schloss ich an der Eckener Schule Flensburg meine Ausbildung als Informations- und Kommunikationstechnischen Assistenten ab.
 
-**2014-2021** absolvierte ich mein Studium der Medieninformatik an der Hochschule Flensburg. In den Bereichen UI/UX-Design, Konzeptentwicklung und Webentwicklung eignete ich mir dort wichtige Grundlagen an, die ich heute noch regelmäßig ausbaue. Meine Bachelorarbeit befasst sich mit _barrierefreien Webkomponenten im Bezug auf digital-anamnestische Anwendungen_.
+**2014-2021** absolvierte ich mein Studium der Medieninformatik an der Hochschule Flensburg. In den Bereichen UI/UX-Design, Konzeptentwicklung und Webentwicklung eignete ich mir dort wichtige Fähigkeiten an, die ich heute weiterhin ausbaue. Meine Bachelorarbeit befasst sich mit _barrierefreien Webkomponenten im Bezug auf digital-anamnestische Anwendungen_.
 
 ## Berufliche Erfahrung & Skills
 
-**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team ein 20 köpfiges, internationales Team, dessen Design & Entwicklungs Abteilung (ca. 5 Personen) ich zuletzt geleitet habe.
+**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team eine 20 köpfiges, internationales Unternehmen, dessen Design- & Entwicklungsteam (ca. 5 Personen) ich geleitet habe.
 
-**seit 2016** erledigte ich zunächst viele kleinere Freelance-Jobs, später Vollzeitjobs und arbeitete dort mit den verschiedensten Anwendungen: WordPress, Drupal, Plenty, dem Phoenix Stack & NodeJS. Mit Webentwicklung habe ich die meiste Erfahrung, also beherrsche ich Layoutsprachen wie HTML & CSS fließend. Tiefergehende Kenntnisse wie TypeScript, React & Elixir sind vorhanden.
+**2016-2019** erledigte ich zunächst viele kleinere Freelance-Jobs und dann als Werkstudent im Frontend tätig.
+
+**bis heute** arbeite ich Vollzeit mit den verschiedensten Technologien und Anwendungen: Drupal, WordPress, dem Phoenix Stack (Elixir/Erlang) und NodeJS. Mit Webentwicklung habe ich die meiste Erfahrung, also beherrsche ich Layoutsprachen wie HTML & CSS fließend. Tiefergehende Kenntnisse wie TypeScript, React & Elixir sind vorhanden.
