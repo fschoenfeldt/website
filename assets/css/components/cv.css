@@ -23,7 +23,7 @@
     @apply bg-white;
   }
   .thick-heading {
-    @apply text-6xl;
+    @apply text-5xl;
   }
   .introduction {
     @apply grid w-full;

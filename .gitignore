@@ -39,3 +39,5 @@ _data/hash.json
 
 # regenerating screenshots
 .pnpm-store
+
+src/images/me
