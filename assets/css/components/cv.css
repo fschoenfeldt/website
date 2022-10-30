@@ -55,9 +55,10 @@
     }
   }
   .projects {
-    width: 21cm;
+    @apply grid content-between items-center;
+    grid-template-rows: auto 1fr 1fr 1fr auto;
     .project {
-      @apply space-y-4 p-4;
+      @apply space-y-4 px-4 py-2;
       &__header {
         @apply space-y-1;
       }
