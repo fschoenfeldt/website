@@ -1,7 +1,7 @@
 {
-  "name": "yatas",
+  "name": "fschoenfeldt-website",
   "version": "1.0.0",
-  "description": "Yet Another Tailwind Apline Starter",
+  "description": "Frederik Schönfeldt Website",
   "scripts": {
     "clean": "del _site",
     "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
@@ -10,7 +10,8 @@
     "start:e2e": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve --port 8081\"  \"npm:watch-*\"",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
-    "build": "NODE_ENV=production concurrently \"npm:build-*\" && node hash && ELEVENTY_ENV=production eleventy"
+    "build": "NODE_ENV=production concurrently \"npm:test --testNamePattern print\" \"npm:build-*\" && node hash && ELEVENTY_ENV=production eleventy",
+    "test": "npx playwright test"
   },
   "keywords": [
     "eleventy",
@@ -23,11 +24,11 @@
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
     "@11ty/eleventy-upgrade-help": "^1.0.1",
-    "@axe-core/playwright": "^4.4.5",
+    "@axe-core/playwright": "^4.5.0",
     "@playwright/test": "^1.27.1",
     "@tailwindcss/typography": "^0.5.7",
     "alpinejs": "^3.10.5",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.13",
     "chart.js": "^3.9.1",
     "concurrently": "^7.5.0",
     "del-cli": "^5.0.0",

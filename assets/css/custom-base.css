@@ -112,7 +112,7 @@ h1 {
   @apply font-heading text-4xl;
 }
 a {
-  @apply text-blue-700 hover:text-blue-900;
+  @apply text-blue-700 underline underline-offset-4 hover:text-blue-900;
 
   &.external {
     @apply inline-flex items-center gap-0.5;
