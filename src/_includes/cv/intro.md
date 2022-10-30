@@ -4,13 +4,13 @@ Ich bin Frederik, sechsundzwanzig Jahre jung, Webentwickler und (Web-)Accessibil
 
 ## Ausbildung
 
-**2012-2014** schloss ich meine Ausbildung als Informations- und Kommunikationstechnischen Assistenten an der Eckener Schule Flensburg ab.
+**2012-2014** schloss ich meine Ausbildung zum Informations- und Kommunikationstechnischen Assistenten an der Eckener Schule Flensburg ab.
 
 **2014-2021** absolvierte ich mein Studium der Medieninformatik an der Hochschule Flensburg. In den Bereichen Webentwicklung, UI/UX-Design und Konzeptentwicklung eignete ich mir dort wichtige Fähigkeiten an, die ich heute weiterhin ausbaue. Meine Bachelorarbeit befasst sich mit _barrierefreien Webkomponenten im Bezug auf digital-anamnestische Anwendungen_.
 
 ## Berufliche Erfahrung & Skills
 
-**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team eine 20 köpfiges, internationales Unternehmen, dessen Design- & Entwicklungsteam (ca. 5 Personen) ich geleitet habe.
+**2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team ein 20 köpfiges, internationales Unternehmen, dessen Design- & Entwicklungsteam (ca. 5 Personen) ich geleitet habe.
 
 **2016-2019** erledigte ich zunächst viele kleinere Freelance-Jobs und war dann als Werkstudent im Frontend tätig.
 
