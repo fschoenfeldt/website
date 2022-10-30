@@ -11,7 +11,7 @@
                     {{ personal_address }}</li>
                 <li>
                     <span class="material-icons !text-[20px]">phone</span>
-                    <a href="tel:{{ personal_phone }}">
+                    <a href="tel:{{ personal_phone | removeSpaces }}">
                         {{ personal_phone }}
                     </a>
                 </li>

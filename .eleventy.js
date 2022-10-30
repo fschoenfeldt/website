@@ -89,6 +89,10 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
+  eleventyConfig.addFilter("removeSpaces", function(string) {
+    return string.replace(/\s/g, '');
+  });
+
   return {
     dir: {
       input: "src",
