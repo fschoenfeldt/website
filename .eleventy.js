@@ -92,8 +92,6 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("removeSpaces", function (input) {
-    console.log("input!");
-    console.log(input);
     if (input) {
       return input.replace(/\s/g, "");
     } else {
