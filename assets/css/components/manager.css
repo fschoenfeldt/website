@@ -9,10 +9,10 @@
     @apply relative min-h-screen w-full border-2 border-cyan-200 bg-slate-900 p-2 pb-20;
     .ressources {
       @apply grid justify-center gap-4;
-      grid-template-columns: repeat(auto-fit, 10rem);
+      grid-template-columns: repeat(auto-fit, 12rem);
       &__item {
         > button {
-          @apply flex h-40 w-40 flex-col items-center justify-center border-2 border-cyan-200 
+          @apply flex h-48 w-48 flex-col items-center justify-center border-2 border-cyan-200 
                 hover:border-cyan-50 hover:bg-cyan-100/20 active:border-cyan-50 active:bg-cyan-100/20;
         }
         img {
@@ -23,6 +23,12 @@
         }
         &__priceinfo {
           @apply mt-auto w-full border-t border-b-0 border-cyan-200;
+        }
+        .priceinfo__values {
+          @apply flex items-center gap-x-1;
+          img {
+            @apply h-5;
+          }
         }
         &--change {
           > button {
