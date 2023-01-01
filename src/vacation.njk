@@ -1,13 +1,15 @@
 ---
 title: Vacation 🚀
-layout: layouts/minimal.njk
+layout: layouts/vacation.njk
 eleventyExcludeFromCollections: true
 ---
 
 {% set vacation_image = "src/images/vacation.jpg" | sharp %}
-<div class="h-screen w-screen flex items-center justify-center" x-data="vacation">
-    <template x-if="editMode">
-        <form @submit="handleSubmit" class="max-w-xl space-y-4">
+<div class="h-screen w-screen flex items-center justify-center" 
+     @submitvacationform="$store.vacation.submitVactionForm">
+    <div x-ref="test"></div>
+    <template x-if="$store.vacation.editMode">
+        <form @submit.prevent="$dispatch('submitvacationform')" class="max-w-xl space-y-4">
             <h1 class="thick-heading text-3xl">
                 Eigenen Urlaub setzen
             </h1>
@@ -17,35 +19,43 @@ eleventyExcludeFromCollections: true
             <div class="border rounded shadow space-y-2 p-4">
                 <div>
                     <label for="date">Urlaubsdatum</label>
-                    <input class="block bg-gray-200 text-xl" type="date" name="date" id="date">
+                    <input class="block bg-gray-200 text-xl" 
+                           type="date" 
+                           name="date" 
+                           id="date"
+                           x-ref="inputdate">
                 </div>
                 <button class="btn">Speichern</button>
-                <template x-if="generatedLink">
+                <template x-if="$store.vacation.generatedLink">
                     <div>
-                        Dein Link: <a :href="generatedLink" target="_blank" rel="noopener noreferrer" x-text="generatedLink"></a>
+                        Dein Link: 
+                        <a :href="$store.vacation.generatedLink" 
+                           target="_blank" rel="noopener noreferrer" 
+                           x-text="$store.vacation.generatedLink"></a>
                     </div>
                 </template>
             </div>
         </form>
     </template>
-    <template x-if="!editMode">
+    <template x-if="!$store.vacation.editMode">
         <div class="max-w-xl text-center p-4 space-y-4">
             <h1>👒☀️😎🏝️🏖️🌄</h1>
             <img src="{% getUrl vacation_image | resize({ width: 600 }) | webp %}"/>
             <h1
-            x-text="`Bis Urlaubsbeginn: ${format('{{ personal_actual_vacation_date }}')}`"
+            hidden
+            x-text="`Bis Urlaubsbeginn: ${$store.vacation.format($store.vacation.date || '{{ personal_actual_vacation_date }}')}`"
             class="thick-heading text-3xl italic"
             style=" background-image: -webkit-gradient( linear, left top, right top, from(#cada33), color-stop(#5896f6), to(#347884)
                 ); background-image: linear-gradient(33deg, #cada33, #5896f6, #347884); -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent; "></h1>
             <h1
-            x-text="format('{{ personal_vacation_date }}')"
-            class="thick-heading"
+            x-text="$store.vacation.format($store.vacation.date || '{{ personal_vacation_date }}')"
+            class="thick-heading text-9xl"
             style=" background-image: -webkit-gradient( linear, left top, right top, from(#cada33), color-stop(#5896f6), to(#347884)
                 ); background-image: linear-gradient(33deg, #cada33, #5896f6, #347884); -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent; "></h1>
 
-            <button @click="editMode = true" class="btn">Eigenen Urlaub setzen?</button>
+            <button @click="$store.vacation.editMode = true" class="btn text-xs absolute bottom-4 right-4 lg:bottom-2 lg:right-2">Eigenen Urlaubstimer setzen?</button>
         </div>
     </template>
 </div>

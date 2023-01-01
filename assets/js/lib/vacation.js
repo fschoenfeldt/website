@@ -11,29 +11,26 @@ const getDaysBetween = (date) => {
 
 const format = (diffDays) => `${getDaysBetween(diffDays)} Tage`;
 
-export default () => ({
+export const store = {
   getDaysBetween: getDaysBetween,
   format: format,
   editMode: false,
   generatedLink: null,
-  handleSubmit: (event) => {
-    event.preventDefault();
-    const date = event.target.date.value;
+  date: null,
+  submitVactionForm() {
+    const date = this.$refs.inputdate.value;
     const currentUrl = location.href.replace(location.search, "");
     const newParams = new URLSearchParams({ date }).toString();
-    const generatedLink = `${currentUrl}?${newParams}`;
-
-    // TODO: show generated link. Cant' access `this` here because we're in an event.
+    this.$store.vacation.generatedLink = `${currentUrl}?${newParams}`;
   },
-  init: () => {
+  init() {
     const params = new URL(document.location).searchParams;
     const date = params.get("date");
 
-    // TODO: use custom date if present in params
     if (date) {
-      console.log("i got date", date);
-    } else {
+      this.date = date;
+    } /* else {
       console.log("no date");
-    }
+    } */
   },
-});
+};
