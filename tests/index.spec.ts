@@ -6,6 +6,14 @@ test.describe("index/home page", () => {
     await page.goto("/");
     // browsersync redirects to correct page so we have to wait
     await page.waitForLoadState("networkidle");
+
+    const cookieConsent = await page.$("#cm");
+    if (cookieConsent) {
+      // wait for animation to be finished
+      await page.waitForSelector(".c--anim", { state: "attached" });
+      const rejectButton = await cookieConsent.$("#c-s-bn");
+      rejectButton && (await rejectButton.click());
+    }
   });
 
   test("matches snapshot", async ({ page }) => {
