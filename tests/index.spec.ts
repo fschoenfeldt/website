@@ -11,8 +11,10 @@ test.describe("index/home page", () => {
     if (cookieConsent) {
       // wait for animation to be finished
       await page.waitForSelector(".c--anim", { state: "attached" });
+      await page.waitForSelector("#c-s-bn");
       const rejectButton = await cookieConsent.$("#c-s-bn");
       rejectButton && (await rejectButton.click());
+      await page.waitForSelector("#cm", { state: "hidden" });
     }
   });
 
