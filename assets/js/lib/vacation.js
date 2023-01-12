@@ -26,14 +26,11 @@ export const store = {
   init() {
     const params = new URL(document.location).searchParams;
     const date = params.get("date");
-    const newVacation = params.get("editMode");
 
     if (date) {
       this.date = date;
-    } else if (newVacation) {
+    } else {
       this.editMode = true;
-    } /* else {
-      console.log("no date");
-    } */
+    }
   },
 };
