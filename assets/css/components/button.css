@@ -12,9 +12,9 @@
   }
 
   &--primary {
-    @apply bg-cyan-600 text-white;
+    @apply bg-cyan-700 text-white;
   }
   &--primary:hover {
-    @apply bg-cyan-700;
+    @apply bg-cyan-800;
   }
 }

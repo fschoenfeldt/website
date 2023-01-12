@@ -5,11 +5,13 @@ eleventyExcludeFromCollections: true
 ---
 
 {% set vacation_image = "src/images/vacation.jpg" | sharp %}
-<div class="h-screen w-screen flex items-center justify-center" 
+<main class="h-screen w-screen flex items-center justify-center" 
      @submitvacationform="$store.vacation.submitVactionForm">
     <div x-ref="test"></div>
     <template x-if="$store.vacation.editMode">
-        <form @submit.prevent="$dispatch('submitvacationform')" class="max-w-xl space-y-4 border rounded shadow p-4">
+        <form @submit.prevent="$dispatch('submitvacationform')" 
+              class="max-w-xl space-y-4 border rounded shadow p-4"
+              data-testid="vacationForm">
             <h1 class="thick-heading text-3xl pb-4">
                 📝 Eigenen Urlaub setzen
             </h1>
@@ -26,6 +28,7 @@ eleventyExcludeFromCollections: true
                                name="date"
                                id="date"
                                x-ref="inputdate"
+                               data-testid="vacationDate"
                                required>
                     </li>
                     <li class="hidden">
@@ -42,9 +45,9 @@ eleventyExcludeFromCollections: true
                         </div>
                     </li>
                 </ol>
-                <button class="btn btn--lg btn--primary">Speichern</button>
+                <button data-testid="submitButton" class="btn btn--lg btn--primary">Speichern</button>
                 <template x-if="$store.vacation.generatedLink">
-                    <div>
+                    <div data-testid="result">
                         Dein Link: 
                         <a :href="$store.vacation.generatedLink" 
                            target="_blank" rel="noopener noreferrer" 
@@ -57,7 +60,7 @@ eleventyExcludeFromCollections: true
     <template x-if="!$store.vacation.editMode">
         <div class="max-w-xl text-center p-4 space-y-4">
             <h1>👒☀️😎🏝️🏖️🌄</h1>
-            <img src="{% getUrl vacation_image | resize({ width: 600 }) | webp %}"/>
+            <img alt="photo of vacation place" src="{% getUrl vacation_image | resize({ width: 600 }) | webp %}"/>
             <h1
             hidden
             x-text="`Bis Urlaubsbeginn: ${$store.vacation.format($store.vacation.date)}`"
@@ -72,7 +75,12 @@ eleventyExcludeFromCollections: true
                 ); background-image: linear-gradient(33deg, #cada33, #5896f6, #347884); -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent; "></h1>
 
-            <button @click="$store.vacation.editMode = true" class="btn text-xs absolute bottom-4 right-4 lg:bottom-2 lg:right-2">Eigenen Urlaubstimer setzen?</button>
+            <button @click="$store.vacation.editMode = true" 
+                    class="btn text-xs absolute bottom-4 right-4 lg:bottom-2 lg:right-2"
+                    type="button"
+                    data-testid="newVacation">
+                    Eigenen Urlaubstimer setzen?
+            </button>
         </div>
     </template>
-</div>
+</main>
