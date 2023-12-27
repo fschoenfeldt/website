@@ -6,7 +6,7 @@ eleventyExcludeFromCollections: true
 
 {% set vacation_image = "src/images/vacation.jpg" | sharp %}
 <main class="min-h-screen min-w-screen flex items-center justify-center" 
-      :class="{ 'bg-gray-50': $store.vacation.editMode }"
+      :class="{ 'bg-gray-50 dark:bg-gray-900': $store.vacation.editMode }"
       @submitvacationform="$store.vacation.submitVactionForm">
     <div x-ref="test"></div>
     <template x-if="$store.vacation.editMode">
