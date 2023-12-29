@@ -24,4 +24,6 @@
   &--blue:hover {
     @apply bg-blue-800;
   }
+
+  /* TODO: Dark mode… */
 }
