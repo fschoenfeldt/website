@@ -43,9 +43,8 @@ export const store = {
     const vacationImageSearch = this.$store.vacation.vacationImageSearch;
 
     if (vacationImageSearch !== "") {
-      // TODO: on prod, use fschoenf.uber.space
       const response = await fetch(
-        `http://localhost:1337/fh/api/search/photos/${vacationImageSearch}`,
+        `http://fschoenf.uber.space/fh/api/search/photos/${vacationImageSearch}`,
       );
 
       const data = await response.json();
@@ -71,7 +70,7 @@ export const store = {
     const newParams = new URLSearchParams(filterObject(params)).toString();
     this.$store.vacation.generatedLink = `${currentUrl}?${newParams}`;
   },
-  init() {
+  async init() {
     const params = new URL(document.location).searchParams;
     const date = params.get("date");
     const vacationLocation = params.get("vacationLocation");
@@ -87,7 +86,12 @@ export const store = {
       this.vacationLocation = vacationLocation;
     }
     if (vacationImage) {
-      this.vacationImage = vacationImage;
+      const response = await fetch(
+        `http://fschoenf.uber.space/fh/api/content/photos/${vacationImage}`,
+      );
+      const data = await response.json();
+
+      this.vacationImage = data.data;
     }
   },
 };
