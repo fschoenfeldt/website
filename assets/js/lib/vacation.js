@@ -44,7 +44,7 @@ export const store = {
 
     if (vacationImageSearch !== "") {
       const response = await fetch(
-        `http://fschoenf.uber.space/fh/api/search/photos/${vacationImageSearch}`,
+        `https://fschoenf.uber.space/fh/api/search/photos/${vacationImageSearch}`,
       );
 
       const data = await response.json();
@@ -87,7 +87,7 @@ export const store = {
     }
     if (vacationImage) {
       const response = await fetch(
-        `http://fschoenf.uber.space/fh/api/content/photos/${vacationImage}`,
+        `https://fschoenf.uber.space/fh/api/content/photos/${vacationImage}`,
       );
       const data = await response.json();
 
