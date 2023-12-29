@@ -33,18 +33,49 @@
                         x-ref="inputvacationlocation"
                         data-testid="vacationLocation">
             </li>
-            <li class="hidden">
-                <strong class="block">Hintergrundbild auswählen (optional)</strong>
-                <div class="flex space-x-4 bg-amber-50 border p-4 rounded">
-                    <div>🔐</div>
-                    <div>Dein Hintergrundbild wird nur auf deinem Gerät gespeichert.</div>
-                    <input class="block"
-                            type="file"
-                            name="image"
-                            id="image"
-                            accept="image/*"
-                            x-ref="inputimage">
-                </div>
+            <li>
+                <strong class="block">Hintergrundbild auswählen (optional, experimentell)</strong>
+                <form x-data @submit.prevent="$dispatch('submitvacationimagesearch')" class="bg-amber-50 dark:bg-gray-900 border p-4 rounded">
+                    <div class="flex items-center space-x-4">
+                        <div>🚀</div>
+                        <div>Lass dir von Fotohäcker ein Bild geben.</div>
+                    </div>
+                    <div>
+                        <input class="block bg-gray-200 dark:bg-gray-800 text-xl"
+                                type="text"
+                                name="vacationimagesearch"
+                                id="vacationimagesearch"
+                                data-testid="vacationImageSearch"
+                                placeholder="Schottland"
+                                :value="$store.vacation.vacationImageSearch"
+                                x-model="$store.vacation.vacationImageSearch">
+
+                        <button type="submit">Suchen</button>
+                        <template x-if="$store.vacation.vacationImagesResult">
+
+                            <div>
+                                <p x-text="`${$store.vacation.vacationImagesResult.length} Ergebnisse`"></p>
+                                <p class="mt-4">Wähle ein Bild aus:</p>
+                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <template x-for="image in $store.vacation.vacationImagesResult">
+                                        <li class="flex flex-col">
+                                            <label :for="image.id">
+                                                <p x-text="image.title"></p>
+                                                <img :src="image.urls.thumb3x" :alt="image.title" class="rounded cursor-pointer">
+                                            </label>
+                                            <input type="radio"
+                                                    :id="image.id"
+                                                    :value="image.urls.thumb3x"
+                                                    name="inputvacationimage"
+                                                    x-model="$store.vacation.vacationImage">
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+
+                        </template>
+                    </div>
+                </form>
             </li>
         </ol>
         <template x-if="$store.vacation.generatedLink">

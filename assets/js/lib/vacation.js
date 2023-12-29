@@ -34,15 +34,38 @@ export const store = {
   editMode: false,
   generatedLink: null,
   vacationLocation: null,
+  vacationImageSearch: null,
+  vacationImagesResult: null,
+  vacationImage: null,
   date: null,
-  submitVactionForm() {
+  async submitVacationImageSearch(e) {
+    console.debug(this.$store.vacation.vacationImageSearch);
+    const vacationImageSearch = this.$store.vacation.vacationImageSearch;
+
+    if (vacationImageSearch !== "") {
+      // TODO: on prod, use fschoenf.uber.space
+      const response = await fetch(
+        `http://localhost:1337/fh/api/search/photos/${vacationImageSearch}`,
+      );
+
+      const data = await response.json();
+
+      this.$store.vacation.vacationImagesResult = data.data;
+
+      console.debug(data.data);
+    }
+  },
+  async submitVactionForm() {
     const date = this.$refs.inputdate.value;
     const vacationLocation = this.$refs.inputvacationlocation.value;
+    const vacationImage = this.$store.vacation.vacationImage;
+
     const params = {
       date,
       vacationLocation,
+      vacationImage,
     };
-    console.log(filterObject(params));
+    console.debug(filterObject(params));
 
     const currentUrl = location.href.replace(location.search, "");
     const newParams = new URLSearchParams(filterObject(params)).toString();
@@ -52,6 +75,7 @@ export const store = {
     const params = new URL(document.location).searchParams;
     const date = params.get("date");
     const vacationLocation = params.get("vacationLocation");
+    const vacationImage = params.get("vacationImage");
 
     if (date) {
       this.date = date;
@@ -61,6 +85,9 @@ export const store = {
 
     if (vacationLocation) {
       this.vacationLocation = vacationLocation;
+    }
+    if (vacationImage) {
+      this.vacationImage = vacationImage;
     }
   },
 };
