@@ -11,5 +11,17 @@ export default {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      defaultTheme: "light",
+      themes: {
+        light: {
+          extend: "light",
+          layout: {
+            radius: "0rem",
+          },
+        },
+      },
+    }),
+  ],
 };
