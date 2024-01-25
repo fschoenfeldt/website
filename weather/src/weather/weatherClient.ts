@@ -1,19 +1,18 @@
-import axios from 'axios'
-import { formatDateTime, isoToDate, isoToTime, offsetDate } from './utils'
+import axios, { AxiosResponse } from "axios";
+import { formatDateTime, isoToDate, isoToTime, offsetDate } from "./utils";
 
 export interface WeatherParams {
-  lat?: number
-  lon?: number
-  date: Date
-  last_date?: Date
+  city: City;
+  date?: Date;
+  last_date?: Date;
 }
 
 export interface WeatherResult {
-  timestamp: string
-  temperature: number
-  wind_speed: number
-  condition: string
-  icon: string
+  timestamp: string;
+  temperature: number;
+  wind_speed: number;
+  condition: string;
+  icon: string;
 }
 
 /**
@@ -23,45 +22,80 @@ export interface WeatherResult {
  */
 export const getWeatherFor = async (
   // therese params are set to satisfy the linter
-  params: WeatherParams = {
-    lat: 53.5488,
-    lon: 9.9872,
-    date: new Date(),
-    last_date: offsetDate(new Date(), 24)
-  }
-): Promise<[WeatherResult]> => {
+  params: WeatherParams,
+): Promise<Array<WeatherResult>> => {
   const defaultParams = {
-    // TODO: use nominatim to get the coordinates for the location
-    lat: 53.5488,
-    lon: 9.9872,
     date: new Date(),
-    last_date: offsetDate(new Date(), 24)
-  }
+    last_date: offsetDate(new Date(), 24),
+  };
 
-  params = { ...defaultParams, ...params }
+  const getWeatherParams = {
+    ...defaultParams,
+    ...params,
+    lat: params.city.lat,
+    lon: params.city.lon,
+  };
 
-  console.debug(params)
+  console.debug({ getWeatherParams });
+  const result = (
+    await getWeather({
+      ...getWeatherParams,
+      date: formatDateTime(getWeatherParams.date),
+      last_date: formatDateTime(getWeatherParams.last_date),
+    })
+  ).data;
 
-  params.date = formatDateTime(params.date)
-  params.last_date = formatDateTime(params.last_date)
-
-  console.debug(params)
-  const result = (await getWeather(params)).data
+  console.debug({ result });
 
   return result.weather.map((item: WeatherResult) => {
     return {
-      ...item,
+      timestamp: item.timestamp,
+      wind_speed: item.wind_speed,
+      condition: item.condition,
       temperature: Math.round(item.temperature),
-      time: {
-        date: isoToDate(item.timestamp),
-        time: isoToTime(item.timestamp)
-      }
-    }
-  })
-}
+    };
+  });
+};
 
 const getWeather = async (params) => {
   return await axios.get(`https://api.brightsky.dev/weather`, {
-    params
-  })
+    params,
+  });
+};
+
+export interface LocationParams {
+  city: string;
+  country?: string;
 }
+
+export interface City {
+  lat: number;
+  lon: number;
+  name: string;
+  display_name: string;
+  weather?: {
+    params: WeatherParams;
+    data: WeatherResult[];
+  };
+  [key: string]: unknown;
+}
+
+export const getCoordinatesFor = async (
+  params: LocationParams,
+): Promise<AxiosResponse<City[]>> => {
+  const result = await getCoordinates({
+    city: params.city,
+    country: "germany",
+  });
+
+  return result;
+};
+
+const getCoordinates = async (params: LocationParams) => {
+  return await axios.get(`https://nominatim.openstreetmap.org/search`, {
+    params: {
+      ...params,
+      format: "jsonv2",
+    },
+  });
+};
