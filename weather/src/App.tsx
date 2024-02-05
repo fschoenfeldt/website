@@ -1,21 +1,20 @@
-import { Basisdaten } from "./components/Basisdaten";
-import { GenericTableBody, Kennzahlen } from "./components/Kennzahlen";
-import "./App.css";
 import {
-  City,
-  WeatherResult,
-  getCoordinatesFor,
-  getWeatherFor,
-} from "./weather/weatherClient";
+  faArrowLeft,
+  faMagnifyingGlass,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
-  Divider,
   Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
   Radio,
   RadioGroup,
   Skeleton,
@@ -26,11 +25,19 @@ import {
   TableRow,
   useDisclosure,
 } from "@nextui-org/react";
-import { AsyncListData, TableBody, useAsyncList } from "react-stately";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addCity } from "./features/weather/citiesSlice";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TableBody, useAsyncList } from "react-stately";
+import "./App.css";
+import { WeatherIcon } from "./components/icons/WeatherIcon";
+import { addCity, fetchWeatherForCity } from "./features/weather/citiesSlice";
+import { AppDispatch, RootState } from "./weather/store";
 import { isoToTime } from "./weather/utils";
+import {
+  City,
+  WeatherResult,
+  getCoordinatesFor,
+} from "./weather/weatherClient";
 
 function App() {
   /*   const weatherList = useAsyncList({
@@ -42,8 +49,8 @@ function App() {
   }); */
 
   // const [cities, setCities] = useState<City[]>(intialCities);
-  const cities = useSelector((state) => state.cities.value);
-  const dispatch = useDispatch();
+  const cities = useSelector((state: RootState) => state.cities.value);
+  const dispatch: AppDispatch = useDispatch();
 
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -57,16 +64,17 @@ function App() {
 
   return (
     <>
+      <MyNavbar selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
       {selectedCity ? (
         <SelectedCity city={selectedCity} setSelectedCity={setSelectedCity} />
       ) : (
         <>
-          <h1>Gespeicherte Städte:</h1>
           <CityList
             cities={cities}
             showAddButton
             onPressAddButton={onCityPickerOpen}
             setSelectedCity={setSelectedCity}
+            dispatch={dispatch}
           />
           <CityPickerModal
             isCityPickerOpen={isCityPickerOpen}
@@ -76,14 +84,49 @@ function App() {
           />
         </>
       )}
-
-      {/* <WeatherTable
-        weatherItems={weatherList.items}
-        isLoading={weatherList.isLoading}
-      />
-       <Kennzahlen />
-      <Basisdaten /> */}
     </>
+  );
+}
+
+function MyNavbar({
+  selectedCity,
+  setSelectedCity,
+}: {
+  selectedCity: City | null;
+  setSelectedCity: (city: City | null) => void;
+}) {
+  /*  const [isMenuOpen, setIsMenuOpen] = useState(false); */
+
+  return (
+    <Navbar>
+      <NavbarContent>
+        {/* <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Menü öffnen" : "Menü schließen"}
+          className="sm:hidden"
+        /> */}
+        <NavbarBrand className="flex gap-4 sm:gap-6">
+          {selectedCity && (
+            <Button
+              variant="bordered"
+              onPress={() => setSelectedCity(null)}
+              startContent={<FontAwesomeIcon icon={faArrowLeft} size="xs" />}
+            >
+              <p className="">Andere Stadt wählen</p>
+            </Button>
+          )}
+
+          <p>
+            Wettervorhersage
+            {selectedCity && (
+              <>
+                {" "}
+                für <span className="font-bold">{selectedCity.name}</span>
+              </>
+            )}
+          </p>
+        </NavbarBrand>
+      </NavbarContent>
+    </Navbar>
   );
 }
 
@@ -92,40 +135,53 @@ function CityList({
   showAddButton,
   onPressAddButton,
   setSelectedCity,
+  dispatch,
 }: {
   cities: City[];
   showAddButton: boolean;
   onPressAddButton: () => void;
   setSelectedCity: (city: City) => void;
+  dispatch: AppDispatch;
 }) {
   const onPressCityButton = useCallback(
     (city: City) => {
-      console.debug("pressed");
+      console.debug("pressed city btn");
       console.debug({ city });
       setSelectedCity(city);
     },
     [setSelectedCity],
   );
 
+  // fetch initial weather data
+  useEffect(() => {
+    cities.forEach((city) => {
+      if (city.weather == null) {
+        dispatch(fetchWeatherForCity(city));
+      }
+    });
+  });
+
   if (cities.length == 0) {
     return <p>Keine Städte vorhanden. Füge eine hinzu!</p>;
   }
 
   return (
-    <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4">
+    <ul className="grid grid-cols-2 place-items-center gap-2 sm:grid-cols-4 sm:gap-4">
       {cities.map((city) => (
         <li key={city.osm_id}>
           <Button
-            className="h-32 w-32"
+            className="h-24 w-24 sm:h-32 sm:w-32"
             variant="flat"
             onClick={() => onPressCityButton(city)}
           >
-            <div className="flex flex-col items-center">
-              <div>{city.name}</div>
-              {/* <div className="flex items-center">
+            <div className="flex w-full flex-col items-center">
+              <div className="w-full">
+                <p className="overflow-hidden overflow-ellipsis">{city.name}</p>
+              </div>
+              <div className="flex items-center">
                 <span className="sr-only">Temperatur in {city.name}:</span>
-                <SingleForecast forecasts={forecasts} city={city} />
-              </div> */}
+                <SingleForecast city={city} />
+              </div>
             </div>
           </Button>
         </li>
@@ -133,13 +189,14 @@ function CityList({
       {showAddButton && (
         <li>
           <Button
-            className="h-32 w-32"
+            className="h-24 w-24 sm:h-32 sm:w-32"
             variant="flat"
             color="secondary"
             onPress={onPressAddButton}
             radius="full"
+            aria-label="Stadt zur Liste hinzufügen"
           >
-            +
+            <FontAwesomeIcon icon={faPlus} size="xl" />
           </Button>
         </li>
       )}
@@ -147,41 +204,32 @@ function CityList({
   );
 }
 
-function SingleForecast({
-  forecasts,
-  city,
-}: {
-  forecasts: AsyncListData<{ city: City; weather: WeatherResult[] }>;
-  city: City;
-}) {
+function SingleForecast({ city }: { city: City }) {
   // TODO: i dont like how this looks
-  const forecastsForCity = useMemo(() => {
-    return forecasts.items.find((item) => item.city.osm_id === city.osm_id);
-  }, [forecasts, city]);
+  const { weather } = city;
 
-  if (forecasts.items.length == 0 || forecasts.isLoading) {
+  if (weather?.isLoading || weather == undefined) {
     return <Skeleton className="inline-block h-4 w-8" />;
   }
 
-  if (forecastsForCity == null) {
-    return <p className="text-red-500">error</p>;
+  if (weather?.error) {
+    return <p className="text-red-500">{weather?.error}</p>;
   }
 
-  const currentForecast = forecastsForCity.weather.find(
-    (weatherResult: WeatherResult) => {
-      const date = new Date(weatherResult.timestamp);
-      const now = new Date();
+  const currentWeather = weather.data.find((weatherResult: WeatherResult) => {
+    const date = new Date(weatherResult.timestamp);
+    const now = new Date();
 
-      // find nearest time with unix timestamp
-      return date.getTime() > now.getTime();
-    },
-  );
+    // find nearest time with unix timestamp
+    return date.getTime() > now.getTime();
+  });
 
   return (
     <>
-      {forecastsForCity && currentForecast && (
-        <div>{currentForecast.temperature}°C</div>
-      )}
+      <div className="m-2 flex flex-col items-center justify-center gap-1">
+        <WeatherIcon weatherResult={currentWeather} />
+        <div>{currentWeather?.temperature}°C</div>
+      </div>
     </>
   );
 }
@@ -191,15 +239,26 @@ function CityPickerModal({
   onCityPickerOpenChange,
   cities,
   dispatch,
+}: {
+  isCityPickerOpen: boolean;
+  onCityPickerOpenChange: (isOpen: boolean) => void;
+  cities: City[];
+  dispatch: AppDispatch;
 }) {
   return (
     <Modal isOpen={isCityPickerOpen} onOpenChange={onCityPickerOpenChange}>
       <ModalContent>
-        {(onClose) => (
+        {(closeModal) => (
           <>
             <ModalHeader>Neue Stadt hinzufügen</ModalHeader>
             <ModalBody>
-              <CityPicker cities={cities} dispatch={dispatch} />
+              <CityPicker
+                cities={cities}
+                dispatch={dispatch}
+                onCityPickerSubmit={() => {
+                  closeModal();
+                }}
+              />
             </ModalBody>
             <ModalFooter>
               {/* <Button color="danger" variant="light" onPress={onClose}>
@@ -216,6 +275,7 @@ function CityPickerModal({
 function CityPicker({
   cities,
   dispatch,
+  onCityPickerSubmit,
 }: {
   cities: City[];
   dispatch: (arg0: { payload: City }) => void;
@@ -238,13 +298,22 @@ function CityPicker({
   const [selection, setSelection] = useState<string>();
 
   const onPressAddCityButton = useCallback(() => {
-    const selectedCity = cityResult.items[parseInt(selection)];
+    if (selection) {
+      onCityPickerSubmit && onCityPickerSubmit();
+      const selectedCity = cityResult.items[parseInt(selection)];
 
-    dispatch(addCity(selectedCity));
-    setInput("");
-    setSelection("");
-    cityResult.reload();
-  }, [cityResult, selection, dispatch]);
+      // fade out animation lasts 200ms
+      // timeout is needed to wait for animation to finish
+      setTimeout(() => {
+        dispatch(addCity(selectedCity));
+        // @ts-expect-error // TODO: why does this typing not work :-( ?
+        dispatch(fetchWeatherForCity(selectedCity));
+        setInput("");
+        setSelection("");
+        cityResult.reload();
+      }, 200);
+    }
+  }, [cityResult, selection, dispatch, setInput, onCityPickerSubmit]);
 
   return (
     <>
@@ -258,12 +327,18 @@ function CityPicker({
       >
         <Input
           label="Stadt"
-          placeholder="Stadt"
+          placeholder="Hamburg"
           value={input}
           onValueChange={setInput}
+          autoFocus
+          isRequired
         />
         <Input label="Land" value="Deutschland" isDisabled />
-        <Button type="submit" variant="flat">
+        <Button
+          type="submit"
+          variant="flat"
+          startContent={<FontAwesomeIcon icon={faMagnifyingGlass} size="xs" />}
+        >
           Suche
         </Button>
       </form>
@@ -289,7 +364,7 @@ function CityPicker({
         </>
       )}
       {selection !== null && selection !== undefined && (
-        <Button onClick={onPressAddCityButton} color="primary">
+        <Button type="submit" onClick={onPressAddCityButton} color="primary">
           Hinzufügen
         </Button>
       )}
@@ -297,45 +372,33 @@ function CityPicker({
   );
 }
 
-function SelectedCity({ city, setSelectedCity }: { city: City }) {
-  // TODO this feature could be implemented via routing instead
-  // of using a state variable
-  const forecast = useAsyncList({
-    async load() {
-      const weather = await getWeatherFor({
-        city: city,
-      });
-
-      return { items: weather };
-    },
-  });
-
+function SelectedCity({
+  city,
+  setSelectedCity,
+}: {
+  city: City;
+  setSelectedCity: (city: City | null) => void;
+}) {
   return (
     <>
       <Button onPress={() => setSelectedCity(null)} color="secondary">
         Zurück
       </Button>
-      <WeatherTable
-        weatherItems={forecast.items}
-        isLoading={forecast.isLoading}
-      />
+      <WeatherTable city={city} />
     </>
   );
 }
 
 interface Column {
-  key: string;
+  key: "timestamp" | "temperature" | "wind_speed" | "condition" | "icon";
   label: string;
   allowsSorting?: boolean;
 }
 
-function WeatherTable({
-  weatherItems,
-  isLoading,
-}: {
-  weatherItems: WeatherResult[] | null;
-  isLoading: boolean;
-}) {
+function WeatherTable({ city }: { city: City }) {
+  const { weather } = city;
+  const isLoading = weather?.isLoading;
+
   if (isLoading) {
     const rows = 4;
     const cols = 4;
@@ -358,11 +421,15 @@ function WeatherTable({
     );
   }
 
-  if (weatherItems == null || weatherItems.length == 0) {
+  if (weather?.data == null) {
     return <p className="p-4">Keine Daten vorhanden.</p>;
   }
 
   const tableColumns: Column[] = [
+    {
+      key: "icon",
+      label: "Symbol",
+    },
     {
       key: "timestamp",
       label: "Zeitpunkt",
@@ -381,10 +448,6 @@ function WeatherTable({
       key: "condition",
       label: "Wetterlage",
     },
-    // {
-    //   key: "icon",
-    //   label: "Icon"
-    // }
   ];
 
   return (
@@ -403,7 +466,7 @@ function WeatherTable({
         })}
       </TableHeader>
       <TableBody>
-        {weatherItems.map((row, i) => {
+        {weather.data.map((row, i) => {
           return (
             <TableRow key={i}>
               {tableColumns.map((column, j) => {
@@ -424,7 +487,7 @@ function WeatherTable({
                 let formattedValue = value;
 
                 if (column.key === "timestamp") {
-                  formattedValue = isoToTime(value);
+                  formattedValue = isoToTime(value as string);
                 }
                 if (column.key === "temperature") {
                   formattedValue = `${value}°C`;
@@ -432,12 +495,19 @@ function WeatherTable({
                 if (column.key === "wind_speed") {
                   formattedValue = `${value} km/h`;
                 }
-
-                return (
-                  <TableCell align="left" key={j}>
-                    {formattedValue}
-                  </TableCell>
-                );
+                if (column.key === "icon") {
+                  return (
+                    <TableCell align="left" key={j}>
+                      <WeatherIcon weatherResult={row} />
+                    </TableCell>
+                  );
+                } else {
+                  return (
+                    <TableCell align="left" key={j}>
+                      {formattedValue}
+                    </TableCell>
+                  );
+                }
               })}
             </TableRow>
           );

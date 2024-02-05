@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { formatDateTime, isoToDate, isoToTime, offsetDate } from "./utils";
+import { formatDateTime, offsetDate } from "./utils";
 
 export interface WeatherParams {
   city: City;
@@ -7,12 +7,28 @@ export interface WeatherParams {
   last_date?: Date;
 }
 
+// icons based on https://brightsky.dev/docs/#/operations/getCurrentWeather
+type WeatherIcon =
+  | "clear-day"
+  | "clear-night"
+  | "partly-cloudy-day"
+  | "partly-cloudy-night"
+  | "cloudy"
+  | "fog"
+  | "wind"
+  | "rain"
+  | "sleet"
+  | "snow"
+  | "hail"
+  | "thunderstorm"
+  | null;
+
 export interface WeatherResult {
   timestamp: string;
   temperature: number;
   wind_speed: number;
   condition: string;
-  icon: string;
+  icon: WeatherIcon;
 }
 
 /**
@@ -53,11 +69,17 @@ export const getWeatherFor = async (
       wind_speed: item.wind_speed,
       condition: item.condition,
       temperature: Math.round(item.temperature),
+      icon: item.icon,
     };
   });
 };
 
-const getWeather = async (params) => {
+const getWeather = async (params: {
+  lat: number | string;
+  lon: number | string;
+  date: string;
+  last_date: string;
+}) => {
   return await axios.get(`https://api.brightsky.dev/weather`, {
     params,
   });
@@ -69,13 +91,16 @@ export interface LocationParams {
 }
 
 export interface City {
-  lat: number;
-  lon: number;
+  lat: number | string;
+  lon: number | string;
   name: string;
   display_name: string;
+  osm_id: number;
   weather?: {
-    params: WeatherParams;
+    params?: WeatherParams;
     data: WeatherResult[];
+    isLoading: boolean;
+    error: string | undefined;
   };
   [key: string]: unknown;
 }

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { City } from "../../weather/weatherClient";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { City, getWeatherFor } from "../../weather/weatherClient";
 
 const intialCities: City[] = [
   {
@@ -55,24 +55,37 @@ const intialCities: City[] = [
   },
 ];
 
+const initialState = {
+  value: intialCities,
+};
+
+export const fetchWeatherForCity = createAsyncThunk(
+  "cities/fetchWeatherForCity",
+  async (city: City) => {
+    console.debug(`thunk is called with ${city.name}`);
+    const weatherResult = await getWeatherFor({ city });
+    console.debug({ weatherResult });
+    return {
+      ...city,
+      weather: {
+        isLoading: false,
+        data: weatherResult,
+        error: null,
+      },
+    };
+  },
+);
+
 export const citiesSlice = createSlice({
   name: "cities",
-  initialState: {
-    value: intialCities,
-  },
+  initialState,
   reducers: {
     setCities: (_state, action) => {
-      //   state.value = action.payload;
-
       return {
         value: action.payload,
       };
     },
     addCity: (state, action) => {
-      /* console.debug({ action });
-      state.value.push(action.payload);
-      console.debug({ state }); */
-
       const newValue = [...state.value, action.payload];
       console.debug({ newValue });
 
@@ -93,6 +106,49 @@ export const citiesSlice = createSlice({
       throw new Error("Not implemented");
       state.value = state.value.filter((city) => city !== action.payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchWeatherForCity.pending, (state, action) => {
+      const city = state.value.find(
+        (city) => city.osm_id === action.meta.arg.osm_id,
+      );
+
+      if (city) {
+        city.weather = {
+          data: city.weather?.data || [],
+          isLoading: true,
+          error: undefined,
+        };
+      }
+    });
+
+    builder.addCase(fetchWeatherForCity.fulfilled, (state, action) => {
+      const city = state.value.find(
+        (city) => city.osm_id === action.meta.arg.osm_id,
+      );
+
+      if (city) {
+        city.weather = {
+          data: action.payload.weather.data,
+          isLoading: false,
+          error: undefined,
+        };
+      }
+    });
+
+    builder.addCase(fetchWeatherForCity.rejected, (state, action) => {
+      const city = state.value.find(
+        (city) => city.osm_id === action.meta.arg.osm_id,
+      );
+
+      if (city) {
+        city.weather = {
+          data: [],
+          isLoading: false,
+          error: action.error.message,
+        };
+      }
+    });
   },
 });
 
