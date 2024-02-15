@@ -6,26 +6,25 @@
         <div class="project__header">
             <h2>Webapp „Fotohäcker“
                 <span class="text-base">
-                    <a href="{{ "/fotohaecker" | url }}">(Info & Demo NodeJS)</a>
-                    |
-                    <a href="https://fschoenf.uber.space/fh/de_DE">(Demo Elixir/Phoenix Stack)</a>
+                    <a href="https://fschoenf.uber.space/fh/de_DE">Info</a> •
+                    <a href="https://fschoenfeldt.de/fotohaecker/">Demo</a>
                 </span>
             </h2>
             <p>
-                    Eine auf NodeJS & Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Im Rahmen des Fachs
-                    „WWW-Programmierung“ während des Studiums entstanden. Aktuell portiere ich die Anwendung in den Elixir Phoenix Stack <a href="https://fschoenf.uber.space/fh/de_DE">(Demo)</a>.
+                    Eine auf NodeJS &amp; Express basierende Webanwendung zum Hochladen lizenzfreier Fotos. Im Rahmen des Fachs
+                    „WWW-Programmierung“ während des Studiums entstanden. Anschließend neu aufgesetzt mit dem Elixir Phoenix Stack.
                 </p>
         </div>
         <div class="project__info">
-            <img class="block self-start rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ width: 300, height: 150, fit: 'cover' }) | webp %}" alt="Projekt Fotohäcker"/>
+            <img class="block self-start rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ width: 300, height: 150, fit: 'contain' }) | webp %}" alt="Projekt Fotohäcker"/>
             <div>
                 <h2>Verwendete Techniken</h2>
                 <ul class="list-disc list-inside">
-                    <li>NodeJS (Express)</li>
+                    <li>Elixir (Phoenix Framework &amp; Phoenix LiveView)</li>
+                    <li>TailwindCSS &amp; AlpineJS (<a href="https://thinkingelixir.com/petal-stack-in-elixir/">PETAL Stack</a>)</li>
                     <li>SQLite</li>
-                    <li>Twig/Nunjucks</li>
-                    <li>HTML, CSS (Bootstrap) & JavaScript</li>
-                    <li>Jest/Playwright (End-to-End Testing)</li>
+                    <li>Phoenix </li>
+                    <li>Jest/Playwright (End-to-End Testing inkl. a11y)</li>
                     <li>Deployment & Server (u.a. supervisord)</li>
                 </ul>
             </div>
