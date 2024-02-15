@@ -10,7 +10,7 @@ import {
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WeatherResult } from "../../weather/weatherClient";
+import { WeatherResult } from "../../weather/weatherTypes";
 
 export function WeatherIcon({
   weatherResult,

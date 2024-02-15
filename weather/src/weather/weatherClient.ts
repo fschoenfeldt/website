@@ -1,63 +1,49 @@
 import axios, { AxiosResponse } from "axios";
 import { formatDateTime, offsetDate } from "./utils";
+import {
+  City,
+  LocationParams,
+  WeatherParams,
+  WeatherResult,
+} from "./weatherTypes";
 
-export interface WeatherParams {
-  city: City;
-  date?: Date;
-  last_date?: Date;
-}
-
-// icons based on https://brightsky.dev/docs/#/operations/getCurrentWeather
-type WeatherIcon =
-  | "clear-day"
-  | "clear-night"
-  | "partly-cloudy-day"
-  | "partly-cloudy-night"
-  | "cloudy"
-  | "fog"
-  | "wind"
-  | "rain"
-  | "sleet"
-  | "snow"
-  | "hail"
-  | "thunderstorm"
-  | null;
-
-export interface WeatherResult {
-  timestamp: string;
-  temperature: number;
-  wind_speed: number;
-  condition: string;
-  icon: WeatherIcon;
-}
+export const getDefaultWeatherParams = (): WeatherParams => {
+  return {
+    date: new Date().toISOString(),
+    last_date: offsetDate(new Date(), 24).toISOString(),
+    // current timezone inferred from the browser
+    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  };
+};
 
 /**
  * Get the weather for a location
- * @param {WeatherParams} params The parameters for the function
- * @returns {Promise<{}>} The weather result
+ * @param city the city to get the weather for
+ * @returns The weather result
  */
 export const getWeatherFor = async (
-  // therese params are set to satisfy the linter
-  params: WeatherParams,
+  city: City,
 ): Promise<Array<WeatherResult>> => {
-  const defaultParams = {
-    date: new Date(),
-    last_date: offsetDate(new Date(), 24),
-  };
-
+  if (!city.weather?.params) {
+    throw new Error("No weather params found");
+  }
+  if (!city.weather?.params.tz) {
+    console.warn(
+      "No timezone found in weather params, using UTC which is probably wrong",
+    );
+  }
   const getWeatherParams = {
-    ...defaultParams,
-    ...params,
-    lat: params.city.lat,
-    lon: params.city.lon,
+    ...city.weather.params,
+    lat: city.lat,
+    lon: city.lon,
   };
 
   console.debug({ getWeatherParams });
   const result = (
     await getWeather({
       ...getWeatherParams,
-      date: formatDateTime(getWeatherParams.date),
-      last_date: formatDateTime(getWeatherParams.last_date),
+      date: formatDateTime(new Date(getWeatherParams.date)),
+      last_date: formatDateTime(new Date(getWeatherParams.last_date)),
     })
   ).data;
 
@@ -65,11 +51,8 @@ export const getWeatherFor = async (
 
   return result.weather.map((item: WeatherResult) => {
     return {
-      timestamp: item.timestamp,
-      wind_speed: item.wind_speed,
-      condition: item.condition,
+      ...item,
       temperature: Math.round(item.temperature),
-      icon: item.icon,
     };
   });
 };
@@ -79,31 +62,12 @@ const getWeather = async (params: {
   lon: number | string;
   date: string;
   last_date: string;
+  tz: string;
 }) => {
   return await axios.get(`https://api.brightsky.dev/weather`, {
     params,
   });
 };
-
-export interface LocationParams {
-  city: string;
-  country?: string;
-}
-
-export interface City {
-  lat: number | string;
-  lon: number | string;
-  name: string;
-  display_name: string;
-  osm_id: number;
-  weather?: {
-    params?: WeatherParams;
-    data: WeatherResult[];
-    isLoading: boolean;
-    error: string | undefined;
-  };
-  [key: string]: unknown;
-}
 
 export const getCoordinatesFor = async (
   params: LocationParams,

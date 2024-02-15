@@ -1,6 +1,8 @@
 import {
   faArrowLeft,
+  faCheck,
   faMagnifyingGlass,
+  faPen,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,27 +34,62 @@ import "./App.css";
 import { WeatherIcon } from "./components/icons/WeatherIcon";
 import { addCity, fetchWeatherForCity } from "./features/weather/citiesSlice";
 import { AppDispatch, RootState } from "./weather/store";
-import { isoToTime } from "./weather/utils";
 import {
-  City,
-  WeatherResult,
-  getCoordinatesFor,
-} from "./weather/weatherClient";
+  getCurrentTimezone,
+  isoToTime,
+  toLocalISOString,
+} from "./weather/utils";
+import { City, WeatherResult } from "./weather/weatherTypes";
+import { getCoordinatesFor } from "./weather/weatherClient";
 
 function App() {
-  /*   const weatherList = useAsyncList({
-    async load() {
-      const weatherResult = await getWeatherFor();
-      // console.debug(weatherResult);
-      return { items: weatherResult };
-    },
-  }); */
-
-  // const [cities, setCities] = useState<City[]>(intialCities);
   const cities = useSelector((state: RootState) => state.cities.value);
   const dispatch: AppDispatch = useDispatch();
 
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const onSelectDate = useCallback(
+    (date: Date) => {
+      setSelectedDate(date);
+
+      cities.forEach((city) => {
+        dispatch(
+          fetchWeatherForCity({
+            ...city,
+            weather: {
+              data: [],
+              // TODO: this is kinda ugly
+              isLoading: undefined,
+              error: undefined,
+              ...city.weather,
+              params: {
+                date: date.toISOString(),
+                last_date: new Date(date.getTime() + 864e5).toISOString(),
+                tz: getCurrentTimezone(),
+              },
+            },
+          }),
+        );
+      });
+    },
+    [setSelectedDate, dispatch, cities],
+  );
+
+  // update selected city if not found exactly in cities
+  // this is needed when the city's weather data is updated
+  useEffect(() => {
+    if (selectedCity) {
+      const selectedCityFound = cities.find(
+        (city) => city.osm_id === selectedCity.osm_id,
+      );
+
+      if (selectedCityFound !== undefined) {
+        setSelectedCity(selectedCityFound);
+      }
+    }
+  }, [cities, selectedCity]);
+
+  const [isEditingDate, setIsEditingDate] = useState(false);
 
   const {
     isOpen: isCityPickerOpen,
@@ -60,13 +97,18 @@ function App() {
     onOpenChange: onCityPickerOpenChange,
   } = useDisclosure();
 
-  // TODO: somehow, only the last city doesnt have a forecas
-
   return (
     <>
-      <MyNavbar selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
+      <MyNavbar
+        selectedCity={selectedCity}
+        setSelectedCity={setSelectedCity}
+        selectedDate={selectedDate}
+        onSelectDate={onSelectDate}
+        isEditingDate={isEditingDate}
+        setIsEditingDate={setIsEditingDate}
+      />
       {selectedCity ? (
-        <SelectedCity city={selectedCity} setSelectedCity={setSelectedCity} />
+        <SelectedCity city={selectedCity} />
       ) : (
         <>
           <CityList
@@ -91,14 +133,26 @@ function App() {
 function MyNavbar({
   selectedCity,
   setSelectedCity,
+  selectedDate,
+  onSelectDate,
+  isEditingDate,
+  setIsEditingDate,
 }: {
   selectedCity: City | null;
   setSelectedCity: (city: City | null) => void;
+  selectedDate: Date | null;
+  onSelectDate: (date: Date) => void;
+  isEditingDate: boolean;
+  setIsEditingDate: (isEditingDate: boolean) => void;
 }) {
   /*  const [isMenuOpen, setIsMenuOpen] = useState(false); */
 
+  const [intermediateDate, setIntermediateDate] = useState<Date>(
+    selectedDate || new Date(),
+  );
+
   return (
-    <Navbar>
+    <Navbar maxWidth="full" className="bg-green-800 h-24 text-gray-100">
       <NavbarContent>
         {/* <NavbarMenuToggle
           aria-label={isMenuOpen ? "Menü öffnen" : "Menü schließen"}
@@ -109,13 +163,21 @@ function MyNavbar({
             <Button
               variant="bordered"
               onPress={() => setSelectedCity(null)}
-              startContent={<FontAwesomeIcon icon={faArrowLeft} size="xs" />}
+              startContent={
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  size="xs"
+                  className="text-white"
+                />
+              }
             >
-              <p className="">Andere Stadt wählen</p>
+              <span className="sr-only text-white md:not-sr-only">
+                Andere Stadt wählen
+              </span>
             </Button>
           )}
 
-          <p>
+          <div className="whitespace-break-spaces">
             Wettervorhersage
             {selectedCity && (
               <>
@@ -123,7 +185,69 @@ function MyNavbar({
                 für <span className="font-bold">{selectedCity.name}</span>
               </>
             )}
-          </p>
+            {selectedDate && (
+              <>
+                {" "}
+                am{" "}
+                {isEditingDate ? (
+                  <form action="#" className="inline-flex items-center gap-2">
+                    <Input
+                      className=""
+                      type="datetime-local"
+                      value={toLocalISOString(intermediateDate).slice(0, 16)}
+                      min={toLocalISOString(new Date()).slice(0, 16)}
+                      // maximum: 2 weeks in the future
+                      max={toLocalISOString(
+                        new Date(Date.now() + 12096e5),
+                      ).slice(0, 16)}
+                      onValueChange={(value) => {
+                        setIntermediateDate(new Date(value));
+                      }}
+                    />
+                    <Button
+                      type="submit"
+                      variant="bordered"
+                      isIconOnly
+                      onPress={() => {
+                        if (intermediateDate) {
+                          onSelectDate(intermediateDate);
+                          setIsEditingDate(false);
+                        }
+                      }}
+                    >
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        size="xs"
+                        className="text-white"
+                      />
+                    </Button>
+                  </form>
+                ) : (
+                  <span className="space-x-2 font-bold">
+                    <span>
+                      {selectedDate.toLocaleDateString("de-DE", {
+                        year: "numeric",
+                        weekday: "long",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                    <Button
+                      variant="faded"
+                      onPress={() => setIsEditingDate(true)}
+                      aria-label="Datum bearbeiten"
+                      size="sm"
+                      isIconOnly
+                    >
+                      <FontAwesomeIcon icon={faPen} size="xs" />
+                    </Button>
+                  </span>
+                )}
+              </>
+            )}
+          </div>
         </NavbarBrand>
       </NavbarContent>
     </Navbar>
@@ -145,8 +269,6 @@ function CityList({
 }) {
   const onPressCityButton = useCallback(
     (city: City) => {
-      console.debug("pressed city btn");
-      console.debug({ city });
       setSelectedCity(city);
     },
     [setSelectedCity],
@@ -156,7 +278,21 @@ function CityList({
   useEffect(() => {
     cities.forEach((city) => {
       if (city.weather == null) {
-        dispatch(fetchWeatherForCity(city));
+        dispatch(
+          fetchWeatherForCity({
+            ...city,
+            weather: {
+              data: [],
+              isLoading: undefined,
+              error: undefined,
+              params: {
+                date: new Date().toISOString(),
+                last_date: new Date(new Date().getTime() + 864e5).toISOString(),
+                tz: getCurrentTimezone(),
+              },
+            },
+          }),
+        );
       }
     });
   });
@@ -166,41 +302,45 @@ function CityList({
   }
 
   return (
-    <ul className="grid grid-cols-2 place-items-center gap-2 sm:grid-cols-4 sm:gap-4">
-      {cities.map((city) => (
-        <li key={city.osm_id}>
-          <Button
-            className="h-24 w-24 sm:h-32 sm:w-32"
-            variant="flat"
-            onClick={() => onPressCityButton(city)}
-          >
-            <div className="flex w-full flex-col items-center">
-              <div className="w-full">
-                <p className="overflow-hidden overflow-ellipsis">{city.name}</p>
+    <div className="sm:my-4 md:my-8">
+      <ul className="grid place-items-center divide-y-2 sm:grid-cols-4 sm:gap-4 sm:divide-y-0">
+        {cities.map((city) => (
+          <li key={city.osm_id} className="w-full sm:w-auto">
+            <Button
+              className="h-24 w-full sm:h-32 sm:w-32"
+              variant="flat"
+              onClick={() => onPressCityButton(city)}
+            >
+              <div className="flex w-full items-center justify-between sm:flex-col">
+                <div className="sm:w-full">
+                  <p className="overflow-hidden overflow-ellipsis text-lg sm:text-base">
+                    {city.name}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <span className="sr-only">Temperatur in {city.name}:</span>
+                  <SingleForecast city={city} />
+                </div>
               </div>
-              <div className="flex items-center">
-                <span className="sr-only">Temperatur in {city.name}:</span>
-                <SingleForecast city={city} />
-              </div>
-            </div>
-          </Button>
-        </li>
-      ))}
-      {showAddButton && (
-        <li>
-          <Button
-            className="h-24 w-24 sm:h-32 sm:w-32"
-            variant="flat"
-            color="secondary"
-            onPress={onPressAddButton}
-            radius="full"
-            aria-label="Stadt zur Liste hinzufügen"
-          >
-            <FontAwesomeIcon icon={faPlus} size="xl" />
-          </Button>
-        </li>
-      )}
-    </ul>
+            </Button>
+          </li>
+        ))}
+        {showAddButton && (
+          <li className="mt-4 !border-0 sm:mt-0">
+            <Button
+              className="h-24 w-24 sm:h-32 sm:w-32"
+              variant="flat"
+              color="secondary"
+              onPress={onPressAddButton}
+              radius="full"
+              aria-label="Stadt zur Liste hinzufügen"
+            >
+              <FontAwesomeIcon icon={faPlus} size="xl" />
+            </Button>
+          </li>
+        )}
+      </ul>
+    </div>
   );
 }
 
@@ -372,25 +512,23 @@ function CityPicker({
   );
 }
 
-function SelectedCity({
-  city,
-  setSelectedCity,
-}: {
-  city: City;
-  setSelectedCity: (city: City | null) => void;
-}) {
+function SelectedCity({ city }: { city: City }) {
   return (
     <>
-      <Button onPress={() => setSelectedCity(null)} color="secondary">
-        Zurück
-      </Button>
       <WeatherTable city={city} />
     </>
   );
 }
 
 interface Column {
-  key: "timestamp" | "temperature" | "wind_speed" | "condition" | "icon";
+  key:
+    | "timestamp"
+    | "temperature"
+    | "wind_speed"
+    | "condition"
+    | "icon"
+    | "precipitation"
+    | "precipitation_probability";
   label: string;
   allowsSorting?: boolean;
 }
@@ -448,10 +586,18 @@ function WeatherTable({ city }: { city: City }) {
       key: "condition",
       label: "Wetterlage",
     },
+    {
+      key: "precipitation",
+      label: "Niederschlag",
+    },
+    {
+      key: "precipitation_probability",
+      label: "Niederschlagswahrscheinlichkeit",
+    },
   ];
 
   return (
-    <Table aria-label="Wetterbericht" shadow="none">
+    <Table aria-label="Wetterbericht" shadow="none" isStriped>
       <TableHeader>
         {tableColumns.map((column) => {
           return (
@@ -472,13 +618,10 @@ function WeatherTable({ city }: { city: City }) {
               {tableColumns.map((column, j) => {
                 const value = row[column.key];
 
-                if (!value) {
+                // API can return 0 as a valid value
+                if (value === null || value === undefined) {
                   return (
-                    <TableCell
-                      align="left"
-                      key={j}
-                      className="bg-gray-100 italic dark:bg-gray-800"
-                    >
+                    <TableCell align="left" key={j} className="italic">
                       N/A
                     </TableCell>
                   );
@@ -488,12 +631,31 @@ function WeatherTable({ city }: { city: City }) {
 
                 if (column.key === "timestamp") {
                   formattedValue = isoToTime(value as string);
+                  // check if current date is today
+                  const isValueToday =
+                    new Date(value as string).toDateString() ===
+                    new Date().toDateString();
+
+                  if (isValueToday) {
+                    formattedValue = `Heute, ${formattedValue}`;
+                  } else {
+                    const weekday = new Date(
+                      value as string,
+                    ).toLocaleDateString("de-DE", { weekday: "long" });
+                    formattedValue = `${weekday}, ${formattedValue}`;
+                  }
                 }
                 if (column.key === "temperature") {
                   formattedValue = `${value}°C`;
                 }
                 if (column.key === "wind_speed") {
                   formattedValue = `${value} km/h`;
+                }
+                if (column.key === "precipitation") {
+                  formattedValue = `${value} mm`;
+                }
+                if (column.key === "precipitation_probability") {
+                  formattedValue = `${value}%`;
                 }
                 if (column.key === "icon") {
                   return (
@@ -503,7 +665,7 @@ function WeatherTable({ city }: { city: City }) {
                   );
                 } else {
                   return (
-                    <TableCell align="left" key={j}>
+                    <TableCell align="left" key={j} className="py-4">
                       {formattedValue}
                     </TableCell>
                   );

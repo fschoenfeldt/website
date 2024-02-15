@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { City, getWeatherFor } from "../../weather/weatherClient";
+import {
+  getDefaultWeatherParams,
+  getWeatherFor,
+} from "../../weather/weatherClient";
+import { City } from "../../weather/weatherTypes";
 
 const intialCities: City[] = [
   {
@@ -59,15 +63,17 @@ const initialState = {
   value: intialCities,
 };
 
+// TODO: consider using RTK-Query for this
+// --> https://redux-toolkit.js.org/rtk-query/overview
 export const fetchWeatherForCity = createAsyncThunk(
   "cities/fetchWeatherForCity",
   async (city: City) => {
-    console.debug(`thunk is called with ${city.name}`);
-    const weatherResult = await getWeatherFor({ city });
-    console.debug({ weatherResult });
+    const weatherResult = await getWeatherFor(city);
+
     return {
       ...city,
       weather: {
+        ...city.weather,
         isLoading: false,
         data: weatherResult,
         error: null,
@@ -115,6 +121,11 @@ export const citiesSlice = createSlice({
 
       if (city) {
         city.weather = {
+          ...city.weather,
+          params:
+            action.meta.arg.weather?.params ||
+            city.weather?.params ||
+            getDefaultWeatherParams(),
           data: city.weather?.data || [],
           isLoading: true,
           error: undefined,
@@ -129,6 +140,7 @@ export const citiesSlice = createSlice({
 
       if (city) {
         city.weather = {
+          ...city.weather,
           data: action.payload.weather.data,
           isLoading: false,
           error: undefined,
@@ -143,6 +155,7 @@ export const citiesSlice = createSlice({
 
       if (city) {
         city.weather = {
+          ...city.weather,
           data: [],
           isLoading: false,
           error: action.error.message,
