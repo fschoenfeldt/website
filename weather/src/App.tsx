@@ -122,6 +122,7 @@ function App() {
             isCityPickerOpen={isCityPickerOpen}
             onCityPickerOpenChange={onCityPickerOpenChange}
             cities={cities}
+            selectedDate={selectedDate}
             dispatch={dispatch}
           />
         </>
@@ -309,7 +310,7 @@ function CityList({
             <Button
               className="h-24 w-full sm:h-32 sm:w-32"
               variant="flat"
-              onClick={() => onPressCityButton(city)}
+              onPress={() => onPressCityButton(city)}
             >
               <div className="flex w-full items-center justify-between sm:flex-col">
                 <div className="sm:w-full">
@@ -378,11 +379,13 @@ function CityPickerModal({
   isCityPickerOpen,
   onCityPickerOpenChange,
   cities,
+  selectedDate,
   dispatch,
 }: {
   isCityPickerOpen: boolean;
   onCityPickerOpenChange: (isOpen: boolean) => void;
   cities: City[];
+  selectedDate: Date;
   dispatch: AppDispatch;
 }) {
   return (
@@ -395,6 +398,7 @@ function CityPickerModal({
               <CityPicker
                 cities={cities}
                 dispatch={dispatch}
+                selectedDate={selectedDate}
                 onCityPickerSubmit={() => {
                   closeModal();
                 }}
@@ -414,10 +418,12 @@ function CityPickerModal({
 
 function CityPicker({
   cities,
+  selectedDate,
   dispatch,
   onCityPickerSubmit,
 }: {
   cities: City[];
+  selectedDate: Date;
   dispatch: (arg0: { payload: City }) => void;
   onCityPickerSubmit?: () => void;
 }) {
@@ -445,9 +451,23 @@ function CityPicker({
       // fade out animation lasts 200ms
       // timeout is needed to wait for animation to finish
       setTimeout(() => {
-        dispatch(addCity(selectedCity));
+        const newCity: City = {
+          ...selectedCity,
+          weather: {
+            // TODO: DRY: this is multiple times in the code
+            params: {
+              date: selectedDate.toISOString(),
+              last_date: new Date(selectedDate.getTime() + 864e5).toISOString(),
+              tz: getCurrentTimezone(),
+            },
+            isLoading: undefined,
+            error: undefined,
+            data: [],
+          },
+        };
+        dispatch(addCity(newCity));
         // @ts-expect-error // TODO: why does this typing not work :-( ?
-        dispatch(fetchWeatherForCity(selectedCity));
+        dispatch(fetchWeatherForCity(newCity));
         setInput("");
         setSelection("");
         cityResult.reload();

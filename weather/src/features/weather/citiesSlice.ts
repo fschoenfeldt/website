@@ -92,11 +92,23 @@ export const citiesSlice = createSlice({
       };
     },
     addCity: (state, action) => {
-      const newValue = [...state.value, action.payload];
-      console.debug({ newValue });
+      let newCity = action.payload;
+      if (!newCity.weather.params)
+        console.warn("No weather params found, using current date/time/tz");
+
+      newCity = {
+        ...newCity,
+        weather: {
+          params: getDefaultWeatherParams(),
+          ...newCity.weather,
+          data: [],
+          isLoading: false,
+          error: undefined,
+        },
+      };
 
       return {
-        value: newValue,
+        value: [...state.value, newCity],
       };
     },
     updateWeather: (state, action) => {

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { formatDateTime, offsetDate } from "./utils";
+import { formatDateTime, getCurrentTimezone, offsetDate } from "./utils";
 import {
   City,
   LocationParams,
@@ -12,7 +12,7 @@ export const getDefaultWeatherParams = (): WeatherParams => {
     date: new Date().toISOString(),
     last_date: offsetDate(new Date(), 24).toISOString(),
     // current timezone inferred from the browser
-    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    tz: getCurrentTimezone(),
   };
 };
 
