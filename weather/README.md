@@ -1,11 +1,28 @@
-# React + TypeScript + Vite
+# Weather Experiment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple weather application that displays the current weather of a german city. It is a playground to experiment with different technologies and libraries.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Packages:
+
+- React
+- Vite
+- Typescript
+- NextUI
+- TailwindCSS
+
+APIs:
+
+- [BrightSky](https://brightsky.dev/)
+- [Nominatim](https://nominatim.org/release-docs/develop/api/Overview/)
+
+## Running the application
+
+```bash
+pnpm install
+pnpm start
+```
 
 ## Expanding the ESLint configuration
 
@@ -17,12 +34,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
