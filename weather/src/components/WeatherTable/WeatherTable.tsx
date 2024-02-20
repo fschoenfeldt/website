@@ -104,8 +104,23 @@ export function WeatherTable({ city }: { city: City }) {
       </TableHeader>
       <TableBody>
         {weather.data.map((row, i) => {
+          let additionalClasses = ``;
+
+          // check for these conditions:
+          // - if the current `date` and `last_date` is not the same date
+          // - if the current time is 00:00
+          if (
+            city.weather?.params?.date &&
+            city.weather?.params?.last_date &&
+            new Date(city.weather?.params?.date as string).toDateString() !==
+              new Date(city.weather?.params?.last_date).toDateString() &&
+            new Date(row.timestamp as string).getHours() === 0
+          ) {
+            additionalClasses += `border-t-8 border-gray-400 rounded-t-0`;
+          }
+
           return (
-            <TableRow key={i}>
+            <TableRow key={i} className={[additionalClasses].join(" ")}>
               {tableColumns.map((column, j) => {
                 const value = row[column.key];
 

@@ -1,4 +1,4 @@
-import { useDisclosure } from "@nextui-org/react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -10,6 +10,8 @@ import { CityList } from "./components/CityList/CityList";
 import { CityPickerModal } from "./components/CityPickerModal/CityPickerModal";
 import { WeatherTable } from "./components/WeatherTable/WeatherTable";
 import { WeatherNavbar } from "./components/WeatherNavbar/WeatherNavbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const cities = useSelector((state: RootState) => state.cities.value);
@@ -20,7 +22,6 @@ function App() {
   const onSelectDate = useCallback(
     (date: Date) => {
       setSelectedDate(date);
-
       cities.forEach((city) => {
         dispatch(
           fetchWeatherForCity({
@@ -66,6 +67,39 @@ function App() {
     onOpenChange: onCityPickerOpenChange,
   } = useDisclosure();
 
+  const onPressIncreaseLastDate = useCallback(
+    (city: City) => {
+      const referenceCity = city || cities[0];
+
+      if (!referenceCity || !referenceCity.weather?.params?.last_date)
+        throw new Error(
+          "no valid reference city found for increasing last date!",
+        );
+
+      const oldLastDate = new Date(referenceCity.weather.params.last_date);
+
+      // increase by 12 hours
+      const newLastDate = new Date(oldLastDate.getTime() + 432e5);
+
+      // update last date for all cities
+      cities.forEach((city) => {
+        dispatch(
+          fetchWeatherForCity({
+            ...city,
+            weather: {
+              ...city.weather!,
+              params: {
+                ...city.weather!.params!,
+                last_date: newLastDate.toISOString(),
+              },
+            },
+          }),
+        );
+      });
+    },
+    [dispatch, cities],
+  );
+
   return (
     <>
       <WeatherNavbar
@@ -77,7 +111,10 @@ function App() {
         setIsEditingDate={setIsEditingDate}
       />
       {selectedCity ? (
-        <WeatherTable city={selectedCity} />
+        <CityDetailView
+          city={selectedCity}
+          onPressIncreaseLastDate={onPressIncreaseLastDate}
+        />
       ) : (
         <>
           <CityList
@@ -97,6 +134,37 @@ function App() {
         </>
       )}
     </>
+  );
+}
+
+function CityDetailView({
+  city,
+  onPressIncreaseLastDate,
+}: {
+  city: City;
+  onPressIncreaseLastDate: ({ city }: { city: City }) => () => void;
+}) {
+  const onPressIncrease = useCallback(() => {
+    onPressIncreaseLastDate(city);
+  }, [onPressIncreaseLastDate, city]);
+
+  return (
+    <div>
+      <WeatherTable city={city} />
+      <div className="mb-4 flex justify-center">
+        <p>{city.weather!.params!.last_date}</p>
+        <Button
+          type="button"
+          size="lg"
+          variant="solid"
+          className="w-full sm:w-auto"
+          startContent={<FontAwesomeIcon icon={faPlus} />}
+          onPress={() => onPressIncrease()}
+        >
+          Mehr anzeigen
+        </Button>
+      </div>
+    </div>
   );
 }
 
