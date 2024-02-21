@@ -142,7 +142,7 @@ function CityDetailView({
   onPressIncreaseLastDate,
 }: {
   city: City;
-  onPressIncreaseLastDate: ({ city }: { city: City }) => () => void;
+  onPressIncreaseLastDate: (city: City) => void;
 }) {
   const onPressIncrease = useCallback(() => {
     onPressIncreaseLastDate(city);
@@ -152,7 +152,7 @@ function CityDetailView({
     <div>
       <WeatherTable city={city} />
       <div className="mb-4 flex justify-center">
-        <p>{city.weather!.params!.last_date}</p>
+        {/* TODO: after pressing, scroll down to last entry */}
         <Button
           type="button"
           size="lg"
