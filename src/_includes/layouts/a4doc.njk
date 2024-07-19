@@ -18,27 +18,27 @@
             <div class="a4">
                 <div class="space-y-6">
                     {% if skipHeader != true %}
-                    <div class="flex flex-col items-end">
-                        <p class="font-bold">{{ me_name }}</p>
-                        <p>{{ me_address }}</p>
-                        <p>{{me_zip}}
-                            {{ me_city }}</p>
-                        <a href="tel:{{ personal_phone | removeSpaces }}">
-                            {{ personal_phone }}
-                        </a>
-                        <a href="mailto:{{ personal_mail }}">{{ personal_mail }}</a>
-                    </div>
-                    <div>
-                        <p class="font-bold">{{ receipt_company }}</p>
-                        <p>{{ receipt_name }}</p>
-                        <p>{{ receipt_address }}</p>
-                        <p>{{ receipt_city }}</p>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <p>{{ me_city }}, {{ page.date | date  }}</p>
-                    </div>
+                        <div class="flex flex-col items-end">
+                            <p class="font-bold">{{ me_name }}</p>
+                            <p>{{ me_address }}</p>
+                            <p>{{me_zip}}
+                                {{ me_city }}</p>
+                            <a href="tel:{{ personal_phone | removeSpaces }}">
+                                {{ personal_phone }}
+                            </a>
+                            <a href="mailto:{{ personal_mail }}">{{ personal_mail }}</a>
+                        </div>
+                        <div>
+                            <p class="font-bold">{{ receipt_company }}</p>
+                            <p>{{ receipt_name }}</p>
+                            <p>{{ receipt_address }}</p>
+                            <p>{{ receipt_city }}</p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <p>{{ me_city }}, {{ page.date | date  }}</p>
+                        </div>
                     {% endif %}
-                    <div class="prose prose-stone text-lg">
+                    <div class="prose prose-stone text-base">
                         {% block content %}
                             {{ content | safe }}
                         {% endblock %}
