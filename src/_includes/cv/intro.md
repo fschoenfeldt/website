@@ -14,4 +14,4 @@ Ich bin Frederik, achtundzwanzig Jahre jung, Webentwickler und (Web-)Accessibili
 
 **2016-2019** erledigte ich zunächst kleinere Freelance-Jobs und war dann bei der ORION GmbH als Werkstudent im Frontend tätig.
 
-**bis heute** arbeite ich mit den verschiedensten Technologien: Phoenix Framework (Elixir/Erlang), NodeJS, Drupal, WordPress. Mit Webentwicklung habe ich die meiste Erfahrung, also beherrsche ich Layoutsprachen wie HTML & CSS fließend. Tiefergehende Kenntnisse wie TypeScript, React (Native), VueJS & Elixir sind vorhanden.
+**bis heute** arbeite ich mit verschiedensten Technologien wie dem Phoenix Framework (Elixir/Erlang), NodeJS, Drupal und WordPress. In der Webentwicklung besitze ich die meiste Erfahrung und bin daher versiert in der Verwendung von HTML und CSS. Außerdem verfüge ich über fundierte Kenntnisse in Elixir, TypeScript und React (Native).
