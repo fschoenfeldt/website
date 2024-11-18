@@ -19,12 +19,12 @@ jobs:
       matrix:
         node-version: [18]
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v4.0.0
         with:
           version: 7
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4.1.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
@@ -36,7 +36,7 @@ jobs:
         run: pnpm test:unit
       - name: Run E2E tests
         run: pnpm test:e2e
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4.4.3
         if: always()
         with:
           name: playwright-report
