@@ -25,6 +25,7 @@ jspm_packages/
 
 #dev env
 .vscode
+src/_build/*
 
 #Build
 _site
