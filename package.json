@@ -4,8 +4,8 @@
   "description": "Frederik Schönfeldt Website",
   "scripts": {
     "clean": "del _site",
-    "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
-    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --watch",
+    "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./src/_build/css/styles.css -w",
+    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./src/_build/js/ --bundle --target=es2018 --watch",
     "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
     "start:e2e": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve --port 8081\"  \"npm:watch-*\"",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",

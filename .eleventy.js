@@ -55,6 +55,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/fonts");
 
+  // copy the _build folder manually to trigger a eleventy reload.
+  if (process.env.ELEVENTY_ENV == "development") {
+    eleventyConfig.addPassthroughCopy({ "src/_build/css": "css" });
+    eleventyConfig.addPassthroughCopy({ "src/_build/js": "js" });
+  }
+
   /**
    * HTML Minifier for production builds
    */
