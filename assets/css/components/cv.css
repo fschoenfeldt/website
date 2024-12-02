@@ -1,7 +1,5 @@
 #cv {
-  @apply flex flex-wrap bg-gray-700 shadow-xl 
-         print:block print:gap-0 print:space-y-0 print:bg-transparent print:!p-0
-         print:shadow-none md:gap-10 md:p-10;
+  @apply flex flex-wrap bg-gray-700 shadow-xl md:gap-10 md:p-10 print:block print:gap-0 print:space-y-0 print:bg-transparent print:!p-0 print:shadow-none;
   * {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
@@ -11,7 +9,7 @@
     @apply text-xl font-bold;
   }
   h3 {
-    @apply text-lg;
+    @apply text-lg leading-6;
   }
   .a4 {
     @screen canDisplayA4 {
@@ -37,7 +35,7 @@
     }
     &__side {
       /* HACK: print height */
-      @apply flex flex-col gap-y-4 bg-gray-900 p-6 print:h-[104%] print:p-4 md:p-4;
+      @apply flex flex-col gap-y-8 bg-gray-900 p-6 md:p-4 print:h-[104%] print:p-4;
       * {
         @apply text-white;
       }
@@ -66,7 +64,7 @@
       }
     }
     &__text {
-      @apply h-full p-6 print:p-4 md:p-4 md:pb-0;
+      @apply h-full p-6 md:p-4 md:pb-0 print:p-4;
       * {
         @apply text-gray-800;
       }
@@ -74,20 +72,23 @@
   }
   .projects {
     @apply grid;
-    grid-template-rows: auto 1fr 1fr 1fr auto;
-    .project {
-      @apply h-full space-y-4 px-4 py-2;
-      p,
-      h2,
-      ul,
-      li {
-        @apply !text-gray-800;
-      }
-      &__header {
-        @apply space-y-1;
-      }
-      &__info {
-        @apply space-x-6 space-y-6 print:flex print:space-y-0 md:flex md:space-y-0;
+    grid-template-rows: auto 1fr auto;
+    &__list {
+      @apply flex h-full flex-col gap-y-8 p-4;
+      &__item {
+        @apply space-y-4;
+        p,
+        h2,
+        ul,
+        li {
+          @apply !text-gray-800;
+        }
+        .header {
+          @apply space-y-1;
+        }
+        .info {
+          @apply space-x-6 space-y-6 md:flex md:space-y-0 print:flex print:space-y-0;
+        }
       }
     }
   }
