@@ -6,7 +6,7 @@
         <li class="projects__list__item">
             <div class="header">
                 <h2>Webapp „Fotohäcker“
-                <span class="text-base">
+                <span class="text-base pl-1">
                         <a href="https://fschoenfeldt.de/fotohaecker/">Info</a> •
                     <a href="https://fschoenf.uber.space/fh/de_DE">Demo</a>
                     </span>
@@ -17,10 +17,10 @@
             </p>
             </div>
             <div class="info">
-                <img class="block self-start rounded shadow-sm" src="{% getUrl project_fotohaecker | resize({ width: 300, height: 150, fit: 'contain' }) | webp %}" alt="Projekt Fotohäcker"/>
+                <img src="{% getUrl project_fotohaecker | resize({ width: 600, fit: 'contain' }) | webp %}" alt="Projekt Fotohäcker"/>
                 <div>
-                    <p class="sr-only">Verwendete Techniken:</p>
-                    <ul class="list-disc list-inside text-sm">
+                    <p class="mb-1">Verwendete Techniken:</p>
+                    <ul class="list-disc list-inside text-sm pb-4">
                         <li>TailwindCSS &amp; AlpineJS (<a href="https://thinkingelixir.com/petal-stack-in-elixir/">PETAL Stack</a>)</li>
                         <li>Elixir (Phoenix Framework &amp; Phoenix LiveView)</li>
                         <li>Bereitstellung <a href="https://fschoenf.uber.space/fh/api/swagger/index.html">einer API</a>
@@ -33,10 +33,10 @@
                 </div>
             </div>
         </li>
-        <li class="projects__list__item">
+        <li class="projects__list__item bg-gray-100">
             <div class="header">
                 <h2>Website „Rundgang Filmanalyse“
-                <span class="text-base">
+                <span class="text-base pl-1">
                         <a href="https://fschoenfeldt.de/html/rundgang_hsfl/">Demo</a>
                     </span>
                 </h2>
@@ -47,10 +47,10 @@
             </p>
             </div>
             <div class="info">
-                <img class="block self-start rounded shadow-sm" src="{% getUrl project_rundgang_hsfl | resize({ width: 300, height: 150, fit: 'cover' }) | webp %}" alt="Projekt Rundgang HSFL"/>
+                <img src="{% getUrl project_rundgang_hsfl | resize({ width: 600, fit: 'contain' }) | webp %}" alt="Projekt Rundgang HSFL"/>
                 <div>
-                    <p class="sr-only">Verwendete Techniken:</p>
-                    <ul class="list-disc list-inside text-sm">
+                    <p class="mb-1">Verwendete Techniken:</p>
+                    <ul class="list-disc list-inside text-sm pb-4">
                         <li>Nodejs</li>
                         <li>Eleventy SSG</li>
                         <li>Markdown</li>
@@ -63,7 +63,7 @@
         <li class="projects__list__item">
             <div class="header">
                 <h2>Barrierefreie Komponenten
-                <span class="text-base">
+                <span class="text-base pl-1">
                         <a href="https://github.com/fschoenfeldt/accessible_components">Info</a>
                     </span>
                 </h2>
@@ -75,10 +75,10 @@
             </p>
             </div>
             <div class="info">
-                <img class="block self-start rounded shadow-sm" src="{% getUrl project_accessible_components | resize({ width: 300, height: 150, fit: 'cover' }) | webp %}" alt="Projekt Rundgang HSFL"/>
+                <img src="{% getUrl project_accessible_components | resize({ width: 600, fit: 'contain' }) | webp %}" alt="Projekt Rundgang HSFL"/>
                 <div>
-                    <p class="sr-only">Verwendete Techniken:</p>
-                    <ul class="list-disc list-inside text-sm">
+                    <p class="mb-1">Verwendete Techniken:</p>
+                    <ul class="list-disc list-inside text-sm pb-4">
                         <li>Elixir</li>
                         <li>Phoenix</li>
                         <li>HTML+CSS</li>
@@ -88,7 +88,8 @@
             </div>
         </li>
     </ul>
-    <div class="border-t p-4 py-6 text-center text-gray-800">
-            Mehr Projekte unter <a target="_blank" href="https://fschoenfeldt.de/">fschoenfeldt.de</a>
+    <div class="projects__more">
+        <p class="p-4 text-gray-800">Mehr Projekte unter <a target="_blank" href="https://fschoenfeldt.de/">fschoenfeldt.de</a>
+        </p>
     </div>
 </section>

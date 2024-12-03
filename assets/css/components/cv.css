@@ -12,15 +12,15 @@
     @apply text-lg leading-8;
   }
   .a4 {
+    @apply bg-white;
     @screen canDisplayA4 {
       width: 21cm;
       height: 29.7cm;
     }
-    /* @media print {
+    @media print {
       width: 21cm;
-      height: 29.7cm;
-    } */
-    @apply bg-white;
+      height: 29.65cm;
+    }
   }
   .thick-heading {
     @apply text-5xl;
@@ -53,7 +53,7 @@
       }
       &__skills,
       &__history {
-        @apply mx-2 mt-1 md:mx-0 md:ms-2;
+        @apply mx-2 mt-1 md:mx-2;
       }
       &__skills {
         @apply space-y-2;
@@ -70,7 +70,7 @@
         }
       }
       &__history {
-        @apply space-y-4 text-sm;
+        @apply me-0 space-y-4 text-sm;
       }
     }
     &__text {
@@ -82,11 +82,11 @@
   }
   .projects {
     @apply grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: min-content auto 1fr;
     &__list {
-      @apply flex h-full flex-col justify-evenly gap-y-8 p-6;
+      @apply flex h-full flex-col;
       &__item {
-        @apply space-y-4;
+        @apply space-y-6 border-b p-6 pb-0;
         p,
         h2,
         ul,
@@ -97,9 +97,16 @@
           @apply space-y-1;
         }
         .info {
-          @apply space-y-6 md:flex md:space-x-6 md:space-y-0 print:flex print:space-y-0;
+          @apply space-y-6 sm:flex sm:gap-x-7 sm:space-y-0 print:flex print:gap-x-7 print:space-y-0;
+
+          img {
+            @apply block w-[17rem] self-end rounded rounded-b-none border border-b-0 border-gray-300;
+          }
         }
       }
+    }
+    &__more {
+      @apply flex h-full items-center justify-center self-end bg-gray-100 text-center;
     }
   }
 }
