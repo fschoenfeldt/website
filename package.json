@@ -11,6 +11,7 @@
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
     "build-cv": "NODE_ENV=production npx playwright test ./tests/cv.print.spec.ts",
+    "build-weather": "cd ./weather && pnpm run build && cp -r ./dist ../_site/weather2",
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production concurrently \"npm:build-*\"",
     "postbuild": "node hash && ELEVENTY_ENV=production eleventy",
