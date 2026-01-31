@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-pnpm install
+npm_config_unsafe_perm=true pnpm install
 pnpm playwright test --update-snapshots
