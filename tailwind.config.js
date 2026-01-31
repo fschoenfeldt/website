@@ -21,6 +21,10 @@ module.exports = {
       cyan: colors.cyan,
       amber: colors.amber,
       red: colors.red,
+      laufmaus: {
+        accent: "#F8FD97",
+        complement: "#40412E",
+      },
     },
     extend: {
       screens: {
@@ -30,6 +34,7 @@ module.exports = {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
         space: ["Space Mono", ...defaultTheme.fontFamily.sans],
+        dotted: ["Doto", ...defaultTheme.fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {

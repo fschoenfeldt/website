@@ -81,6 +81,34 @@
   font-weight: 700;
   src: url("/fonts/spacemono/space-mono-v13-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+/* https://gwfh.mranftl.com/fonts/doto?subsets=latin */
+
+/* doto-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Doto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/doto/doto-v3-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* doto-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Doto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/doto/doto-v3-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* doto-900 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Doto";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/fonts/doto/doto-v3-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 /* fallback */
 /* source: https://fonts.googleapis.com/icon?family=Material+Icons */
 @font-face {

@@ -1,0 +1,7 @@
+#laufmaus {
+  @apply bg-laufmaus-accent min-h-screen w-full;
+
+  #laufmaus-heading {
+    @apply font-dotted font-bold text-gray-900;
+  }
+}
