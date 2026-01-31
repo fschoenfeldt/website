@@ -7,7 +7,7 @@
     "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./src/_build/css/styles.css -w",
     "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./src/_build/js/ --bundle --target=es2018 --watch",
     "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
-    "start:e2e": "ELEVENTY_ENV=production http-server _site --port 8081",
+    "start:e2e": "ELEVENTY_ENV=production http-server _site --port 8088",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
     "cv": "NODE_ENV=production npx playwright test ./tests/cv.print.spec.ts",
