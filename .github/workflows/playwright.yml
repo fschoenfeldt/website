@@ -30,10 +30,12 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Install Playwright Browsers
-        run: pnpm playwright install --with-deps
       - name: Run jsunit tests
         run: pnpm test:unit
+      - name: Build site
+        run: pnpm build
+      - name: Install Playwright Browsers
+        run: pnpm playwright install --with-deps
       - name: Run E2E tests
         run: pnpm test:e2e
       - uses: actions/upload-artifact@v4.6.2
