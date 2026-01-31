@@ -15,7 +15,7 @@
     "build": "NODE_ENV=production concurrently \"npm:build-*\"",
     "postbuild": "node hash && ELEVENTY_ENV=production eleventy && npm run cv",
     "test:unit": "npx playwright test -c assets/js/",
-    "test:e2e": "npx playwright test tests/index.spec.ts --trace on",
+    "test:e2e": "npx playwright test",
     "test": "pnpm build && pnpm test:unit && pnpm test:e2e"
   },
   "keywords": [
