@@ -1,6 +1,6 @@
 name: Playwright Tests
-env:
-  DEBUG: pw:webserver*
+# env:
+#   DEBUG: pw:webserver*
 on:
   push:
     branches:
@@ -14,17 +14,17 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [24]
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
         with:
-          version: 7
+          version: latest
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4.4.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
@@ -34,9 +34,11 @@ jobs:
         run: pnpm playwright install --with-deps
       - name: Run jsunit tests
         run: pnpm test:unit
+      - name: Build site
+        run: pnpm build
       - name: Run E2E tests
         run: pnpm test:e2e
-      - uses: actions/upload-artifact@v4.4.3
+      - uses: actions/upload-artifact@v4.6.2
         if: always()
         with:
           name: playwright-report

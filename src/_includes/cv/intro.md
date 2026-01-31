@@ -12,6 +12,6 @@ Ich bin Frederik, achtundzwanzig Jahre jung, Webentwickler und (Web-)Accessibili
 
 **2012-2015** war ich Leading & Executive Designer des niederländischen Indie-Musiklabels [Heroic Recordings](https://heroic.family). Bis Ende 2015 wurde aus dem Drei-Mann-Team ein 20 köpfiges, internationales Unternehmen, dessen Design- & Entwicklungsteam (ca. 5 Personen) ich geleitet habe.
 
-**2016-2019** erledigte ich zunächst kleinere Freelance-Jobs und war dann bei der ORION GmbH als Werkstudent im Frontend tätig.
+**2016-2019** erledigte ich zunächst kleinere Freelance-Jobs und war dann bei der ORION GmbH als Werkstudent im Frontend-Bereich tätig.
 
-**bis heute** arbeite ich mit verschiedensten Technologien wie dem Phoenix Framework (Elixir/Erlang), NodeJS, Drupal und WordPress. In der Webentwicklung besitze ich die meiste Erfahrung und bin daher versiert in der Verwendung von HTML und CSS. Außerdem verfüge ich über fundierte Kenntnisse in Elixir, TypeScript und React (Native).
+**bis heute** arbeite ich mit verschiedensten Technologien wie dem Phoenix Framework (Elixir/Erlang), NodeJS, WordPress und Drupal. In der Webentwicklung besitze ich die meiste Erfahrung, insbesondere in React (Native), Typescript und Phoenix LiveView.
