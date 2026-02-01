@@ -1,7 +1,27 @@
 #laufmaus {
-  @apply bg-laufmaus-accent min-h-screen w-full;
+  @apply bg-laufmaus-accent min-h-screen w-full dark:bg-gray-900;
+
+  .container {
+    @apply mx-auto grid grid-cols-12 gap-4 md:max-w-3xl;
+  }
+
+  .description {
+    @apply flex flex-col justify-end space-y-4;
+  }
+
+  h1 {
+    @apply font-spacegrotesk break-all text-[30vw] lowercase leading-none text-gray-900 md:text-[14rem] dark:text-gray-100;
+  }
+
+  h2 {
+    @apply font-spacegrotesk text-[15vw] font-bold tracking-tighter text-gray-900 md:text-8xl dark:text-gray-100;
+  }
+
+  section {
+    @apply flex min-h-screen flex-col items-center justify-center;
+  }
 
   #laufmaus-heading {
-    @apply font-dotted font-bold text-gray-900;
+    @apply font-spacegrotesk font-bold tracking-tighter text-gray-900;
   }
 }

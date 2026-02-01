@@ -34,6 +34,7 @@ module.exports = {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
         space: ["Space Mono", ...defaultTheme.fontFamily.sans],
+        spacegrotesk: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
         dotted: ["Doto", ...defaultTheme.fontFamily.sans],
       },
       typography: (theme) => ({
