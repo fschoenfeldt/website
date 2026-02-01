@@ -39,7 +39,7 @@ test.describe.parallel("manager", async () => {
     await page.click("data-testid=toggleRessourceVisibility");
 
     const ressources = await page.$$(
-      "ul.ressources > li.ressources__item.ressources__item--change"
+      "ul.ressources > li.ressources__item.ressources__item--change",
     );
 
     expect(ressources.length).toBe(initialRessources.length);
@@ -49,13 +49,13 @@ test.describe.parallel("manager", async () => {
     await activateRessource(page, "Energium");
 
     const visibleRessources = await page.$$(
-      "ul.ressources > li.ressources__item"
+      "ul.ressources > li.ressources__item",
     );
 
     await expect(
       page.locator("ul.ressources li.ressources__item", {
         hasText: "Energium",
-      })
+      }),
     ).toBeVisible();
     // "toggleRessourceVisibility" button has to be subtracted from the count
     expect(visibleRessources.length - 1).toBe(1);
@@ -68,7 +68,7 @@ test.describe.parallel("manager", async () => {
     await expect(page.locator(".modal")).toBeVisible();
     await expect(page.locator(".modal")).toContainText("Energium");
     await expect(page.locator(".modal")).toContainText(
-      "no data for graph.. yet"
+      "no data for graph.. yet",
     );
     // TODO: why doesn't this work on safari?
     // await expect(page.locator(`.modal #number_input`)).toBeFocused();
@@ -100,7 +100,7 @@ test.describe.parallel("manager", async () => {
     await page.click("data-testid=clearStorage");
 
     await expect(
-      page.locator(".ressources__item", { hasText: "Energium" })
+      page.locator(".ressources__item", { hasText: "Energium" }),
     ).not.toBeVisible();
   });
 
@@ -141,7 +141,7 @@ test.describe.parallel("manager", async () => {
   const addPriceHistoryEntry = async (
     page: Page,
     ressourceName: string,
-    price: number
+    price: number,
   ) => {
     await openPriceHistoryModal(page, ressourceName);
     await page.fill(".modal #number_input", price.toString());

@@ -1,103 +1,161 @@
-<form @submit.prevent="$dispatch('submitvacationform')" 
-              class="bg-white dark:bg-gray-800 max-w-xl space-y-6 rounded-xl mx-4 md:mx-0 shadow-2xl"
-              data-testid="vacationForm">
-    <div class="flex items-center">
-        <div class="w-full flex gap-4 items-center bg-blue-600 p-4 rounded-t-xl">
-            <div aria-hidden="true" class="h-8 w-8 flex items-center justify-center bg-blue-100 border border-blue-200 p-2 rounded-full text-xl">🏝️</div>
-            <h1 class="font-sans font-bold text-xl break-normal text-white">Eigenen Urlaubscountdown setzen</h1>
-        </div>
+<form
+  @submit.prevent="$dispatch('submitvacationform')"
+  class="mx-4 max-w-xl space-y-6 rounded-xl bg-white shadow-2xl md:mx-0 dark:bg-gray-800"
+  data-testid="vacationForm"
+>
+  <div class="flex items-center">
+    <div class="flex w-full items-center gap-4 rounded-t-xl bg-blue-600 p-4">
+      <div
+        aria-hidden="true"
+        class="flex h-8 w-8 items-center justify-center rounded-full border border-blue-200 bg-blue-100 p-2 text-xl"
+      >
+        🏝️
+      </div>
+      <h1 class="break-normal font-sans text-xl font-bold text-white">
+        Eigenen Urlaubscountdown setzen
+      </h1>
     </div>
-    <p class="px-4">
-        Mithilfe dieses Formulars kannst du deinen eigenen Urlaubscountdown setzen. Anschließend erhälst du einen Link, den du teilen kannst:
-    </p>
-    <div class="space-y-4 bg-gray-100 dark:bg-gray-700 border-y rounded-b-xl border-b-4 dark:border-gray-600">
-        <ol class="list-decimal ml-4 space-y-2 p-4 pb-0">
-            <li>
-                <strong class="block">Urlaubstag auswählen</strong>
-                <label for="date">Urlaubsdatum (erforderlich)</label>
-                <input class="block px-2 bg-gray-200 dark:bg-gray-800 text-xl"
-                        type="date"
-                        name="date"
-                        id="date"
-                        x-ref="inputdate"
-                        data-testid="vacationDate"
-                        required>
-            </li>
-            <li>
-                <strong class="block">Urlaubsort auswählen</strong>
-                <label for="vacationlocation">Urlaubsort (optional)</label>
-                <input class="block px-2 bg-gray-200 dark:bg-gray-800 text-xl"
-                        type="text"
-                        name="vacationlocation"
-                        id="vacationlocation"
-                        x-ref="inputvacationlocation"
-                        data-testid="vacationLocation">
-            </li>
-            <li>
-                <strong class="block">Hintergrundbild auswählen (optional, experimentell)</strong>
-                <form x-data @submit.prevent="$dispatch('submitvacationimagesearch')" class="bg-gray-50 dark:bg-gray-900 border p-4 rounded">
-                    <div>
-                        <label class="block" for="vacationimagesearch">Suche auf Fotohäcker nach einem Hintergrundbild</label>
-                        <div class="flex flex-wrap gap-2">
-                            <input class="block px-2 bg-gray-200 dark:bg-gray-800"
-                                    type="text"
-                                    name="vacationimagesearch"
-                                    id="vacationimagesearch"
-                                    data-testid="vacationImageSearch"
-                                    placeholder="Schottland"
-                                    :value="$store.vacation.vacationImageSearch"
-                                    x-model="$store.vacation.vacationImageSearch">
-                            <button class="btn btn--lg" type="submit" data-testid="vacationImageSearchSubmit">Suchen</button>
-                        </div>
-                        <template x-if="$store.vacation.vacationImagesResult">
-                            <div>
-                                <p x-text="`${$store.vacation.vacationImagesResult.length} Ergebnisse`"></p>
-                                <p class="mt-4" x-show="$store.vacation.vacationImagesResult.length > 0">Wähle ein Bild aus:</p>
-                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2" data-testid="vacationImageResultList">
-                                    <template x-for="image in $store.vacation.vacationImagesResult">
-                                        <li class="flex flex-col">
-                                            <label :for="`inputvacationimage-${image.id}`">
-                                                <p class="sr-only" x-text="`Foto ${image.title} auf Fotohäcker`"></p>
-                                                <img :src="image.urls.thumb3x" 
-                                                     :alt="image.title" 
-                                                     class="rounded cursor-pointer"
-                                                     :class="{ 'ring-4': $store.vacation.vacationImage == image.id}">
-                                            </label>
-                                            <input type="radio"
-                                                    :id="`inputvacationimage-${image.id}`"
-                                                    :value="image.id"
-                                                    name="inputvacationimage"
-                                                    x-model="$store.vacation.vacationImage"
-                                                    class="sr-only">
-                                        </li>
-                                    </template>
-                                </ul>
-                            </div>
-                        </template>
-                    </div>
-                </form>
-            </li>
-        </ol>
-        <template x-if="$store.vacation.generatedLink">
-            <div data-testid="result" class="px-4">
-                Dein Link: 
-                <a :href="$store.vacation.generatedLink" 
-                    target="_blank" rel="noopener noreferrer" 
-                    x-text="$store.vacation.generatedLink"
-                    class="break-words"></a>
+  </div>
+  <p class="px-4">
+    Mithilfe dieses Formulars kannst du deinen eigenen Urlaubscountdown setzen.
+    Anschließend erhälst du einen Link, den du teilen kannst:
+  </p>
+  <div
+    class="space-y-4 rounded-b-xl border-y border-b-4 bg-gray-100 dark:border-gray-600 dark:bg-gray-700"
+  >
+    <ol class="ml-4 list-decimal space-y-2 p-4 pb-0">
+      <li>
+        <strong class="block">Urlaubstag auswählen</strong>
+        <label for="date">Urlaubsdatum (erforderlich)</label>
+        <input
+          class="block bg-gray-200 px-2 text-xl dark:bg-gray-800"
+          type="date"
+          name="date"
+          id="date"
+          x-ref="inputdate"
+          data-testid="vacationDate"
+          required
+        />
+      </li>
+      <li>
+        <strong class="block">Urlaubsort auswählen</strong>
+        <label for="vacationlocation">Urlaubsort (optional)</label>
+        <input
+          class="block bg-gray-200 px-2 text-xl dark:bg-gray-800"
+          type="text"
+          name="vacationlocation"
+          id="vacationlocation"
+          x-ref="inputvacationlocation"
+          data-testid="vacationLocation"
+        />
+      </li>
+      <li>
+        <strong class="block"
+          >Hintergrundbild auswählen (optional, experimentell)</strong
+        >
+        <form
+          x-data
+          @submit.prevent="$dispatch('submitvacationimagesearch')"
+          class="rounded border bg-gray-50 p-4 dark:bg-gray-900"
+        >
+          <div>
+            <label class="block" for="vacationimagesearch"
+              >Suche auf Fotohäcker nach einem Hintergrundbild</label
+            >
+            <div class="flex flex-wrap gap-2">
+              <input
+                class="block bg-gray-200 px-2 dark:bg-gray-800"
+                type="text"
+                name="vacationimagesearch"
+                id="vacationimagesearch"
+                data-testid="vacationImageSearch"
+                placeholder="Schottland"
+                :value="$store.vacation.vacationImageSearch"
+                x-model="$store.vacation.vacationImageSearch"
+              />
+              <button
+                class="btn btn--lg"
+                type="submit"
+                data-testid="vacationImageSearchSubmit"
+              >
+                Suchen
+              </button>
             </div>
-        </template>
-        <div class="flex gap-x-2 justify-between items-center border-t p-4">
-            <button data-testid="submitButton" class="btn btn--lg btn--blue">Speichern</button>
-            {# only show this close button if it's not a fresh page visit.
+            <template x-if="$store.vacation.vacationImagesResult">
+              <div>
+                <p
+                  x-text="`${$store.vacation.vacationImagesResult.length} Ergebnisse`"
+                ></p>
+                <p
+                  class="mt-4"
+                  x-show="$store.vacation.vacationImagesResult.length > 0"
+                >
+                  Wähle ein Bild aus:
+                </p>
+                <ul
+                  class="grid grid-cols-1 gap-2 md:grid-cols-2"
+                  data-testid="vacationImageResultList"
+                >
+                  <template
+                    x-for="image in $store.vacation.vacationImagesResult"
+                  >
+                    <li class="flex flex-col">
+                      <label :for="`inputvacationimage-${image.id}`">
+                        <p
+                          class="sr-only"
+                          x-text="`Foto ${image.title} auf Fotohäcker`"
+                        ></p>
+                        <img
+                          :src="image.urls.thumb3x"
+                          :alt="image.title"
+                          class="cursor-pointer rounded"
+                          :class="{ 'ring-4': $store.vacation.vacationImage == image.id}"
+                        />
+                      </label>
+                      <input
+                        type="radio"
+                        :id="`inputvacationimage-${image.id}`"
+                        :value="image.id"
+                        name="inputvacationimage"
+                        x-model="$store.vacation.vacationImage"
+                        class="sr-only"
+                      />
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </template>
+          </div>
+        </form>
+      </li>
+    </ol>
+    <template x-if="$store.vacation.generatedLink">
+      <div data-testid="result" class="px-4">
+        Dein Link:
+        <a
+          :href="$store.vacation.generatedLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          x-text="$store.vacation.generatedLink"
+          class="break-words"
+        ></a>
+      </div>
+    </template>
+    <div class="flex items-center justify-between gap-x-2 border-t p-4">
+      <button data-testid="submitButton" class="btn btn--lg btn--blue">
+        Speichern
+      </button>
+      {# only show this close button if it's not a fresh page visit.
                 TODO refactor this to the store. #}
-            <button type="button"
-                    label="Eingabe abbrechen"
-                    class="btn dark:text-gray-900"
-                    @click="$store.vacation.editMode = false"
-                    x-show="!!$store.vacation.vacationLocation || !!$store.vacation.date">
-                Abbrechen
-            </button>
-        </div>
+      <button
+        type="button"
+        label="Eingabe abbrechen"
+        class="btn dark:text-gray-900"
+        @click="$store.vacation.editMode = false"
+        x-show="!!$store.vacation.vacationLocation || !!$store.vacation.date"
+      >
+        Abbrechen
+      </button>
     </div>
+  </div>
 </form>

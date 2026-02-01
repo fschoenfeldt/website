@@ -17,7 +17,7 @@ export const maybeLoadRessourcesFromStorage = () => {
 
     const ressourcesUpdateCompleted = maybeUpdateRessources(
       ressourcesFromSavegame,
-      initialRessources
+      initialRessources,
     );
     console.debug({ ressourcesUpdateCompleted });
 
@@ -42,11 +42,11 @@ const maybeUpdateRessources = (ressourcesFromSavegame, initialRessources) => {
     ({ name: nameUpdate }) => {
       console.debug(`is ${nameUpdate} in savegame?`);
       const result = !!ressourcesFromSavegame.find(
-        ({ name: nameSavegame }) => nameUpdate === nameSavegame
+        ({ name: nameSavegame }) => nameUpdate === nameSavegame,
       );
       console.debug(result);
       return !result;
-    }
+    },
   );
 
   // migrate path to new path

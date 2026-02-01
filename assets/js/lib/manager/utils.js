@@ -6,7 +6,7 @@
  */
 export const getKeyboardFocussableElements = (parentEl) =>
   (parentEl ? parentEl : document).querySelectorAll(
-    'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+    'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
   );
 
 export const getFirstAndLast = (elements) => {

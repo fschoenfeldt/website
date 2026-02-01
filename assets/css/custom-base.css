@@ -8,7 +8,8 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 400;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/merriweather/merriweather-v30-latin-regular.woff2")
       format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
@@ -21,7 +22,8 @@
   font-family: "Merriweather";
   font-style: italic;
   font-weight: 400;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/merriweather/merriweather-v30-latin-italic.woff2")
       format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
@@ -34,7 +36,8 @@
   font-family: "Merriweather";
   font-style: normal;
   font-weight: 700;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/merriweather/merriweather-v30-latin-700.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
       url("/fonts/merriweather/merriweather-v30-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
@@ -46,7 +49,8 @@
   font-family: "Anton";
   font-style: normal;
   font-weight: 400;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/anton/anton-v23-latin-regular.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
       url("/fonts/anton/anton-v23-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
@@ -55,26 +59,27 @@
 /* space-mono-regular - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/spacemono/space-mono-v13-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/spacemono/space-mono-v13-latin-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* space-mono-italic - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
   font-style: italic;
   font-weight: 400;
-  src: url('/fonts/spacemono/space-mono-v13-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/spacemono/space-mono-v13-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* space-mono-700 - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/spacemono/space-mono-v13-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/spacemono/space-mono-v13-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* fallback */
 /* source: https://fonts.googleapis.com/icon?family=Material+Icons */
@@ -82,7 +87,8 @@
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/materialicons/MaterialIcons-Regular.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
       url("/fonts/materialicons/MaterialIcons-Regular.woff") format("woff");

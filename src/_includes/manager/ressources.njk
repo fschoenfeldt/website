@@ -1,12 +1,18 @@
 <div :aria-hidden="$store.manager.modalVisible">
-    <ul class="ressources" :class="{ 'ressources--changing' : $store.manager.changeVisibility }">
-        <template x-for="r in $store.manager.ressources">
-            <template x-if="r.visible || $store.manager.changeVisibility">
-                <li class="ressources__item" 
-                    :class="{ 'ressources__item--change' : !r.visible}"
-                    :id="`ressource__item_${$store.manager.ressourceToSafeName(r.name)}`">
-                    <button @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
-                            :aria-label="
+  <ul
+    class="ressources"
+    :class="{ 'ressources--changing' : $store.manager.changeVisibility }"
+  >
+    <template x-for="r in $store.manager.ressources">
+      <template x-if="r.visible || $store.manager.changeVisibility">
+        <li
+          class="ressources__item"
+          :class="{ 'ressources__item--change' : !r.visible}"
+          :id="`ressource__item_${$store.manager.ressourceToSafeName(r.name)}`"
+        >
+          <button
+            @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
+            :aria-label="
                             if ($store.manager.changeVisibility) {
                                 if (r.visible) {
                                     return `hide ${r.name} in price list`
@@ -16,59 +22,79 @@
                             } else {
                                 return `show information for ${r.name}`
                             }
-                            ">
-                        <div class="py-2 space-y-2 text-center" :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}">
-                            <img alt="" class="inline" :src="r.path"/>
-                            <div x-text="r.name" aria-hidden="true"></div>
-                        </div>
-                        <template x-if="r.priceHistory.length && !$store.manager.changeVisibility" x-data="{logExpanded: false}">
-                            <ul class="ressources__item__priceinfo">
-                                <li class="w-full flex justify-between items-center px-0.5 md:px-2 py-0.5 gap-x-2">
-                                    <div class="sr-only" x-text="`price information for ${r.name}`"></div>
-                                    <div :aria-label="r.min && `minimum price: ${r.min}`">
-                                        <div aria-hidden="true" 
-                                             x-show="r.min"
-                                             class="priceinfo__values"
-                                             >
-                                            <img alt="" class="" src="/img/arrow_downward.svg"/>
-                                            <span x-text="r.min && `${r.min}`"></span>
-                                        </div>
-                                    </div>
-                                    <div :aria-label="r.average && `average price: ${r.average}`">
-                                        <div aria-hidden="true"
-                                             x-show="r.average"
-                                             class="priceinfo__values"
-                                             >
-                                            <img alt="" class="" src="/img/insights.svg"/>
-                                            <span x-text="r.average && `${r.average}`"></span>
-                                        </div>
-                                    </div>
-                                    <div :aria-label="r.max && `maximum price: ${r.max}`">
-                                        <div aria-hidden="true"
-                                             x-show="r.max"
-                                             class="priceinfo__values"
-                                             >
-                                            <img alt="" class="" src="/img/arrow_upward.svg"/>
-                                            <span class="!text-amber-200 font-bold" x-text="r.max && `${r.max}`"></span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <template x-if="logExpanded">
-                                    <template x-for="h in r.priceHistory">
-                                        <li x-text="h.value"></li>
-                                    </template>
-                                </template>
-                            </ul>
-                        </template>
-                    </button>
+                            "
+          >
+            <div
+              class="space-y-2 py-2 text-center"
+              :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}"
+            >
+              <img alt="" class="inline" :src="r.path" />
+              <div x-text="r.name" aria-hidden="true"></div>
+            </div>
+            <template
+              x-if="r.priceHistory.length && !$store.manager.changeVisibility"
+              x-data="{logExpanded: false}"
+            >
+              <ul class="ressources__item__priceinfo">
+                <li
+                  class="flex w-full items-center justify-between gap-x-2 px-0.5 py-0.5 md:px-2"
+                >
+                  <div
+                    class="sr-only"
+                    x-text="`price information for ${r.name}`"
+                  ></div>
+                  <div :aria-label="r.min && `minimum price: ${r.min}`">
+                    <div
+                      aria-hidden="true"
+                      x-show="r.min"
+                      class="priceinfo__values"
+                    >
+                      <img alt="" class="" src="/img/arrow_downward.svg" />
+                      <span x-text="r.min && `${r.min}`"></span>
+                    </div>
+                  </div>
+                  <div :aria-label="r.average && `average price: ${r.average}`">
+                    <div
+                      aria-hidden="true"
+                      x-show="r.average"
+                      class="priceinfo__values"
+                    >
+                      <img alt="" class="" src="/img/insights.svg" />
+                      <span x-text="r.average && `${r.average}`"></span>
+                    </div>
+                  </div>
+                  <div :aria-label="r.max && `maximum price: ${r.max}`">
+                    <div
+                      aria-hidden="true"
+                      x-show="r.max"
+                      class="priceinfo__values"
+                    >
+                      <img alt="" class="" src="/img/arrow_upward.svg" />
+                      <span
+                        class="font-bold !text-amber-200"
+                        x-text="r.max && `${r.max}`"
+                      ></span>
+                    </div>
+                  </div>
                 </li>
+                <template x-if="logExpanded">
+                  <template x-for="h in r.priceHistory">
+                    <li x-text="h.value"></li>
+                  </template>
+                </template>
+              </ul>
             </template>
-        </template>
-        <li class="ressources__item ressources__item--add">
-            <button @click="$store.manager.onClickToggleChangeVisibility" 
-                    x-text="$store.manager.changeVisibility ? '-' : '+'" 
-                    :aria-label="$store.manager.changeVisibility ? 'stop showing all ressources and get back to price list' : 'show all ressources and change their visibility in this list'"
-                    data-testid="toggleRessourceVisibility"></button>
+          </button>
         </li>
-    </ul>
+      </template>
+    </template>
+    <li class="ressources__item ressources__item--add">
+      <button
+        @click="$store.manager.onClickToggleChangeVisibility"
+        x-text="$store.manager.changeVisibility ? '-' : '+'"
+        :aria-label="$store.manager.changeVisibility ? 'stop showing all ressources and get back to price list' : 'show all ressources and change their visibility in this list'"
+        data-testid="toggleRessourceVisibility"
+      ></button>
+    </li>
+  </ul>
 </div>
