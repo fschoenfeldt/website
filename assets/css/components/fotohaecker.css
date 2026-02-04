@@ -29,6 +29,3 @@
     @apply inline-block rounded-lg bg-blue-700 px-1 font-sans text-sm font-bold text-white;
   }
 }
-.external {
-  @apply flex items-center gap-0.5;
-}
