@@ -4,51 +4,22 @@ description: describing the project fotohaecker and its technical details
 layout: layouts/base.njk
 ---
 
+{% import "components/link.njk" as linkComponent %}
+
 <div id="fotohaecker">
   <img
     src="{{ "/img/fotohaecker_logo.svg" | url }}"
     alt="fotohaecker logo"
     class="col-span-1 row-span-4"
-  />
+/>
   <h1 class="thick-heading" id="fotohaecker-heading">Fotohäcker.</h1>
   <p class="mb-2 text-lg text-gray-600 xl:mb-6 dark:text-gray-300">
     upload & share your photos. license free, for any use!
   </p>
+
   <div class="prose dark:prose-invert">
     <p>
-      With Fotohäcker
-      <a
-        class="external"
-        href="https://fschoenf.uber.space/fh/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        (click here for a demo)
-        <svg
-          aria-label=""
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          focusable="false"
-          x="0px"
-          y="0px"
-          viewbox="0 0 100 100"
-          width="15"
-          height="15"
-        >
-          <path
-            d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-          ></path>
-          <polygon
-            points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-          ></polygon>
-        </svg> </a
-      >, I built an image sharing plattform where you can upload and download
-      any images free for use
-      <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de"
-        >(CC Zero License)</a
-      >. The now defunct first version was part of an university project on the
-      subject of www-programming built with nodejs/express. The new version is
-      built with Elixir/Phoenix and is actively maintained.
+      With Fotohäcker {{ linkComponent.link(href="https://fschoenf.uber.space/fh/", text="(click here for a demo)", external=true, showIcon=true) }}, I built an image sharing plattform where you can upload and download any images free for use {{ linkComponent.link(href="https://creativecommons.org/publicdomain/zero/1.0/deed.de", text="(CC Zero License)", external=true) }}. The now defunct first version was part of an university project on the subject of www-programming built with nodejs/express. The new version is built with Elixir/Phoenix and is actively maintained.
     </p>
   </div>
   <div class="mt-4 gap-4 border-t pt-4 md:flex">

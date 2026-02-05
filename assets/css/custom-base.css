@@ -125,14 +125,10 @@ a {
   @apply text-blue-700 underline underline-offset-4 hover:text-blue-900 hover:dark:text-blue-300;
 
   &.external {
-    @apply inline-flex items-center gap-0.5;
+    /* @apply inline-flex items-center gap-0.5; */
+    @apply fill-blue-700 hover:fill-blue-900;
     svg {
-      @apply inline-block fill-blue-700;
-    }
-    &:hover {
-      svg {
-        @apply fill-blue-900;
-      }
+      @apply inline-block;
     }
   }
 }

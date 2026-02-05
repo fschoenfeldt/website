@@ -4,6 +4,8 @@ description: describing the project Space Haven Manager and its technical detail
 layout: layouts/base.njk
 ---
 
+{% import "components/link.njk" as linkComponent %}
+
 {% block head %}
   <style>
     body {
@@ -27,38 +29,21 @@ layout: layouts/base.njk
     x-transition
     x-transition.duration.2000ms
     x-transition:leave-end="transition_finished"
-  />
+/>
 
   <h1 class="z-10 self-end">Space Haven Manager</h1>
   <div class="z-10 self-start">
     <p>
       The game Space Haven is a 2D isometric space exploration game, where you
       can also trade with different factions. With Space Haven Manager
-      <a
-        class="external"
-        href="{{ "/manager" | url }}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        (click here for a demo)
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          ariahidden="true"
-          focusable="false"
-          x="0px"
-          y="0px"
-          viewbox="0 0 100 100"
-          width="15"
-          height="15"
-        >
-          <path
-            d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-          ></path>
-          <polygon
-            points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-          ></polygon>
-        </svg> </a
-      >, I build a small web application that allows you to manage trading
+      {{ linkComponent.link(
+        href="/manager" | url,
+        text="(click here for a demo)",
+        external=true,
+        customClasses="",
+        sublabelClasses="fill-cyan-200",
+        showIcon=true
+      ) }}, I build a small web application that allows you to manage trading
       prices. From a technical perspective, AlpineJS is used as a thin layer
       around events and state management. For persistance, I'm using the Local
       Storage API. Testing is done via playwright and some automatic
