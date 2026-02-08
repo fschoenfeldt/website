@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 ---
 
 <article id="laufmaus">
-    <section class="light !min-h-[80vh]">
+    <section class="light onDarkToDark !min-h-[80vh]">
         <div class="container">
             <h1 class="col-span-12 md:-mb-48">
                 Laufmaus
@@ -22,7 +22,9 @@ eleventyExcludeFromCollections: true
                 {% include "components/laufmaus/appstore_cta.njk" %}
             </div>
             <div class="relative col-span-12 row-start-2 md:row-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:col-span-4 h-64 md:h-auto overflow-hidden md:overflow-visible md:mb-4">
-                <img src="/img/laufmaus/laufmaus-iphone17pro-basic.png" alt="Laufmaus App Mockup" class="relative z-10">
+                <img src="/img/laufmaus/laufmaus-iphone17pro-basic.png" alt="Laufmaus App Mockup" class="relative z-10 dark:hidden">
+                {# TODO: dark image is old. #}
+                <img src="/img/laufmaus/laufmaus-iphone17pro-basic--dark.png" alt="Laufmaus App Mockup Dark" class="relative z-10 hidden dark:block">
                 <div class="hidden md:block bg-gray-900 h-full w-full absolute top-4 left-4 z-0 rounded-3xl"></div>
             </div>
         </div>

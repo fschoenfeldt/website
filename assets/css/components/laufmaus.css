@@ -32,5 +32,12 @@
     &.light {
       @apply bg-gray-100 text-gray-900;
     }
+
+    &.onDarkToDark {
+      @apply dark:!border-gray-800 dark:bg-gray-900;
+      * {
+        @apply dark:text-gray-100;
+      }
+    }
   }
 }
