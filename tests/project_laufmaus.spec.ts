@@ -1,9 +1,9 @@
 import { test, expect, Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test.describe("spacehaven manager project page", () => {
+test.describe("laufmaus project page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("project_manager");
+    await page.goto("laufmaus");
     // browsersync redirects to correct page so we have to wait
     await page.waitForLoadState("networkidle");
   });
@@ -24,9 +24,6 @@ test.describe("spacehaven manager project page", () => {
   });
 
   test("index matches snapshot", async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot({
-      // the stars in the background are randomly generated, so we need to allow some differences
-      maxDiffPixelRatio: 0.03,
-    });
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 });

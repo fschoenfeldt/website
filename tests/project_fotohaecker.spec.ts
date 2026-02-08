@@ -22,4 +22,8 @@ test.describe("fotohaecker project page", () => {
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
+
+  test("index matches snapshot", async ({ page }) => {
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });
