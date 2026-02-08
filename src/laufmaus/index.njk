@@ -6,6 +6,8 @@ layout: layouts/minimal.njk
 eleventyExcludeFromCollections: true
 ---
 
+{% import "components/link.njk" as linkComponent %}
+
 <article id="laufmaus">
     <section class="light onDarkToDark !min-h-[80vh]">
         <div class="container">
@@ -80,189 +82,41 @@ eleventyExcludeFromCollections: true
                 <h2>
                     Comparison with manufacturer Apps
                 </h2>
-                <table class="w-full border border-gray-200 rounded-xl overflow-hidden">
 
-                    <!-- Desktop Header -->
-                    <thead class="hidden md:table-header-group bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-3 text-left font-semibold">Feature</th>
-                            <th class="px-4 py-3 text-center font-semibold">Manufacturer</th>
-                            <th class="px-4 py-3 text-center font-semibold">Laufmaus (Free)</th>
-                        </tr>
-                    </thead>
+                {% set featureRows = [
+                    {
+                        title: "No Login Required",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Quick Start",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Heart Rate Monitor",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "HR-Based Calories Calculation",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Apple Health Integration with full data",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "No Cloud Storage required",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    }
+                ] %}
+                {% include "components/laufmaus/feature_table.njk" %}
 
-                    <tbody class="divide-y divide-gray-200">
-
-                        <!-- Row -->
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                No Login Required
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                Quick Start
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                Heart Rate Monitor
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                HR-Based Calories Calculation
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                Apple Health Integration with full data
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr class="block md:table-row p-4 md:p-0">
-                            <td class="block md:table-cell px-4 py-2 font-medium">
-                                No Cloud Storage required
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>
-                                <div class="flex justify-center">
-                                    {% icon "x",
-                                    {
-                                        "class": "stroke-red-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">Not supported</span>
-                                </div>
-                            </td>
-                            <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>
-                                <div class="flex justify-center">
-                                    {% icon "check",
-                                    {
-                                        "class": "stroke-green-700",
-                                        "stroke-width": 3
-                                    } %}
-                                    <span class="sr-only">supported</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
                 <div class="mt-8">
                     {% include "components/laufmaus/appstore_cta.njk" %}
                 </div>

@@ -1,0 +1,62 @@
+{% set rows = featureRows or[] %}
+<table class="w-full border border-gray-200 rounded-xl overflow-hidden">
+
+    <!-- Desktop Header -->
+    <thead class="hidden md:table-header-group bg-gray-100">
+        <tr>
+            <th class="px-4 py-3 text-left font-semibold">Feature</th>
+            <th class="px-4 py-3 text-center font-semibold">Manufacturer</th>
+            <th class="px-4 py-3 text-center font-semibold">Laufmaus (Free)</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+        {% for row in rows %}
+            <tr class="block md:table-row p-4 md:p-0">
+                <td class="block md:table-cell px-4 py-2 font-bold md:font-medium">
+                    {{ row.title }}
+                </td>
+                <td class="block md:table-cell px-4 py-2 text-center">
+                    <div class="md:hidden">Manufacturer: </div>
+                    <div class="flex justify-center">
+                        {% if row.manufacturerSupport %}
+                            {% icon "check",
+                            {
+                                "class": "stroke-green-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">supported</span>
+                        {% else %}
+                            {% icon "x",
+                            {
+                                "class": "stroke-red-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">Not supported</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td class="block md:table-cell px-4 py-2 text-center">
+                    <div class="md:hidden">Laufmaus: </div>
+                    <div class="flex justify-center">
+                        {% if row.laufmausSupport %}
+                            {% icon "check",
+                            {
+                                "class": "stroke-green-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">supported</span>
+                        {% else %}
+                            {% icon "x",
+                            {
+                                "class": "stroke-red-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">Not supported</span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
