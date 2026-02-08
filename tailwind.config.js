@@ -21,6 +21,7 @@ module.exports = {
       cyan: colors.cyan,
       amber: colors.amber,
       red: colors.red,
+      green: colors.green,
       laufmaus: {
         accent: "#F8FD97",
         complement: "#40412E",

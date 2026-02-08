@@ -19,14 +19,7 @@ eleventyExcludeFromCollections: true
                 <p>
                     Laufmaus is an alternative app for controlling walkingpads, designed to offer enhanced features and a better user experience compared to standard apps. It provides users with more control over their walkingpad settings, including speed adjustments, workout tracking, and customizable profiles.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="#">
-                        <img width="200" src="/img/laufmaus/appstore-en-us.svg" alt="Download on the App Store">
-                    </a>
-                    <a href="#">
-                        <img width="200" alt="Get it on Google Play" src="/img/laufmaus/googleplay-en-us.svg"/>
-                    </a>
-                </div>
+                {% include "components/laufmaus/appstore_cta.njk" %}
             </div>
             <div class="relative col-span-12 row-start-2 md:row-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:col-span-4 h-64 md:h-auto overflow-hidden md:overflow-visible md:mb-4">
                 <img src="/img/laufmaus/laufmaus-iphone17pro-basic.png" alt="Laufmaus App Mockup" class="relative z-10">
@@ -104,14 +97,26 @@ eleventyExcludeFromCollections: true
                                 No Login Required
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌ 
-                                <div>
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
                                     {% icon "x",
-                                    class="stroke-gray-800" %}
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
                                 </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>✅
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
 
@@ -120,10 +125,26 @@ eleventyExcludeFromCollections: true
                                 Quick Start
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>🚀
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
 
@@ -132,10 +153,26 @@ eleventyExcludeFromCollections: true
                                 Heart Rate Monitor
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>❤️
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
 
@@ -144,10 +181,26 @@ eleventyExcludeFromCollections: true
                                 HR-Based Calories Calculation
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>🔥
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
 
@@ -156,10 +209,26 @@ eleventyExcludeFromCollections: true
                                 Apple Health Integration with full data
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>🍎
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
 
@@ -168,14 +237,33 @@ eleventyExcludeFromCollections: true
                                 No Cloud Storage required
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>
+                                <div class="flex justify-center">
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Laufmaus: </span>🔒
+                                <span class="md:hidden font-semibold">Laufmaus: </span>
+                                <div class="flex justify-center">
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="mt-8">
+                    {% include "components/laufmaus/appstore_cta.njk" %}
+                </div>
             </div>
         </div>
     </section>
