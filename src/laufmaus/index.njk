@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 ---
 
 <article id="laufmaus">
-    <section class="!min-h-[80vh]">
+    <section class="light !min-h-[80vh]">
         <div class="container">
             <h1 class="col-span-12 md:-mb-48">
                 Laufmaus
@@ -34,7 +34,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="bg-[#0F3D3E]">
+    <section class="dark !bg-[#0F3D3E]">
         <div class="container">
             <div class="description col-span-12">
                 <h2 class="!text-gray-100">
@@ -49,7 +49,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="bg-gray-900">
+    <section class="dark">
         <div class="container">
             <div class="description col-span-12">
                 <h2 class="!text-gray-100">
@@ -64,7 +64,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="bg-gray-100 border-b-2">
+    <section class="light">
         <div class="container">
             <div class="description col-span-12">
                 <h2>
@@ -79,7 +79,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="bg-gray-50">
+    <section class="light">
         <div class="container">
             <div class="description col-span-12">
                 <h2>
@@ -104,7 +104,11 @@ eleventyExcludeFromCollections: true
                                 No Login Required
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
-                                <span class="md:hidden font-semibold">Manufacturer: </span>❌
+                                <span class="md:hidden font-semibold">Manufacturer: </span>❌ 
+                                <div>
+                                    {% icon "x",
+                                    class="stroke-gray-800" %}
+                                </div>
                             </td>
                             <td class="block md:table-cell px-4 py-2 text-right md:text-center">
                                 <span class="md:hidden font-semibold">Laufmaus: </span>✅
