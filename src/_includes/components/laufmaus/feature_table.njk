@@ -12,10 +12,15 @@
     <tbody class="divide-y divide-gray-200">
         {% for row in rows %}
             <tr class="block md:table-row p-4 md:p-0">
-                <td class="block md:table-cell px-4 py-2 font-bold md:font-medium">
+                <td class="flex items-center gap-2 px-4 py-2 md:py-4 font-bold md:font-medium">
+                    {% icon row.icon,
+                    {
+                        "class": "stroke-gray-700",
+                        "stroke-width": 2
+                    } %}
                     {{ row.title }}
                 </td>
-                <td class="block md:table-cell px-4 py-2 text-center">
+                <td class="block md:table-cell px-4 py-2 md:py-4 text-center">
                     <div class="md:hidden">Manufacturer: </div>
                     <div class="flex justify-center">
                         {% if row.manufacturerSupport %}
@@ -35,7 +40,7 @@
                         {% endif %}
                     </div>
                 </td>
-                <td class="block md:table-cell px-4 py-2 text-center">
+                <td class="block md:table-cell px-4 py-2 md:py-4 text-center">
                     <div class="md:hidden">Laufmaus: </div>
                     <div class="flex justify-center">
                         {% if row.laufmausSupport %}
