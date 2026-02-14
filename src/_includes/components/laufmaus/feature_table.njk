@@ -4,23 +4,25 @@
     <!-- Desktop Header -->
     <thead class="hidden md:table-header-group bg-gray-100">
         <tr>
-            <th class="px-4 py-3 text-left font-semibold">Feature</th>
+            <th class="px-4 py-3 text-left font-semibold ">Feature</th>
             <th class="px-4 py-3 text-center font-semibold">Manufacturer</th>
             <th class="px-4 py-3 text-center font-semibold">Laufmaus (Free)</th>
         </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
         {% for row in rows %}
-            <tr class="block md:table-row p-4 md:p-0">
+            <tr class="flex md:table-row p-4 md:p-0">
                 <td class="flex items-center gap-2 px-4 py-2 md:py-4 font-bold md:font-medium">
-                    {% icon row.icon,
-                    {
-                        "class": "stroke-gray-700",
-                        "stroke-width": 2
-                    } %}
-                    {{ row.title }}
+                    <div>
+                        {% icon row.icon,
+                        {
+                            "class": "stroke-gray-700",
+                            "stroke-width": 2
+                        } %}
+                    </div>
+                    <div>{{ row.title }}</div>
                 </td>
-                <td class="block md:table-cell px-4 py-2 md:py-4 text-center">
+                <td class="block ml-auto md:table-cell px-4 py-2 md:py-4 text-center">
                     <div class="md:hidden">Manufacturer: </div>
                     <div class="flex justify-center">
                         {% if row.manufacturerSupport %}

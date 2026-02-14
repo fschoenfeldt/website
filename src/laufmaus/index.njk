@@ -36,10 +36,10 @@ eleventyExcludeFromCollections: true
                         }}
                     </li>
                     <li class="flex items-center gap-1">{% icon "bell-dot",
-                            {
-                                "class": "stroke-gray-700",
-                                "stroke-width": 2
-                            } %}
+                        {
+                            "class": "stroke-gray-700",
+                            "stroke-width": 2
+                        } %}
                         {{ 
                                 linkComponent.link(
                                     href="#live-activity",
@@ -49,10 +49,10 @@ eleventyExcludeFromCollections: true
                             }}
                     </li>
                     <li class="flex items-center gap-1">{% icon "circle-gauge",
-                            {
-                                "class": "stroke-gray-700",
-                                "stroke-width": 2
-                            } %}
+                        {
+                            "class": "stroke-gray-700",
+                            "stroke-width": 2
+                        } %}
                         {{ 
                                 linkComponent.link(
                                     href="#speed-control",
@@ -66,7 +66,7 @@ eleventyExcludeFromCollections: true
                     linkComponent.link(
 
                         href="#comparison",
-                        text="See full comparison with manufacturer apps",
+                        text="See full comparison with manufacturer apps and compatible devices",
                         title="Compare with manufacturer apps section"
                     ) 
                 }}
@@ -140,7 +140,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="light !bg-gray-50" id="comparison">
+    <section class="light !bg-gray-50 shadow" id="comparison">
         <div class="container">
             <div class="description col-span-12">
                 <h2>
@@ -187,10 +187,45 @@ eleventyExcludeFromCollections: true
                 ] %}
                 {% include "components/laufmaus/feature_table.njk" %}
 
-                <div class="mt-8">
-                    {% include "components/laufmaus/appstore_cta.njk" %}
+                <div id="compatible-devices" class="mt-12">
+                    <details class="bg-gray-100 rounded p-4 border border-gray-300">
+                        <summary class="cursor-pointer font-medium text-laufmaus-accent">
+                            Compatible Devices
+                        </summary>
+                        <div class="p-4 space-y-2 md:space-y-0 md:flex">
+                            <div class="flex-1">
+                                <p class="font-bold">
+                                    WalkingPad devices:
+                                </p>
+                                <ul class="list-disc list-inside mt-1 ps-4 space-y-1">
+                                    <li>WalkingPad R1 Pro</li>
+                                    <li>WalkingPad R2</li>
+                                    <li>WalkingPad A1 Pro</li>
+                                    <li>WalkingPad C1</li>
+                                </ul>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold">
+                                    Supported Heart Rate Monitors:
+                                </p>
+                                <ul class="list-disc list-inside mt-1 ps-4 space-y-1">
+                                    <li>WAHOO TICKR</li>
+                                    <li>WAHOO TRACKR</li>
+                                    <li>Any Bluetooth HRM device following the "BLE Heart Rate Service GATT-Standard"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+
+                    <div class="mt-8">
+                        {% include "components/laufmaus/appstore_cta.njk" %}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</article>
+        </section>
+        <section class="light bg-gray-50">
+            <p class="text-sm text-center !text-gray-500">
+                Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by WAHOO, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
+            </p>
+        </section>
+    </article>
