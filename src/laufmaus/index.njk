@@ -94,10 +94,19 @@ eleventyExcludeFromCollections: true
                     Connect your heart rate monitor to the app and track your heart rate during workouts:
 
                     <ul class="!list-disc list-inside space-y-2 ps-4">
-                        <li class="!text-gray-200">Support for various heart rate monitors including WAHOO TRACKR / TICKR and any HRM device following the Bluetooth standard.</li>
                         <li class="!text-gray-200">Real-time heart rate display during workouts.</li>
                         <li class="!text-gray-200">Heart rate-based calorie calculation for more accurate tracking.</li>
                         <li class="!text-gray-200">Integration with Apple Health to store detailed workout data, including heart rate information.</li>
+                        <li class="!text-gray-200">
+                            {{ 
+                                linkComponent.link(
+                                    customClasses="!text-gray-200 underline",
+                                    href="#compatible-devices",
+                                    text="See compatible devices here",
+                                    title="See compatible devices section"
+                                ) 
+                            }}
+                        </li>
                     </ul>
                 </p>
             </div>
@@ -119,7 +128,7 @@ eleventyExcludeFromCollections: true
                 <p class="!text-gray-200">
                     Receive real-time notifications about your workout progress, including distance covered, calories burned, and time elapsed. Stay motivated and informed throughout your exercise session.
                 </p>
-                <p class="!text-gray-200">
+                <p class="!text-gray-200 italic">
                     Note: This feature is currently in beta and only works on iOS 16.1 and later.
                 </p>
             </div>
