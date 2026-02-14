@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
 {% import "components/link.njk" as linkComponent %}
 
 <article id="laufmaus">
-    <section class="light !bg-laufmaus-accent onDarkToDark !min-h-[80vh]">
+    <section class="light bg-laufmaus-accent onDarkToDark !min-h-[80vh]">
         <div class="container">
             <h1 class="col-span-12 md:-mb-20">
                 Laufmaus
@@ -24,7 +24,7 @@ eleventyExcludeFromCollections: true
                 <ul class="!mt-3 space-y-3 ps-2">
                     <li class="flex items-center gap-1">{% icon "heart-pulse",
                         {
-                            "class": "stroke-gray-700",
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
                         } %}
                         {{ 
@@ -37,7 +37,7 @@ eleventyExcludeFromCollections: true
                     </li>
                     <li class="flex items-center gap-1">{% icon "bell-dot",
                         {
-                            "class": "stroke-gray-700",
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
                         } %}
                         {{ 
@@ -50,7 +50,7 @@ eleventyExcludeFromCollections: true
                     </li>
                     <li class="flex items-center gap-1">{% icon "circle-gauge",
                         {
-                            "class": "stroke-gray-700",
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
                         } %}
                         {{ 
@@ -125,7 +125,7 @@ eleventyExcludeFromCollections: true
             </div>
         </div>
     </section>
-    <section class="light" id="speed-control">
+    <section class="light bg-gray-100" id="speed-control">
         <div class="container">
             <div class="description col-span-12">
                 <h2>
@@ -188,7 +188,7 @@ eleventyExcludeFromCollections: true
                 {% include "components/laufmaus/feature_table.njk" %}
 
                 <div id="compatible-devices" class="mt-12">
-                    <details class="bg-gray-100 rounded p-4 border border-gray-300">
+                    <details class="bg-gray-100 rounded p-4 border border-gray-300 shadow">
                         <summary class="cursor-pointer font-medium text-laufmaus-accent">
                             Compatible Devices
                         </summary>
@@ -223,7 +223,7 @@ eleventyExcludeFromCollections: true
                 </div>
             </div>
         </section>
-        <section class="light bg-gray-50 !py-8">
+        <section class="light bg-gray-100 !py-8">
             <p class="text-xs text-center !text-gray-600">
                 Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by WAHOO, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
             </p>

@@ -30,7 +30,7 @@
     }
 
     &.light {
-      @apply bg-gray-100 text-gray-900;
+      @apply text-gray-900;
     }
 
     &.onDarkToDark {
