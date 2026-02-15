@@ -207,16 +207,21 @@ eleventyExcludeFromCollections: true
                 {% include "components/laufmaus/feature_table.njk" %}
 
                 <div id="compatible-devices" class="mt-12">
-                    <details class="bg-gray-100 rounded p-4 border border-gray-300 shadow">
-                        <summary class="cursor-pointer font-medium text-laufmaus-accent">
+                    <details
+                        class="group bg-gray-100 rounded p-4 border border-gray-200 open:border-gray-700 open:border-2 shadow"
+                        x-data="{ open: false }"
+                        x-init="const sync = () => { const isHash = (window.location.hash === '#compatible-devices'); open = isHash; if (isHash) { $nextTick(() => { setTimeout(() => $el.focus({ preventScroll: true }), 100); }); } }; sync(); window.addEventListener('hashchange', sync);"
+                        x-bind:open="open"
+                    >
+                        <summary class="cursor-pointer font-bold text-laufmaus-accent">
                             Compatible Devices
                         </summary>
                         <div class="p-4 space-y-2 md:space-y-0 md:flex">
                             <div class="flex-1">
-                                <p class="font-bold">
+                                <p class="">
                                     WalkingPad devices:
                                 </p>
-                                <ul class="list-disc list-inside mt-1 ps-4 space-y-1">
+                                <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
                                     <li>WalkingPad R1 Pro</li>
                                     <li>WalkingPad R2</li>
                                     <li>WalkingPad A1 Pro</li>
@@ -224,10 +229,10 @@ eleventyExcludeFromCollections: true
                                 </ul>
                             </div>
                             <div class="flex-1">
-                                <p class="font-bold">
-                                    Supported Heart Rate Monitors:
+                                <p class="">
+                                    Heart Rate Monitors:
                                 </p>
-                                <ul class="list-disc list-inside mt-1 ps-4 space-y-1">
+                                <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
                                     <li>WAHOO TICKR</li>
                                     <li>WAHOO TRACKR</li>
                                     <li>Any Bluetooth HRM device following the "BLE Heart Rate Service GATT-Standard"</li>
@@ -236,13 +241,27 @@ eleventyExcludeFromCollections: true
                         </div>
                     </details>
 
-                    <div class="mt-8">
-                        {% include "components/laufmaus/appstore_cta.njk" %}
-                    </div>
                 </div>
             </div>
         </section>
-        <section class="light bg-gray-100 !py-8">
+        <section class="light bg-gray-100 !py-8 space-y-8">
+            <div>
+                {% include "components/laufmaus/appstore_cta.njk" %}
+            </div>
+            <p>
+                Made with ❤️ in Hamburg, Germany.  
+                {{ 
+                    linkComponent.link(
+                        href="/",
+                        text="Visit author's website",
+                        title="Visit author's website",
+                        showIcon=true,
+                        customClasses="underline !text-gray-600",
+                        sublabelClasses="fill-gray-600",
+                        external=true
+                    ) 
+                }}
+            </p>
             <p class="text-xs text-center !text-gray-600">
                 Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by Apple, Apple Health, WAHOO, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
             </p>
