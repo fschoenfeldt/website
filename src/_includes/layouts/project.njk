@@ -16,6 +16,21 @@
     {% include "seo/project_meta.njk" %}
     {% include 'favicons.njk' %}
     <script defer src="{{ hash['/js/app.js'] | url }}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      type="text/plain"
+      data-cookiecategory="analytics"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-51WZFYSLT7"
+    ></script>
+    <script type="text/plain" data-cookiecategory="analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-51WZFYSLT7');
+    </script>
     {% block head %}{% endblock %}
   </head>
   <body class="antialiased">
