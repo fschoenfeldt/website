@@ -1,7 +1,12 @@
 ---
 title: Laufmaus
-description: describing the project laufmaus and its technical details
-layout: layouts/minimal.njk
+description: Feature-rich WalkingPad app with heart rate monitoring, Live Activity support, and Apple Health integration. No login required, quick start, and accurate calorie tracking.
+ogImage: /img/laufmaus/o_graph.png
+jsonLdType: SoftwareApplication
+jsonLdOperatingSystem: iOS, Android
+jsonLdCategory: HealthApplication
+itunesAppId: com.fschoenfeldt.laufmaus
+layout: layouts/project.njk
 # TODO: remove the below and from robots.njk when released
 eleventyExcludeFromCollections: true
 ---
@@ -22,7 +27,7 @@ eleventyExcludeFromCollections: true
                     Laufmaus is an alternative app for controlling walkingpads, designed to offer enhanced features and a better user experience compared to most manufacturers' apps:
                 </p>
                 <ul class="!mt-3 space-y-3 ps-2">
-                    <li class="flex items-center gap-1">{% icon "heart-pulse",
+                    <li class="flex items-center gap-2">{% icon "heart-pulse",
                         {
                             "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
@@ -35,7 +40,7 @@ eleventyExcludeFromCollections: true
                             ) 
                         }}
                     </li>
-                    <li class="flex items-center gap-1">{% icon "bell-dot",
+                    <li class="flex items-center gap-2">{% icon "bell-dot",
                         {
                             "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
@@ -48,7 +53,7 @@ eleventyExcludeFromCollections: true
                                 ) 
                             }}
                     </li>
-                    <li class="flex items-center gap-1">{% icon "circle-gauge",
+                    <li class="flex items-center gap-2">{% icon "circle-gauge",
                         {
                             "class": "stroke-gray-700 dark:stroke-gray-200",
                             "stroke-width": 2
@@ -61,15 +66,20 @@ eleventyExcludeFromCollections: true
                                 ) 
                             }}
                     </li>
+                    <li class="flex items-center gap-2">{% icon "square-check-big",
+                        {
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
+                            "stroke-width": 2
+                        } %}
+                        {{ 
+                                linkComponent.link(
+                                    href="#comparison",
+                                    text="Compatible with Kingsmith WalkingPads (R1, R2, …)",
+                                    title="Compare with manufacturer apps section"
+                                ) 
+                            }}
+                    </li>
                 </ul>
-                {{ 
-                    linkComponent.link(
-
-                        href="#comparison",
-                        text="See full comparison with manufacturer apps and compatible devices",
-                        title="Compare with manufacturer apps section"
-                    ) 
-                }}
 
                 {% include "components/laufmaus/appstore_cta.njk" %}
             </div>
@@ -182,7 +192,7 @@ eleventyExcludeFromCollections: true
                         laufmausSupport: true
                     },
                     {
-                        title: "Apple Health Integration with full data",
+                        title: "Apple Health Integration",
                         icon: "heart-plus",
                         manufacturerSupport: false,
                         laufmausSupport: true
@@ -234,7 +244,7 @@ eleventyExcludeFromCollections: true
         </section>
         <section class="light bg-gray-100 !py-8">
             <p class="text-xs text-center !text-gray-600">
-                Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by WAHOO, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
+                Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by Apple, Apple Health, WAHOO, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
             </p>
         </section>
     </article>
