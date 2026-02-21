@@ -27,12 +27,38 @@
         ) }}
       </li>
       <li class="projects relative col-span-5">
-        <div class="relative z-10 flex p-4">projects</div>
+        <div class="relative z-10 flex p-4 items-center gap-2 justify-between">
+          <div>projects</div>
+          {# i need to override many of assets/css/components/misc.css here  #}
+          {# {{ linkComponent.link(
+            href="/projects" | url,
+            text="all projects",
+            title="see all projects",
+            customClasses="!flex-row !h-auto !p-0 !w-auto",
+            external=true,
+            sublabelClasses="fill-white hover:fill-white underline text-white",
+            showIcon=true
+          ) }} #}
+        </div>
         <div class="bg-white md:grid md:grid-cols-2">
+          <div class="relative border border-laufmaus-complement bg-laufmaus-accent md:rounded-bl">
+            {% call linkComponent.link(
+              href="/laufmaus" | url,
+              title="learn more",
+              customClasses="relative z-10 no-underline",
+              sublabel="learn more",
+              sublabelClasses="w-max text-laufmaus-complement underline"
+            ) %}
+            <div class="w-full flex gap-2 justify-between items-center font-spacegrotesk font-bold !text-3xl">
+              <div class="!text-laufmaus-complement">laufmaus</div>
+              <div class="bg-laufmaus-complement text-gray-100 text-lg md:text-sm p-2 py-1 text-nowrap">new!</div>
+            </div>
+            {% endcall %}
+          </div>
           <div class="relative">
             {% set image = "src/images/fotohaecker_bg.jpg" | sharp %}
             <img
-              class="absolute top-0 h-full w-full rounded object-cover"
+              class="absolute top-0 h-full w-full rounded-b md:rounded-bl-none object-cover"
               src="{% getUrl image | resize({ width: 500 }) | webp %}"
               aria-hidden="true"
 />
@@ -46,17 +72,7 @@
             <span class="gray-bg">fotohäcker</span>
             {% endcall %}
           </div>
-          <div class="relative border border-cyan-200 bg-slate-800">
-            {% call linkComponent.link(
-              href="/project_manager" | url,
-              title="learn more",
-              customClasses="relative z-10 no-underline",
-              sublabel="learn more",
-              sublabelClasses="w-max text-cyan-200 underline"
-            ) %}
-            <span class="w-max text-cyan-200">space haven manager</span>
-            {% endcall %}
-          </div>
+
         </div>
       </li>
       <li class="col-span-8">
