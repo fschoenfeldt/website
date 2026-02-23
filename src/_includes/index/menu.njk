@@ -28,7 +28,7 @@
       </li>
       <li class="projects relative col-span-5">
         <div class="relative z-10 flex p-4 items-center gap-2 justify-between">
-          <div>projects</div>
+          <p>projects</p>
           {# i need to override many of assets/css/components/misc.css here  #}
           {# {{ linkComponent.link(
             href="/projects" | url,
@@ -40,17 +40,17 @@
             showIcon=true
           ) }} #}
         </div>
-        <div class="bg-white md:grid md:grid-cols-2">
-          <div class="relative border border-laufmaus-complement bg-laufmaus-accent md:rounded-bl">
+        <div class="md:grid md:grid-cols-2">
+          <div class="relative bg-laufmaus-accent dark:bg-gray-800 md:rounded-bl">
             {% call linkComponent.link(
               href="/laufmaus" | url,
               title="learn more",
               customClasses="relative z-10 no-underline",
               sublabel="learn more",
-              sublabelClasses="w-max text-laufmaus-complement underline"
+              sublabelClasses="w-max light:!text-laufmaus-complement dark:!text-gray-100 underline"
             ) %}
             <div class="w-full flex gap-2 justify-between items-center font-spacegrotesk font-bold !text-3xl">
-              <div class="!text-laufmaus-complement">laufmaus</div>
+              <div class="light:!text-laufmaus-complement dark:!text-gray-100">laufma<br/>us</div>
               <div class="bg-laufmaus-complement text-gray-100 text-lg md:text-sm p-2 py-1 text-nowrap">new!</div>
             </div>
             {% endcall %}

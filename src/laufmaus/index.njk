@@ -82,7 +82,7 @@ eleventyExcludeFromCollections: false
 
                 {% include "components/laufmaus/appstore_cta.njk" %}
             </div>
-            <div class="hidden md:block relative col-span-12 row-start-2 md:row-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:col-span-4 h-64 md:h-auto overflow-hidden md:overflow-visible md:-mt-24 md:mb-20">
+            <div class="hidden md:block relative col-span-12 row-start-2 md:row-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:col-span-4 h-64 md:h-auto overflow-hidden md:overflow-visible md:-mt-24 md:mb-28">
                 <img src="/img/laufmaus/laufmaus-iphone17pro-basic.png" alt="Laufmaus App Mockup" class="relative z-10 dark:hidden">
                 {# TODO: dark image is old. #}
                 <img src="/img/laufmaus/laufmaus-iphone17pro-basic--dark.png" alt="Laufmaus App Mockup Dark" class="relative z-10 hidden dark:block">
@@ -104,8 +104,8 @@ eleventyExcludeFromCollections: false
 
                     <ul class="!list-disc list-inside space-y-2 ps-4">
                         <li class="!text-gray-200">Real-time heart rate display during workouts.</li>
-                        <li class="!text-gray-200">Heart rate-based calorie calculation for more accurate tracking.</li>
                         <li class="!text-gray-200">Integration with Apple Health to store detailed workout data, including heart rate information.</li>
+                        <li class="!text-gray-200">Integration with Google Fit coming soon!</li>
                         <li class="!text-gray-200">
                             {{ 
                                 linkComponent.link(
@@ -191,19 +191,25 @@ eleventyExcludeFromCollections: false
                         laufmausSupport: true
                     },
                     {
-                        title: "Apple Health Integration",
+                        title: "No Cloud Storage required",
+                        icon: "cloud-backup",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Full Apple Health Integration",
                         icon: "heart-plus",
                         manufacturerSupport: false,
                         laufmausSupport: true
                     },
                     {
-                        title: "No Cloud Storage required",
-                        icon: "cloud-backup",
+                        title: "Full Google Fit Integration",
+                        icon: "heart-plus",
                         manufacturerSupport: false,
-                        laufmausSupport: true
+                        laufmausSupport: "soon"
                     }
                 ] %}
-                <div class="overflow-auto">{% include "components/laufmaus/feature_table.njk" %}</div>
+                <div>{% include "components/laufmaus/feature_table.njk" %}</div>
                 <div>
                     {% include "components/laufmaus/appstore_cta.njk" %}
                 </div>

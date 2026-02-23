@@ -4,6 +4,10 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{njk,md}"],
   theme: {
+    screens: {
+      ...defaultTheme.screens,
+      xs: "400px",
+    },
     fontSize: {
       ...defaultTheme.fontSize,
       "10xl": "9rem",

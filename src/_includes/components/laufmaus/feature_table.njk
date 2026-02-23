@@ -11,8 +11,8 @@
     </thead>
     <tbody class="divide-y divide-gray-200">
         {% for row in rows %}
-            <tr class="flex md:table-row p-4 md:p-0">
-                <td class="flex items-center gap-2 px-4 py-2 md:py-4 font-bold md:font-medium">
+            <tr class="flex flex-col xs:flex-row gap-1 md:table-row p-1">
+                <td class="flex items-center gap-2 p-1 md:p-4 font-bold md:font-medium">
                     <div>
                         {% icon row.icon,
                         {
@@ -22,9 +22,9 @@
                     </div>
                     <div>{{ row.title }}</div>
                 </td>
-                <td class="block ml-auto md:table-cell px-4 py-2 md:py-4 text-center">
+                <td class="block xs:ml-auto md:table-cell p-1 md:p-4 text-center">
                     <div class="md:hidden">Manufacturer: </div>
-                    <div class="flex justify-center">
+                    <div class="flex flex-col justify-center gap-1 items-center">
                         {% if row.manufacturerSupport %}
                             {% icon "check",
                             {
@@ -42,23 +42,30 @@
                         {% endif %}
                     </div>
                 </td>
-                <td class="block md:table-cell px-4 py-2 md:py-4 text-center">
+                <td class="block md:table-cell p-1 md:p-4 text-center">
                     <div class="md:hidden">Laufmaus: </div>
-                    <div class="flex justify-center">
-                        {% if row.laufmausSupport %}
+                    <div class="flex flex-col justify-center gap-1 items-center">
+                        {% if row.laufmausSupport == true %}
                             {% icon "check",
                             {
                                 "class": "stroke-green-700",
                                 "stroke-width": 3
                             } %}
                             <span class="sr-only">supported</span>
-                        {% else %}
+                        {% elif row.laufmausSupport == false %}
                             {% icon "x",
                             {
                                 "class": "stroke-red-700",
                                 "stroke-width": 3
                             } %}
                             <span class="sr-only">Not supported</span>
+                        {% elif row.laufmausSupport == "soon" %}
+                            {% icon "clock",
+                            {
+                                "class": "stroke-gray-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="!text-gray-800 text-sm leading-none break-words w-min md:w-auto">Coming soon!</span>
                         {% endif %}
                     </div>
                 </td>
