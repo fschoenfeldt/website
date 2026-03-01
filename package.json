@@ -5,11 +5,11 @@
   "scripts": {
     "clean": "del _site",
     "watch-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./src/_build/css/styles.css -w",
-    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./src/_build/js/ --bundle --target=es2018 --watch",
+    "watch-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js ./assets/js/app_presentation.js --outdir=./src/_build/js/ --bundle --target=es2018 --loader:.eot=file --loader:.ttf=file --loader:.woff=file --loader:.woff2=file --watch",
     "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
     "start:e2e": "ELEVENTY_ENV=production http-server _site --port 8088",
     "build-css": "npx tailwindcss --postcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
-    "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js --outdir=./_site/js/ --bundle --target=es2018 --minify",
+    "build-js": "npx esbuild ./assets/js/app.js ./assets/js/app_vacation.js ./assets/js/app_manager.js ./assets/js/app_presentation.js --outdir=./_site/js/ --bundle --target=es2018 --minify --loader:.eot=file --loader:.ttf=file --loader:.woff=file --loader:.woff2=file",
     "cv": "NODE_ENV=production npx playwright test ./tests/cv.print.spec.ts",
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production concurrently \"npm:build-*\"",
@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "eleventy-plugin-icons": "^4.5.7",
-    "lucide-static": "^0.563.0"
+    "lucide-static": "^0.563.0",
+    "reveal.js": "^5.2.1"
   }
 }

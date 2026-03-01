@@ -6,6 +6,8 @@ const assets = [
   "/js/app.js",
   "/js/app_vacation.js",
   "/js/app_manager.js",
+  "/js/app_presentation.js",
+  "/js/app_presentation.css",
 ];
 
 const dataFile = "_data/hash.json";
