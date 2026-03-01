@@ -1,0 +1,42 @@
+{% import "components/link.njk" as linkComponent %}
+
+<div class="flex gap-4 items-start">
+    <div class="flex flex-col gap-1">
+        <img width="200" alt="Get it on Google Play" src="/img/laufmaus/googleplay-en-us.svg"/>
+        <ol class="list-decimal list-inside">
+            <li>
+                {{ 
+                    linkComponent.link(
+                        href="https://groups.google.com/g/laufmaus-app",
+                        text="Join the google test group",
+                        title="Join the google test group",
+                        showIcon=true,
+                        customClasses="underline !text-gray-600",
+                        sublabelClasses="fill-gray-600",
+                        external=true
+                    ) 
+                }}
+            </li>
+            <li>
+
+                {{ 
+                    linkComponent.link(
+                        href="https://play.google.com/apps/testing/com.fschoenfeldt.laufmaus",
+                        text="Download the app",
+                        title="Download the app",
+                        showIcon=true,
+                        customClasses="underline !text-gray-600",
+                        sublabelClasses="fill-gray-600",
+                        external=true
+                    ) 
+                }}
+
+            </li>
+        </ol>
+    </div>
+    <a href="#" class="flex flex-col gap-1 opacity-70 pointer-events-none">
+        <img width="200" src="/img/laufmaus/appstore-en-us.svg" alt="Download on the App Store">
+        <p>coming soon!</p>
+    </a>
+
+</div>

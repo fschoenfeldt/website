@@ -1,0 +1,42 @@
+{% set pageUrl = site.url + page.url %}
+{% set ogImageUrl = site.url + (ogImage or "/img/o_graph.jpg") %}
+{% set ogTypeValue = ogType or "website" %}
+{% set jsonLdTypeValue = jsonLdType or "SoftwareApplication" %}
+
+<link rel="canonical" href="{{ pageUrl }}"/>
+{% if robots %}
+    <meta name="robots" content="{{ robots }}"/>
+{% endif %}
+{% if itunesAppId %}
+    <meta name="apple-itunes-app" content="app-id={{ itunesAppId }}"/>
+{% endif %}
+
+<meta property="og:url" content="{{ pageUrl }}"/>
+<meta property="og:type" content="{{ ogTypeValue }}"/>
+<meta property="og:title" content="{{ title }}"/>
+{% if description %}
+    <meta property="og:description" content="{{ description | escape }}"/>
+{% endif %}
+<meta property="og:image" content="{{ ogImageUrl }}"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="twitter:domain" content="fschoenfeldt.de"/>
+<meta property="twitter:url" content="{{ pageUrl }}"/>
+<meta name="twitter:title" content="{{ title }}"/>
+{% if description %}
+    <meta name="twitter:description" content="{{ description | escape }}"/>
+{% endif %}
+<meta name="twitter:image" content="{{ ogImageUrl }}"/>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{{ jsonLdTypeValue }}",
+        "name": "{{ title | escape }}",
+        "url": "{{ pageUrl }}",
+        "image": "{{ ogImageUrl }}"{% if description %},
+            "description": "{{ description | escape }}"{% endif %}{% if jsonLdOperatingSystem %},
+            "operatingSystem": "{{ jsonLdOperatingSystem | escape }}"{% endif %}{% if jsonLdCategory %},
+            "applicationCategory": "{{ jsonLdCategory | escape }}"{% endif %}
+    }
+</script>

@@ -1,0 +1,271 @@
+---
+title: Laufmaus
+description: Feature-rich WalkingPad app with heart rate monitoring, Live Activity support, and Apple Health integration. No login required, quick start, and accurate calorie tracking.
+ogImage: /img/laufmaus/o_graph.png
+jsonLdType: SoftwareApplication
+jsonLdOperatingSystem: iOS, Android
+jsonLdCategory: HealthApplication
+# TODO: add itunes app id
+# itunesAppId: com.fschoenfeldt.laufmaus
+layout: layouts/project.njk
+eleventyExcludeFromCollections: false
+---
+
+{% import "components/link.njk" as linkComponent %}
+
+<article id="laufmaus">
+    <section class="light bg-laufmaus-accent onDarkToDark !min-h-[80vh]">
+        <div class="container">
+            <h1 class="col-span-12 md:-mb-20">
+                Laufmaus
+            </h1>
+            <div class="description col-span-12 md:col-span-8 md:mt-20">
+                <p class="font-bold text-2xl">
+                    an alternative, feature rich walkingpad app.
+                </p>
+                <p>
+                    Laufmaus is an alternative app for controlling walkingpads, designed to offer enhanced features and a better user experience compared to most manufacturers' apps:
+                </p>
+                <ul class="!mt-3 space-y-3 ps-2">
+                    <li class="flex items-center gap-2">{% icon "heart-pulse",
+                        {
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
+                            "stroke-width": 2
+                        } %}
+                        {{ 
+                            linkComponent.link(
+                                href="#heart-rate-monitoring",
+                                text="Heart Rate Monitoring",
+                                title="Heart Rate Monitoring section"
+                            ) 
+                        }}
+                    </li>
+                    <li class="flex items-center gap-2">{% icon "bell-dot",
+                        {
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
+                            "stroke-width": 2
+                        } %}
+                        {{ 
+                                linkComponent.link(
+                                    href="#live-activity",
+                                    text="Live Activity Integration",
+                                    title="Live Activity Integration section"
+                                ) 
+                        }}
+                    </li>
+                    <li class="flex items-center gap-2">{% icon "circle-gauge",
+                        {
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
+                            "stroke-width": 2
+                        } %}
+                        {{ 
+                                linkComponent.link(
+                                    href="#speed-control",
+                                    text="Accessible Speed Control",
+                                    title="Accessible Speed Control section"
+                                ) 
+                        }}
+                    </li>
+                    <li class="flex items-center gap-2">{% icon "square-check-big",
+                        {
+                            "class": "stroke-gray-700 dark:stroke-gray-200",
+                            "stroke-width": 2
+                        } %}
+                        {{ 
+                                linkComponent.link(
+                                    href="#compatible-devices",
+                                    text="Compatible with Kingsmith WalkingPads (R1, R2, …)",
+                                    title="Compare with manufacturer apps section"
+                                ) 
+                        }}
+                    </li>
+                </ul>
+
+                {% include "components/laufmaus/appstore_cta.njk" %}
+            </div>
+            <div class="hidden md:block relative col-span-12 row-start-2 md:row-auto bg-gray-800 md:bg-transparent p-4 md:p-0 md:col-span-4 h-64 md:h-auto overflow-hidden md:overflow-visible md:-mt-24 md:mb-28">
+                <img src="/img/laufmaus/laufmaus-iphone17pro-basic.png" alt="Laufmaus App Mockup" class="relative z-10 dark:hidden">
+                {# TODO: dark image is old. #}
+                <img src="/img/laufmaus/laufmaus-iphone17pro-basic--dark.png" alt="Laufmaus App Mockup Dark" class="relative z-10 hidden dark:block">
+                <div class="hidden md:block bg-gray-900 h-full w-full absolute top-4 left-4 z-0 rounded-3xl"></div>
+            </div>
+        </div>
+    </section>
+    <section class="dark !bg-[#0F3D3E]" id="heart-rate-monitoring">
+        <div class="container">
+            <div class="description col-span-12">
+                <h2 class="!text-gray-100">
+                    Heart Rate Monitoring
+                </h2>
+                <div class="col-span-12">
+                    <img src="/img/laufmaus/laufmaus-hrm-monitor.png" alt="Laufmaus Heart Rate Monitoring Screenshot">
+                </div>
+                <p class="!text-gray-200">
+                    Connect your heart rate monitor to the app and track your heart rate during workouts:
+
+                    <ul class="!list-disc list-inside space-y-2 ps-4">
+                        <li class="!text-gray-200">Real-time heart rate display during workouts.</li>
+                        <li class="!text-gray-200">Integration with Apple Health to store detailed workout data, including heart rate information.</li>
+                        <li class="!text-gray-200">Integration with Google Fit coming soon!</li>
+                        <li class="!text-gray-200">
+                            {{ 
+                                linkComponent.link(
+                                    customClasses="!text-gray-200 underline",
+                                    href="#compatible-devices",
+                                    text="See compatible devices here",
+                                    title="See compatible devices section"
+                                ) 
+                            }}
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="dark" id="live-activity">
+        <div class="container">
+            <div class="description col-span-12">
+                <div class="flex gap-2">
+                    <p class="text-sm border border-laufmaus-accent !text-laufmaus-accent px-2 py-1 rounded-full bg-gray tracking-normal">beta</p>
+                    <p class="text-sm border border-laufmaus-accent !text-laufmaus-accent px-2 py-1 rounded-full bg-gray tracking-normal">iOS only</p>
+                </div>
+                <h2 class="!text-gray-100">
+                    Live Activity Integration 
+                </h2>
+                <div class="col-span-12">
+                    <img src="/img/laufmaus/laufmaus-live-activity.png" alt="Laufmaus Live Activity Screenshot">
+                </div>
+                <p class="!text-gray-200">
+                    Receive real-time notifications about your workout progress, including distance covered, calories burned, and time elapsed. Stay motivated and informed throughout your exercise session.
+                </p>
+                <p class="!text-gray-200 italic">
+                    Note: This feature is currently in beta and only works on iOS 16.1 and later.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="light bg-gray-100" id="speed-control">
+        <div class="container">
+            <div class="description col-span-12">
+                <h2>
+                    Speed Control
+                </h2>
+                <div class="col-span-12">
+                    <img src="/img/laufmaus/laufmaus-speed-control.png" alt="Laufmaus Speed Control Screenshot">
+                </div>
+                <p>
+                    Control your walkingpad speed directly from the app. Larger buttons offer easier speed adjustments, allowing you to find your perfect pace without interrupting your workout. 
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="light !bg-gray-50 shadow" id="comparison">
+        <div class="container">
+            <div class="description col-span-12 overflow-hidden">
+                <h2>
+                    Comparison with manufacturer Apps
+                </h2>
+
+                {% set featureRows = [
+                    {
+                        title: "No Login Required",
+                        icon: "key-round",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Quick Start",
+                        icon: "rocket",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Heart Rate Monitor",
+                        icon: "heart-pulse",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "HR-Based Calories Calculation",
+                        icon: "flame",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "No Cloud Storage required",
+                        icon: "cloud-backup",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Full Apple Health Integration",
+                        icon: "heart-plus",
+                        manufacturerSupport: false,
+                        laufmausSupport: true
+                    },
+                    {
+                        title: "Full Google Fit Integration",
+                        icon: "heart-plus",
+                        manufacturerSupport: false,
+                        laufmausSupport: "soon"
+                    }
+                ] %}
+                <div>{% include "components/laufmaus/feature_table.njk" %}</div>
+                <div>
+                    {% include "components/laufmaus/appstore_cta.njk" %}
+                </div>
+            </div>
+        </section>
+        <section class="light bg-gray-100 !py-6" id="compatible-devices">
+            <div class="container">
+                <div class="description col-span-12 !space-y-4">
+                    <h2 class="!text-xl">
+                        Compatible Devices
+                    </h2>
+                    <div class="space-y-2 md:space-y-0 md:flex">
+                        <div class="flex-1">
+                            <p class="">
+                                    WalkingPad devices:
+                                </p>
+                            <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
+                                <li>WalkingPad R1 Pro</li>
+                                <li>WalkingPad R2</li>
+                                <li>WalkingPad A1 Pro</li>
+                                <li>WalkingPad C1</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1">
+                            <p class="">
+                                    Heart Rate Monitors:
+                                </p>
+                            <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
+                                <li>WAHOO TICKR</li>
+                                <li>WAHOO TRACKR</li>
+                                <li>Any Bluetooth HRM device following the "BLE Heart Rate Service GATT-Standard"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="light bg-gray-100 !py-8 space-y-8">
+
+            <p>
+                Made with ❤️ in Hamburg, Germany.  
+                {{ 
+                    linkComponent.link(
+                        href="/",
+                        text="Visit author's website",
+                        title="Visit author's website",
+                        showIcon=true,
+                        customClasses="underline !text-gray-600",
+                        sublabelClasses="fill-gray-600",
+                        external=true
+                    ) 
+                }}
+            </p>
+            <p class="text-xs text-center !text-gray-600">
+                Note: Laufmaus is an independent application and is not affiliated with, endorsed by, or sponsored by Apple, Apple Health, Google, WAHOO, KingSmith, Xiaomi, WalkingPad, or their respective manufacturers. All product names, logos, and brands are property of their respective owners.
+            </p>
+        </section>
+    </article>

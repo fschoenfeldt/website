@@ -1,6 +1,7 @@
 const htmlmin = require("html-minifier");
 const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 const sharpPlugin = require("eleventy-plugin-sharp");
+const pluginIcons = require("eleventy-plugin-icons");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
@@ -47,6 +48,19 @@ module.exports = function (eleventyConfig) {
       outputDir: "./_site/img",
     }),
   );
+
+  /**
+   * https://github.com/uncenter/eleventy-plugin-icons
+   */
+  eleventyConfig.addPlugin(pluginIcons, {
+    sources: [
+      {
+        name: "lucide",
+        path: "node_modules/lucide-static/icons",
+        default: true,
+      },
+    ],
+  });
 
   /**
    * Files to copy
