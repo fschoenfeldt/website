@@ -18,7 +18,7 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
-.envrc-secret
+.envrc.local
 
 # Mac
 .DS_Store

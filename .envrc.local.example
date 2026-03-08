@@ -1,7 +1,9 @@
+# Website Content Variables
 export PERSONAL_ADDRESS=""
 export PERSONAL_PHONE=""
 export PERSONAL_MAIL=""
 
+# Passwords for .htaccess
 export CV_HTACCESS_USER_01=""
 # insert users for cv passwords here
 # for my webhost, https://phppasswordhash.com/ works fine (https://www.php.net/manual/en/function.password-hash.php)
@@ -9,3 +11,9 @@ export CV_HTACCESS_USER_01=""
 export CV_HTACCESS_PASSWORD_01=""
 export CV_HTACCESS_USER_02=""
 export CV_HTACCESS_PASSWORD_02=""
+
+# deployment variables
+export FTP_HOST=""
+export FTP_USER=""
+export FTP_PASSWORD=""
+export FTP_SUBDIR=""
