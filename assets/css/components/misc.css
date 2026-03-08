@@ -18,34 +18,39 @@
   > li {
     @apply rounded bg-gray-800 text-white transition-opacity hover:opacity-90 dark:hover:bg-gray-700 dark:hover:opacity-100;
     &:hover {
-      a div {
+      a p {
         @apply underline;
       }
     }
+    p,
     a {
-      @apply flex w-full flex-col justify-between gap-2 break-all p-4 text-white md:h-60;
-    }
-    div {
       @apply text-white;
     }
-  }
-  .projects {
-    @apply transition-opacity hover:opacity-100;
-    &:hover {
-      a div {
-        @apply no-underline;
-      }
+    a {
+      @apply flex w-full flex-col justify-between gap-2 break-all p-4 md:h-60;
     }
-    div > div {
-      @apply hover:opacity-90;
+    /* div {
+      @apply text-white;
+    } */
+
+    &.projects {
+      @apply transition-opacity hover:opacity-100;
       &:hover {
         a div {
-          @apply underline;
+          @apply no-underline;
         }
       }
-    }
-    a {
-      @apply h-[11.2rem];
+      div > div {
+        @apply hover:opacity-90;
+        &:hover {
+          a div {
+            @apply underline;
+          }
+        }
+      }
+      a {
+        @apply h-[11.2rem];
+      }
     }
   }
 }

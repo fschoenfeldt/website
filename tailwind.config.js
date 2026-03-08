@@ -4,6 +4,10 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{njk,md}"],
   theme: {
+    screens: {
+      ...defaultTheme.screens,
+      xs: "400px",
+    },
     fontSize: {
       ...defaultTheme.fontSize,
       "10xl": "9rem",
@@ -21,6 +25,11 @@ module.exports = {
       cyan: colors.cyan,
       amber: colors.amber,
       red: colors.red,
+      green: colors.green,
+      laufmaus: {
+        accent: "#F8FD97",
+        complement: "#40412E",
+      },
     },
     extend: {
       screens: {
@@ -30,6 +39,8 @@ module.exports = {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],
         space: ["Space Mono", ...defaultTheme.fontFamily.sans],
+        spacegrotesk: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
+        dotted: ["Doto", ...defaultTheme.fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {

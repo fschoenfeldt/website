@@ -1,0 +1,76 @@
+{% set rows = featureRows or[] %}
+<table class="w-full border border-gray-200 rounded-xl">
+
+    <!-- Desktop Header -->
+    <thead class="hidden md:table-header-group bg-gray-100">
+        <tr>
+            <th class="px-4 py-3 text-left font-semibold ">Feature</th>
+            <th class="px-4 py-3 text-center font-semibold">Manufacturer</th>
+            <th class="px-4 py-3 text-center font-semibold">Laufmaus (Free)</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+        {% for row in rows %}
+            <tr class="flex flex-col xs:flex-row gap-1 md:table-row p-1">
+                <td class="flex items-center gap-2 p-1 md:p-4 font-bold md:font-medium">
+                    <div>
+                        {% icon row.icon,
+                        {
+                            "class": "stroke-gray-700",
+                            "stroke-width": 2
+                        } %}
+                    </div>
+                    <div>{{ row.title }}</div>
+                </td>
+                <td class="block xs:ml-auto md:table-cell p-1 md:p-4 text-center">
+                    <div class="md:hidden">Manufacturer: </div>
+                    <div class="flex flex-col justify-center gap-1 items-center">
+                        {% if row.manufacturerSupport %}
+                            {% icon "check",
+                            {
+                                "class": "stroke-green-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">supported</span>
+                        {% else %}
+                            {% icon "x",
+                            {
+                                "class": "stroke-red-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">Not supported</span>
+                        {% endif %}
+                    </div>
+                </td>
+                <td class="block md:table-cell p-1 md:p-4 text-center">
+                    <div class="md:hidden">Laufmaus: </div>
+                    <div class="flex flex-col justify-center gap-1 items-center">
+                        {% if row.laufmausSupport == true %}
+                            {% icon "check",
+                            {
+                                "class": "stroke-green-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">supported</span>
+                        {% elif row.laufmausSupport == false %}
+                            {% icon "x",
+                            {
+                                "class": "stroke-red-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="sr-only">Not supported</span>
+                        {% elif row.laufmausSupport == "soon" %}
+                            {% icon "clock",
+                            {
+                                "class": "stroke-gray-700",
+                                "stroke-width": 3
+                            } %}
+                            <span class="!text-gray-800 text-sm leading-none break-words w-min md:w-auto">Coming soon!</span>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
