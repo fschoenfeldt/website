@@ -23,7 +23,39 @@ test.describe("laufmaus project page", () => {
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test("index matches snapshot", async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot();
+  test("hero section matches snapshot", async ({ page }) => {
+    const section = page.locator("#hero");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
+  });
+
+  test("heart rate monitoring section matches snapshot", async ({ page }) => {
+    const section = page.locator("#heart-rate-monitoring");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
+  });
+
+  test("live activity section matches snapshot", async ({ page }) => {
+    const section = page.locator("#live-activity");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
+  });
+
+  test("speed control section matches snapshot", async ({ page }) => {
+    const section = page.locator("#speed-control");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
+  });
+
+  test("comparison section matches snapshot", async ({ page }) => {
+    const section = page.locator("#comparison");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
+  });
+
+  test("compatible devices section matches snapshot", async ({ page }) => {
+    const section = page.locator("#compatible-devices");
+    await section.scrollIntoViewIfNeeded();
+    expect(await section.screenshot()).toMatchSnapshot();
   });
 });
