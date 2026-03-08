@@ -1,0 +1,73 @@
+---
+title: Projects
+description: An overview of my projects
+layout: layouts/base.njk
+---
+
+{% import "components/link.njk" as linkComponent %}
+
+<div id="projects" class="w-full">
+  <div class="gap-2 md:flex">
+    <h1 class="thick-heading">projects</h1>
+  </div>
+
+  <section class="mt-8">
+    <h2 class="text-4xl mb-4">native mobile apps</h2>
+    <ul class="menu">
+      <li class="col-span-5 !bg-laufmaus-accent dark:!bg-gray-800">
+        {{ linkComponent.link(
+          href="/laufmaus" | url,
+          text="laufmaus",
+          title="laufmaus – WalkingPad app",
+          customClasses="no-underline !text-laufmaus-complement dark:!text-gray-100",
+          sublabel="learn more",
+          sublabelClasses="!text-laufmaus-complement dark:!text-gray-100 underline"
+        ) }}
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="text-4xl mb-4">webapps</h2>
+    <ul class="menu">
+      <li class="col-span-5">
+        {{ linkComponent.link(
+          href="/fotohaecker" | url,
+          text="fotohäcker",
+          title="fotohäcker – image sharing platform",
+          customClasses="no-underline",
+          sublabel="learn more",
+          sublabelClasses="underline text-white"
+        ) }}
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="text-4xl mb-4">experiments</h2>
+    <ul class="menu">
+      <li class="col-span-4">
+        {{ linkComponent.link(
+          href="/project_manager" | url,
+          text="manager",
+          title="space haven manager",
+          customClasses="no-underline",
+          sublabel="learn more",
+          sublabelClasses="underline text-white"
+        ) }}
+      </li>
+      <li class="col-span-4">
+        {{ linkComponent.link(
+          href="/vacation" | url,
+          text="vacation countdown (german)",
+          title="vacation countdown",
+          customClasses="no-underline",
+          sublabel="learn more",
+          sublabelClasses="underline text-white"
+        ) }}
+      </li>
+    </ul>
+  </section>
+
+  {% include 'footer.njk' %}
+</div>
