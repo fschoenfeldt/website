@@ -10,10 +10,12 @@ lftp -c "
   bye
 "
 
-read -r -p "Deploy? [y/N] " confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-  echo "Aborted."
-  exit 0
+if [[ -z "$CI" ]]; then
+  read -r -p "Deploy? [y/N] " confirm
+  if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+    echo "Aborted."
+    exit 0
+  fi
 fi
 
 echo "=== Deploying ==="
