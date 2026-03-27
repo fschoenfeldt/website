@@ -8,7 +8,9 @@
     <meta name="robots" content="{{ robots }}"/>
 {% endif %}
 {% if itunesAppId %}
-    <meta name="apple-itunes-app" content="app-id={{ itunesAppId }}"/>
+    <meta name="apple-itunes-app" content="app-id={{ itunesAppId }}">
+    <meta name="apple-itunes-app" content="app-id=myAppStoreID, app-argument=myURL">
+    {# , app-argument=myURL #}
 {% endif %}
 
 <meta property="og:url" content="{{ pageUrl }}"/>
