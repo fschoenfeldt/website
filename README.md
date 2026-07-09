@@ -46,7 +46,7 @@ If you are not on the same operating system as your CI system, you can use Docke
 
 ```bash
 docker build -t my-playwright-ci .
-docker run --rm --network host -v "$(pwd)":/work -w /work my-playwright-ci bash ./scripts/create_ci_snapshots.sh
+docker run --rm --network host --user "$(id -u):$(id -g)" -v "$(pwd)":/work -w /work my-playwright-ci bash ./scripts/create_ci_snapshots.sh
 ```
 
 After that, [you most probably need to recreate `node_modules`](#install) cause it now got different packages.
