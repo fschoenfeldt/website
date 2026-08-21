@@ -2,7 +2,9 @@
   @apply min-h-screen w-full divide-y-2 divide-gray-200 bg-laufmaus-accent dark:bg-gray-900;
 
   .container {
-    @apply mx-auto grid grid-cols-12 gap-4 md:gap-20 md:max-w-5xl;
+    /* 12 columns × gap-20 would need 11 × 80px = 880px of gutters alone, which
+       forces the grid wider than the viewport between md and lg. */
+    @apply mx-auto grid grid-cols-12 gap-4 md:gap-8 lg:gap-20 md:max-w-5xl;
   }
 
   .description {
