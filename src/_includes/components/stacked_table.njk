@@ -1,0 +1,107 @@
+{#
+    Generic table that collapses into stacked rows on small screens.
+
+    Included (not imported as a macro) because the `icon` shortcode is async and
+    Nunjucks silently drops async tags inside macros.
+
+    Usage:
+        {% set tableColumns = [...] %}
+        {% set tableRows = [...] %}
+        {% set tableCaption = "…" %}
+        {% include "components/stacked_table.njk" %}
+
+    tableClass: extra classes for the <table> element (optional)
+    tableRowClass: classes for each <tr>; defaults to one row per line below `xs`
+
+    tableColumns: [{ key, label, align, mobileLabel, cellClass, headerClass }]
+        key         key into each row's `cells` object
+        label       desktop header text
+        align       "center" centres the header, anything else aligns left
+        mobileLabel prefix shown below `md`; omitted when falsy
+        cellClass   classes for the <td> — explicit so callers control how their
+                    own table stacks
+        headerClass extra classes for the <th>, e.g. a column width
+
+    tableRows: [{ cells: { <key>: cellSpec } }]
+
+    cellSpec kinds:
+        "text"      { value, note }              note renders as a small muted second line
+        "icon-text" { icon, value }              lucide icon next to a label
+        "support"   { value: true|false|"soon" } check / cross / clock with a11y text
+        "badge"     { symbol, srLabel }          emoji plus screen reader only wording
+#}
+<table class="w-full border border-gray-200 {{ tableClass }}">
+    {% if tableCaption %}
+        <caption class="sr-only">{{ tableCaption }}</caption>
+    {% endif %}
+    <!-- Desktop Header -->
+    <thead class="hidden md:table-header-group bg-gray-800">
+        <tr>
+            {% for col in tableColumns %}
+                <th
+                    scope="col"
+                    class="px-4 py-3 font-semibold !text-white {{ col.headerClass }} {% if
+                        col.align == "
+                    center" %}text-center{% else %}text-left{% endif %}">{{ col.label }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+        {% for row in tableRows %}
+            <tr class="odd:bg-white even:bg-gray-50 {{ tableRowClass or " flex flex-col xs:flex-row gap-1 md:table-row p-1" }}">
+                {% for col in tableColumns %}
+                    {% set spec = row.cells[col.key] %}
+                    <td class="{{ col.cellClass }}">
+                        {% if col.mobileLabel %}
+                            <div class="md:hidden">{{ col.mobileLabel }}:
+                            </div>
+                        {% endif %}
+                        {% if spec.kind == "icon-text" %}
+                            <div>
+                                {% icon spec.icon,
+                                {
+                                    "class": "stroke-gray-700",
+                                    "stroke-width": 2
+                                } %}
+                            </div>
+                            <div>{{ spec.value }}</div>
+                        {% elif spec.kind == "support" %}
+                            <div class="flex flex-col justify-center gap-1 items-center">
+                                {% if spec.value == true %}
+                                    {% icon "check",
+                                    {
+                                        "class": "stroke-green-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">supported</span>
+                                {% elif spec.value == "soon" %}
+                                    {% icon "clock",
+                                    {
+                                        "class": "stroke-gray-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="!text-gray-800 text-sm leading-none break-words w-min md:w-auto">Coming soon!</span>
+                                {% else %}
+                                    {% icon "x",
+                                    {
+                                        "class": "stroke-red-700",
+                                        "stroke-width": 3
+                                    } %}
+                                    <span class="sr-only">Not supported</span>
+                                {% endif %}
+                            </div>
+                        {% elif spec.kind == "badge" %}
+                            <span aria-hidden="true">{{ spec.symbol }}</span>
+                            <span class="sr-only">{{ spec.srLabel }}</span>
+                        {% else %}
+                            <div>{{ spec.value }}</div>
+                            {% if spec.note %}
+                                <div class="text-xs !text-gray-600">{{ spec.note }}</div>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

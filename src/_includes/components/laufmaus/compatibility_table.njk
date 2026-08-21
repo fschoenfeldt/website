@@ -1,0 +1,57 @@
+{#
+    Treadmills Laufmaus can drive, for one confidence tier.
+
+    Expects:
+        `compatibility`      full list from the page front matter
+        `compatibilityTier`  "confirmed", "likely" or "untested"
+
+    Mirrors src/services/walkingpad/compatibility.ts in the Laufmaus app.
+#}
+{% set tierMedals = { confirmed: "🏅", likely: "🥈", untested: "🥉" } %}
+{% set tierLabels = { confirmed: "Confirmed", likely: "Very likely", untested: "Untested" } %}
+
+{% set tableColumns = [
+    {
+        key: "tier",
+        label: "Status",
+        align: "center",
+        headerClass: "md:w-24",
+        cellClass: "flex shrink-0 items-center justify-center p-1 md:p-4 text-lg"
+    },
+    {
+        key: "models",
+        label: "Model",
+        cellClass: "flex-1 md:table-cell p-1 md:p-4 font-bold md:font-medium"
+    },
+    {
+        key: "maxSpeed",
+        label: "Max speed",
+        headerClass: "md:w-40",
+        cellClass: "shrink-0 ml-auto md:ml-0 md:table-cell p-1 md:p-4 text-left whitespace-nowrap"
+    }
+] %}
+
+{% set tableRows = [] %}
+{% for entry in compatibility %}
+    {% if entry.tier == compatibilityTier %}
+        {% set _ = tableRows.push({
+            cells: {
+                tier: {
+                    kind: "badge",
+                    symbol: tierMedals[entry.tier],
+                    srLabel: tierLabels[entry.tier]
+                },
+                models: { kind: "text", value: entry.models },
+                maxSpeed: {
+                    kind: "text",
+                    value: (entry.maxSpeedKmh + " km/h") if entry.maxSpeedKmh else "reported by device"
+                }
+            }
+        }) %}
+    {% endif %}
+{% endfor %}
+
+{% set tableClass = "md:table-fixed" %}
+{% set tableRowClass = "flex flex-row items-center gap-2 md:table-row p-1" %}
+{% set tableCaption = tierLabels[compatibilityTier] + " treadmills" %}
+{% include "components/stacked_table.njk" %}

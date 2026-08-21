@@ -8,6 +8,110 @@ jsonLdCategory: HealthApplication
 itunesAppId: 6759827194
 layout: layouts/project.njk
 eleventyExcludeFromCollections: false
+# Ported from src/services/walkingpad/compatibility.ts in the Laufmaus app.
+# Model names, name prefixes and maximum speeds come from the vendor product table
+# (allProducts.json in KS Fit 6.5.6).
+# tier: confirmed = reported working or tested by us; likely = same protocol and a
+# vendor speed limit, but no report from this exact model; untested = protocol built
+# from its specification, never seen against real hardware.
+compatibility:
+  # KingSmith / WalkingPad, classic FE00 protocol
+  - models: "WalkingPad A1, A1 Pro"
+    namePrefixes: ["A1", "A2"]
+    maxSpeedKmh: 6
+    protocol: FE00
+    tier: confirmed
+  - models: "WalkingPad C2"
+    namePrefixes: ["C2", "c2", "KS-BDC2"]
+    maxSpeedKmh: 6
+    protocol: FE00
+    tier: confirmed
+  - models: "WalkingPad P1"
+    namePrefixes: ["P1"]
+    maxSpeedKmh: 6
+    protocol: FE00
+    tier: confirmed
+  - models: "WalkingPad C1, S1"
+    namePrefixes: ["C1", "S1"]
+    maxSpeedKmh: 6
+    protocol: FE00
+    tier: likely
+  - models: "WalkingPad R1 Pro"
+    namePrefixes: ["R1"]
+    maxSpeedKmh: 10
+    protocol: FE00
+    tier: confirmed
+  - models: "R1 variants, KS-RS, MC21"
+    namePrefixes: ["RA", "RE", "RF", "RM", "RO", "KS-RS", "KS-MC21", "KS-HC-R1ST", "KS-SC-R1SA"]
+    maxSpeedKmh: 10
+    protocol: FE00
+    tier: likely
+  - models: "WalkingPad R2 and relatives"
+    namePrefixes: ["RC", "RG", "RH", "RI", "RL", "RN", "RS", "Rc"]
+    maxSpeedKmh: 12
+    protocol: FE00
+    tier: confirmed
+  - models: "R1S variants"
+    namePrefixes: ["KS-R1AC", "KS-R1SC", "KS-HC-R1AC", "KS-HC-R1SC", "KS-SC-R1SC"]
+    maxSpeedKmh: 12
+    protocol: FE00
+    tier: likely
+  - models: "KS-F0, KS-F1"
+    namePrefixes: ["F0", "F1"]
+    maxSpeedKmh: 12
+    protocol: FE00
+    tier: likely
+  - models: "K12, K12-PRO-bt"
+    namePrefixes: ["K1", "Kc"]
+    maxSpeedKmh: 12
+    protocol: FE00
+    tier: likely
+  - models: "GymnasX1, V2"
+    namePrefixes: ["X1", "V2"]
+    maxSpeedKmh: 12
+    protocol: FE00
+    tier: likely
+  - models: "K15, K15 Pro"
+    namePrefixes: ["K2", "KF", "KS-ZY-K15P"]
+    maxSpeedKmh: 15
+    protocol: FE00
+    tier: likely
+  - models: "T1, T12F"
+    namePrefixes: ["T1"]
+    maxSpeedKmh: 15
+    protocol: FE00
+    tier: likely
+  - models: "M1H"
+    namePrefixes: ["M1H"]
+    maxSpeedKmh: 15
+    protocol: FE00
+    tier: likely
+  # Standard FTMS, no hardware seen yet
+  - models: "KingSmith Z1, Z1D/P/R/SE/Pro"
+    namePrefixes: ["KS-HD-Z1", "KS-MD-Z1H", "KS-HD-Z1D", "KS-HD-ZR6", "KS-HD-Z1E", "KS-EW-Z1"]
+    maxSpeedKmh: 6
+    protocol: FTMS
+    tier: untested
+  - models: "KingSmith R3 Just Walk"
+    namePrefixes: ["KS-AP-RF3", "KS-HD-R3F"]
+    maxSpeedKmh: 6
+    protocol: FTMS
+    tier: untested
+  - models: "KingSmith R3 Hybrid"
+    namePrefixes: ["KS-AP-RP3", "KS-AP-RQ3", "KS-HD-R3P", "KS-HD-R3Q"]
+    maxSpeedKmh: 12
+    protocol: FTMS
+    tier: untested
+  - models: "KingSmith X218, X214"
+    namePrefixes: ["KS-AP-X218", "KS-NG-X18F3", "KS-NACH-X18F3", "KS-NG-X55"]
+    maxSpeedKmh: 18
+    protocol: FTMS
+    tier: untested
+  - models: "Other FTMS treadmills (Z3, G15, G2, K20S, R2E, MX3, MX8, MC11, W1, P1E, MT1)"
+    namePrefixes: []
+    maxSpeedKmh: null
+    protocol: FTMS
+    tier: untested
 ---
 
 {% import "components/link.njk" as linkComponent %}
@@ -236,34 +340,54 @@ eleventyExcludeFromCollections: false
                 </div>
             </div>
         </section>
-        <section class="light bg-gray-100 !py-6" id="compatible-devices">
+        <section class="light bg-gray-100" id="compatible-devices">
             <div class="container">
-                <div class="description col-span-12 !space-y-4">
-                    <h2 class="!text-xl">
+                <div class="description col-span-12 !space-y-8 overflow-hidden">
+                    <h2>
                         Compatible Devices
                     </h2>
-                    <div class="space-y-2 md:space-y-0 md:flex">
-                        <div class="flex-1">
-                            <p class="">
-                                    WalkingPad devices:
-                                </p>
-                            <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
-                                <li>WalkingPad R1 Pro</li>
-                                <li>WalkingPad R2</li>
-                                <li>WalkingPad A1 Pro</li>
-                                <li>WalkingPad C1</li>
-                            </ul>
-                        </div>
-                        <div class="flex-1">
-                            <p class="">
-                                    Heart Rate Monitors:
-                                </p>
-                            <ul class="list-disc list-inside mt-2 ps-4 space-y-1 text-sm">
-                                <li>WAHOO TICKR</li>
-                                <li>WAHOO TRACKR</li>
-                                <li>Any Bluetooth HRM device following the "BLE Heart Rate Service GATT-Standard"</li>
-                            </ul>
-                        </div>
+                    <div class="!space-y-4">
+                        <h3 class="!text-xl">🏅 Confirmed</h3>
+                        <p class="text-sm md:max-w-3xl">
+                            Reported working by a user or tested by us.
+                        </p>
+                        {% set compatibilityTier = "confirmed" %}
+                        {% include "components/laufmaus/compatibility_table.njk" %}
+                    </div>
+                    <div class="!space-y-4">
+                        <h3 class="!text-xl">🥈 Very likely</h3>
+                        <p class="text-sm md:max-w-3xl">
+                            Same protocol and a speed limit taken from the manufacturer's model list, but nobody has reported back from this exact model yet. You're welcome to try it and let us know!
+                        </p>
+                        {% set compatibilityTier = "likely" %}
+                        {% include "components/laufmaus/compatibility_table.njk" %}
+                    </div>
+                    <div class="!space-y-4">
+                        <h3 class="!text-xl">🥉 Untested</h3>
+                        <p class="text-sm md:max-w-3xl">
+                            Built from the protocol specification, but never tried against a real treadmill.
+                            {{
+                                linkComponent.link(
+                                    href="mailto:apps@fschoenfeldt.de",
+                                    text="Please tell us how it goes!",
+                                    title="Write to apps@fschoenfeldt.de",
+                                    customClasses="underline"
+                                )
+                            }}
+                        </p>
+                        {% set compatibilityTier = "untested" %}
+                        {% include "components/laufmaus/compatibility_table.njk" %}
+                    </div>
+                    <p class="text-sm !text-gray-600 md:max-w-3xl">
+                        Model names refer to the Bluetooth name your treadmill advertises, which is not always the name printed on the device. The lowest selectable speed is 2 km/h on KingSmith pads and 0.5 km/h on FTMS treadmills.
+                    </p>
+                    <div class="!space-y-4">
+                        <h3 class="!text-xl">Heart Rate Monitors</h3>
+                        <ul class="list-disc list-inside ps-4 space-y-1 text-sm">
+                            <li>WAHOO TICKR</li>
+                            <li>WAHOO TRACKR</li>
+                            <li>Any Bluetooth HRM device following the "BLE Heart Rate Service GATT-Standard"</li>
+                        </ul>
                     </div>
                 </div>
             </div>

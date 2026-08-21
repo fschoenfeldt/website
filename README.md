@@ -46,10 +46,14 @@ If you are not on the same operating system as your CI system, you can use Docke
 
 ```bash
 docker build -t my-playwright-ci .
-docker run --rm --network host --user "$(id -u):$(id -g)" -v "$(pwd)":/work -w /work my-playwright-ci bash ./scripts/create_ci_snapshots.sh
+docker run --rm --network host --user "$(id -u):$(id -g)" -v "$(pwd)":/work -v /work/node_modules -w /work my-playwright-ci bash ./scripts/create_ci_snapshots.sh
 ```
 
-After that, [you most probably need to recreate `node_modules`](#install) cause it now got different packages.
+The extra `-v /work/node_modules` is required: it shadows the bind-mounted host
+`node_modules` with an anonymous volume, so the container installs its own Linux
+packages instead of rewriting (and breaking) the macOS ones. Without it,
+`pnpm install` fails with `EPERM: operation not permitted` — and your host
+`node_modules` may end up damaged; recreate it with `rm -rf node_modules && pnpm install`.
 
 ## Assets versioning
 
