@@ -21,9 +21,10 @@ With your explicit permission, the Application:
 
 - **reads** your body weight, which is used solely to estimate the calories burned during a treadmill workout;
 - **reads** your height, which is used solely to derive your stride length in order to estimate the step count of a treadmill workout;
-- **writes** your completed workout sessions — including exercise session, distance, estimated step count, and estimated active calories burned — to Health Connect / Apple Health after you explicitly finish a workout. Additionally, heart rate data may also be saved if you have connected a heart rate monitor to your device.
+- **writes** your completed workout sessions — including exercise session, distance, estimated step count, and estimated active calories burned — to Health Connect / Apple Health when you finish a workout;
+- **writes** heart rate readings from a connected heart rate monitor to Health Connect / Apple Health continuously while a workout is running, in short batches, so that a workout interrupted by a crash or by the app being closed is not lost.
 
-All health and fitness data is processed locally on your device, transiently and only for the calculations described above. The Application does not maintain its own database of health data; completed workouts are stored exclusively in Health Connect / Apple Health on your device. The Service Provider does not operate any servers that receive, store, or process health data. Health data is never shared with third parties and is not used for advertising, analytics, or any purpose other than the features described above.
+All health and fitness data is processed locally on your device and only for the calculations described above. The Application keeps a small record of the workout in progress on your device — elapsed time, distance, step count, and the running sum and count of heart rate readings — so that an interrupted workout can be recovered; this record is excluded from device backups and is removed once the workout is saved or discarded. Apart from that record, the Application does not maintain its own database of health data; completed workouts are stored exclusively in Health Connect / Apple Health on your device. The Service Provider does not operate any servers that receive, store, or process health data. Health data is never shared with third parties and is not used for advertising, analytics, or any purpose other than the features described above.
 
 The Application's use of information received from Health Connect adheres to the [Health Connect Permissions policy](https://support.google.com/googleplay/android-developer/answer/16558241#ahp), including the Limited Use requirements.
 
@@ -37,7 +38,7 @@ The Application does not share any data, including health and fitness data, with
 
 ### Data Retention and Deletion
 
-The Application does not retain any user data itself. Weight and height are read from Health Connect / Apple Health at the time of calculation and discarded afterwards; workout results exist only as records in Health Connect / Apple Health on your device, which remain under your control. The Service Provider does not store or retain any user data on external servers, so there is no server-side data to delete.
+The Application retains no user data itself beyond the record of a workout in progress described above. Weight and height are read from Health Connect / Apple Health at the time of calculation and discarded afterwards; workout results exist only as records in Health Connect / Apple Health on your device, which remain under your control. If you discard a recovered workout, its record on your device is deleted; heart rate readings already written to Health Connect / Apple Health stay there, because they are measurements you can review and delete yourself at any time. The Service Provider does not store or retain any user data on external servers, so there is no server-side data to delete.
 
 You can delete your data at any time by:
 
@@ -59,7 +60,7 @@ The Application is not intended for children under 16 years of age, or such high
 
 ### Security
 
-Health and fitness data processed by the Application never leaves your device and is protected by the operating system's app sandbox and the Health Connect / Apple Health permission system. Because the Service Provider does not operate servers that hold user data, the risk of server-side data exposure does not arise. However, no security system is completely secure; the Service Provider implements reasonable safeguards to protect its systems.
+Health and fitness data processed by the Application never leaves your device and is protected by the operating system's app sandbox and the Health Connect / Apple Health permission system. The record of a workout in progress is held in the Application's private storage, protected by the operating system's on-device encryption, and excluded from device backups. Because the Service Provider does not operate servers that hold user data, the risk of server-side data exposure does not arise. However, no security system is completely secure; the Service Provider implements reasonable safeguards to protect its systems.
 
 ### Data Breach Notification
 
