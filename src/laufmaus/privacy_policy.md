@@ -21,6 +21,7 @@ With your explicit permission, the Application:
 
 - **reads** your body weight, which is used solely to estimate the calories burned during a treadmill workout;
 - **reads** your height, which is used solely to derive your stride length in order to estimate the step count of a treadmill workout;
+- **reads**, on iOS only, your date of birth, your biological sex, and your most recent VO₂max measurement, which are used solely to make the calorie estimate of a treadmill workout more accurate; each of these is read at the moment of the calculation and is not stored by the Application. The Application requests no other reading permissions, and reads nothing from your health record beyond the values listed here;
 - **writes** your completed workout sessions — including exercise session, distance, estimated step count, and estimated active calories burned — to Health Connect / Apple Health when you finish a workout;
 - **writes** heart rate readings from a connected heart rate monitor to Health Connect / Apple Health continuously while a workout is running, in short batches, so that a workout interrupted by a crash or by the app being closed is not lost.
 
@@ -38,7 +39,7 @@ The Application does not share any data, including health and fitness data, with
 
 ### Data Retention and Deletion
 
-The Application retains no user data itself beyond the record of a workout in progress described above. Weight and height are read from Health Connect / Apple Health at the time of calculation and discarded afterwards; workout results exist only as records in Health Connect / Apple Health on your device, which remain under your control. If you discard a recovered workout, its record on your device is deleted; heart rate readings already written to Health Connect / Apple Health stay there, because they are measurements you can review and delete yourself at any time. The Service Provider does not store or retain any user data on external servers, so there is no server-side data to delete.
+The Application retains no user data itself beyond the record of a workout in progress described above. The values listed above — weight, height, and on iOS also date of birth, biological sex and VO₂max — are read from Health Connect / Apple Health at the time of calculation and discarded afterwards; workout results exist only as records in Health Connect / Apple Health on your device, which remain under your control. If you discard a recovered workout, its record on your device is deleted; heart rate readings already written to Health Connect / Apple Health stay there, because they are measurements you can review and delete yourself at any time. The Service Provider does not store or retain any user data on external servers, so there is no server-side data to delete.
 
 You can delete your data at any time by:
 
@@ -72,7 +73,7 @@ The Service Provider may update this Privacy Policy from time to time. The Servi
 
 Previous versions of this Privacy Policy will be maintained and made available upon request by contacting the Service Provider at apps@fschoenfeldt.de.
 
-This privacy policy is effective as of 2026-07-09
+This privacy policy is effective as of 2026-09-08
 
 ### Your Consent
 
