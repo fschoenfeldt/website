@@ -15,19 +15,70 @@ The Application does not collect, log, or store any personal information when yo
 
 ### <span id="health-data">Health Data</span>
 
-The Application controls a treadmill and integrates with Health Connect (Android) and Apple Health (iOS) to enrich your workouts with estimated calories burned and step counts, and to save completed workouts to your health record.
+The Application controls treadmills over Bluetooth and saves each workout to Health Connect (Android) or Apple Health (iOS), including estimated calories and step count. With your permission, it reads a few body measurements for these estimates and writes the workout; heart rate from a connected monitor is written in short batches while the workout runs, so a crash does not lose it. Every permission is optional, and the Application requests nothing beyond the tables below.
 
-With your explicit permission, the Application:
+All health data is processed on your device only. Body measurements are read when a calculation needs them, kept in memory while the Application is open, and never stored or transmitted. The only health data the Application stores itself is a small record of the workout in progress (elapsed time, distance, steps, heart rate sum and count), so an interrupted workout can be recovered; it is excluded from device backups and removed once the workout is saved or discarded. The Service Provider runs no servers that receive health data, and health data is never shared or used for advertising or analytics.
 
-- **reads** your body weight, which is used solely to estimate the calories burned during a treadmill workout;
-- **reads** your height, which is used solely to derive your stride length in order to estimate the step count of a treadmill workout;
-- **reads**, on iOS only, your date of birth, your biological sex, and your most recent VO₂max measurement, which are used solely to make the calorie estimate of a treadmill workout more accurate; each of these is read at the moment of the calculation and is not stored by the Application. The Application requests no other reading permissions, and reads nothing from your health record beyond the values listed here;
-- **writes** your completed workout sessions — including exercise session, distance, estimated step count, and estimated active calories burned — to Health Connect / Apple Health when you finish a workout;
-- **writes** heart rate readings from a connected heart rate monitor to Health Connect / Apple Health continuously while a workout is running, in short batches, so that a workout interrupted by a crash or by the app being closed is not lost.
+#### <span id="health-connect">Health Connect (Android)</span>
 
-All health and fitness data is processed locally on your device and only for the calculations described above. The Application keeps a small record of the workout in progress on your device — elapsed time, distance, step count, and the running sum and count of heart rate readings — so that an interrupted workout can be recovered; this record is excluded from device backups and is removed once the workout is saved or discarded. Apart from that record, the Application does not maintain its own database of health data; completed workouts are stored exclusively in Health Connect / Apple Health on your device. The Service Provider does not operate any servers that receive, store, or process health data. Health data is never shared with third parties and is not used for advertising, analytics, or any purpose other than the features described above.
+| Data type              | Access | Purpose                                                                | Details                               |
+| ---------------------- | ------ | ---------------------------------------------------------------------- | ------------------------------------- |
+| Weight                 | Read   | Estimate calories. Without it, no calorie estimate.                    | [Calorie estimate](#calorie-estimate) |
+| Height                 | Read   | Stride length for the step count. Without it, a generic stride length. | [Step count](#step-count)             |
+| Exercise session       | Write  | The completed workout.                                                 |                                       |
+| Distance               | Write  | Distance walked.                                                       |                                       |
+| Steps                  | Write  | Step count.                                                            | [Step count](#step-count)             |
+| Active calories burned | Write  | Calorie estimate.                                                      | [Calorie estimate](#calorie-estimate) |
+| Heart rate             | Write  | Readings from a connected heart rate monitor.                          |                                       |
 
 The Application's use of information received from Health Connect adheres to the [Health Connect Permissions policy](https://support.google.com/googleplay/android-developer/answer/16558241#ahp), including the Limited Use requirements.
+
+#### <span id="apple-health">Apple Health (iOS)</span>
+
+| Data type                  | Access | Purpose                                                                                               | Details                                                          |
+| -------------------------- | ------ | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Weight                     | Read   | Estimate calories. Without it, no calorie estimate.                                                   | [Calorie estimate](#calorie-estimate)                            |
+| Height                     | Read   | Stride length for the step count. Without it, a generic stride length.                                | [Step count](#step-count)                                        |
+| Date of birth              | Read   | Heart-rate-based calorie estimate. Without it, calories come from speed and weight.                   | [Calorie estimate](#calorie-estimate)                            |
+| Biological sex             | Read   | Heart-rate-based calorie estimate and stride length. Without it, calories come from speed and weight. | [Calorie estimate](#calorie-estimate), [Step count](#step-count) |
+| VO₂max                     | Read   | More accurate heart-rate-based calorie estimate. Without it, VO₂max is estimated from age and sex.    | [Calorie estimate](#calorie-estimate)                            |
+| Workouts                   | Write  | The completed workout.                                                                                |                                                                  |
+| Walking + running distance | Write  | Distance walked.                                                                                      |                                                                  |
+| Steps                      | Write  | Step count.                                                                                           | [Step count](#step-count)                                        |
+| Active energy              | Write  | Calorie estimate.                                                                                     | [Calorie estimate](#calorie-estimate)                            |
+| Heart rate                 | Write  | Readings from a connected heart rate monitor.                                                         |                                                                  |
+
+#### <span id="calorie-estimate">Calorie estimate</span>
+
+**Speed-based** (Android and iOS, needs body weight), with MET from 2.5 below 4 km/h up to 11 above 10 km/h:
+
+> kcal = MET × 3.5 × weight in kg × minutes / 200
+
+**Heart-rate-based** (iOS only, Keytel et al. 2005), for the minutes with heart rate readings when weight, date of birth and biological sex are known; the result is converted to kcal (÷ 4.184):
+
+> men: kJ/min = −95.7735 + 0.634 × heart rate + 0.404 × VO₂max + 0.394 × weight in kg + 0.271 × age
+>
+> women: kJ/min = −59.3954 + 0.45 × heart rate + 0.38 × VO₂max + 0.103 × weight in kg + 0.274 × age
+
+Without a VO₂max measurement, it is estimated from age and sex. Minutes without heart rate use the speed-based method. Health Connect has no date of birth or biological sex, so Android always uses the speed-based method.
+
+#### <span id="step-count">Step count</span>
+
+The treadmill's own step count is saved. It is replaced by an estimate when the treadmill reports none, or when it reports more than 1.5 times the estimate after at least 100 m (some treadmills count every step twice):
+
+> steps = distance in m ÷ stride length in m
+
+The stride length follows from height and the average speed _v_ in m/s, with _k_ = 0.415 for men, 0.413 for women and 0.414 if biological sex is unknown:
+
+> walking stride = k × height in m + 0.1 × (v − 1.4)
+>
+> running stride = 1.25 × k × height in m + 0.25 × (v − 2.5)
+
+Between 1.9 and 2.5 m/s (about 6.8 to 9 km/h) the two are blended linearly; above that, the running stride applies. Without height, a generic stride length is used:
+
+> walking stride = 0.7 + 0.1 × (v − 1.4)
+>
+> running stride = 1.1 + 0.25 × (v − 2.5)
 
 ### Does the Application collect precise real time location information of the device?
 
@@ -73,7 +124,7 @@ The Service Provider may update this Privacy Policy from time to time. The Servi
 
 Previous versions of this Privacy Policy will be maintained and made available upon request by contacting the Service Provider at apps@fschoenfeldt.de.
 
-This privacy policy is effective as of 2026-09-08
+This privacy policy is effective as of 2026-09-14
 
 ### Your Consent
 

@@ -48,6 +48,23 @@ module.exports = {
             h2: {
               marginTop: `1.5rem`,
             },
+            "tbody tr:nth-child(even)": {
+              backgroundColor: theme("colors.gray.100"),
+            },
+            // typography zeroes the outer cell padding, which glues text to a striped row's edge
+            "thead th:first-child, tbody td:first-child": {
+              paddingInlineStart: "0.5em",
+            },
+            "thead th:last-child, tbody td:last-child": {
+              paddingInlineEnd: "0.5em",
+            },
+          },
+        },
+        invert: {
+          css: {
+            "tbody tr:nth-child(even)": {
+              backgroundColor: theme("colors.gray.800"),
+            },
           },
         },
       }),
