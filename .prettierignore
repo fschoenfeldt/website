@@ -10,3 +10,5 @@ src/a4docs/htpasswd.njk
 
 src/cv/htaccess.njk
 src/cv/htpasswd.njk
+
+src/_includes/components/link.njk
