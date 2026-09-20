@@ -1,0 +1,12 @@
+pnpm-lock.yaml
+
+src/htaccess.njk
+src/robots.njk
+src/sitemap.njk
+src/sitemap.njk
+
+src/a4docs/htaccess.njk
+src/a4docs/htpasswd.njk
+
+src/cv/htaccess.njk
+src/cv/htpasswd.njk
