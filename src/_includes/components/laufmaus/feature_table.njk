@@ -1,40 +1,52 @@
 {#
-    Feature comparison between manufacturer apps and Laufmaus.
+  Feature comparison between manufacturer apps and Laufmaus.
 
-    Expects `featureRows`: [{ title, icon, manufacturerSupport, laufmausSupport }]
-    where support is true, false or "soon".
+  Expects `featureRows`: [{ title, icon, manufacturerSupport, laufmausSupport }]
+  where support is true, false or "soon".
 #}
 {% set rows = featureRows or [] %}
 
-{% set tableColumns = [
+{% set tableColumns =[
     {
-        key: "feature",
-        label: "Feature",
-        cellClass: "flex items-center gap-2 p-1 md:p-4 font-bold md:font-medium"
+      key: "feature",
+      label: "Feature",
+      cellClass: "flex items-center gap-2 p-1 md:p-4 font-bold md:font-medium"
     },
     {
-        key: "manufacturer",
-        label: "Manufacturer",
-        mobileLabel: "Manufacturer",
-        cellClass: "block xs:ml-auto md:table-cell p-1 md:p-4 text-left"
+      key: "manufacturer",
+      label: "Manufacturer",
+      mobileLabel: "Manufacturer",
+      cellClass: "block xs:ml-auto md:table-cell p-1 md:p-4 text-left"
     },
     {
-        key: "laufmaus",
-        label: "Laufmaus (Free)",
-        mobileLabel: "Laufmaus",
-        cellClass: "block md:table-cell p-1 md:p-4 text-left"
+      key: "laufmaus",
+      label: "Laufmaus (Free)",
+      mobileLabel: "Laufmaus",
+      cellClass: "block md:table-cell p-1 md:p-4 text-left"
     }
-] %}
+  ]
+%}
 
 {% set tableRows = [] %}
 {% for row in rows %}
-    {% set _ = tableRows.push({
-        cells: {
-            feature: { kind: "icon-text", icon: row.icon, value: row.title },
-            manufacturer: { kind: "support", value: row.manufacturerSupport },
-            laufmaus: { kind: "support", value: row.laufmausSupport }
+  {% set _ = tableRows.push({
+      cells: {
+        feature: {
+          kind: "icon-text",
+          icon: row.icon,
+          value: row.title
+        },
+        manufacturer: {
+          kind: "support",
+          value: row.manufacturerSupport
+        },
+        laufmaus: {
+          kind: "support",
+          value: row.laufmausSupport
         }
-    }) %}
+      }
+    })
+  %}
 {% endfor %}
 
 {% set tableClass = "" %}

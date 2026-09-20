@@ -7,34 +7,52 @@
       Space Haven Manager
     </h1>
     <button
+      class="
+        flex
+        items-center
+        justify-center
+        p-4
+        hover:!bg-cyan-100
+        md:space-x-4
+        md:p-2
+      "
       aria-label="open settings menu"
       type="button"
-      @click="settingsMenuVisible = !settingsMenuVisible"
+      click="settingsMenuVisible = !settingsMenuVisible"
       data-testid="toggleSettingsMenu"
-      class="flex items-center justify-center p-4 hover:!bg-cyan-100 md:space-x-4 md:p-2"
     >
       <div class="hidden md:block" aria-hidden="true">Settings</div>
       <img
+        class="h-8 w-8 lg:h-10 lg:w-10"
         alt="settings menu icon"
         aria-hidden="true"
-        class="h-8 w-8 lg:h-10 lg:w-10"
-        src="{{ "/img/settings.svg" | url }}"
+        src='{{ "/img/settings.svg" | url }}'
       />
     </button>
   </div>
   <div
     id="settingsMenu"
+    class="mx-auto w-11/12 max-w-lg bg-slate-800 p-4 lg:ml-auto lg:mr-4"
     x-cloak
     x-show="settingsMenuVisible"
-    class="mx-auto w-11/12 max-w-lg bg-slate-800 p-4 lg:ml-auto lg:mr-4"
   >
     <ul class="flex flex-col">
       <li class="text-cyan-200">Menu/Options:</li>
       <li>
         <button
+          class="
+            w-max
+            max-w-full
+            border
+            border-red-300
+            p-2
+            text-xl
+            uppercase
+            text-cyan-200
+            hover:!bg-red-200/20
+          "
           data-testid="clearStorage"
-          @click="$store.manager.clearStorage"
-          class="w-max max-w-full border border-red-300 p-2 text-xl uppercase text-cyan-200 hover:!bg-red-200/20"
+          click="$store.manager.clearStorage"
         >
           ☢️ clear saved data and reload
         </button>

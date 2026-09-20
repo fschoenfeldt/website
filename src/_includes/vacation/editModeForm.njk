@@ -1,13 +1,35 @@
 <form
-  @submit.prevent="$dispatch('submitvacationform')"
-  class="mx-4 max-w-xl space-y-6 rounded-xl bg-white shadow-2xl md:mx-0 dark:bg-gray-800"
+  class="
+    mx-4
+    max-w-xl
+    space-y-6
+    rounded-xl
+    bg-white
+    shadow-2xl
+    md:mx-0
+    dark:bg-gray-800
+  "
+  submit
+  prevent="$dispatch('submitvacationform')"
   data-testid="vacationForm"
 >
   <div class="flex items-center">
     <div class="flex w-full items-center gap-4 rounded-t-xl bg-blue-600 p-4">
       <div
+        class="
+          flex
+          h-8
+          w-8
+          items-center
+          justify-center
+          rounded-full
+          border
+          border-blue-200
+          bg-blue-100
+          p-2
+          text-xl
+        "
         aria-hidden="true"
-        class="flex h-8 w-8 items-center justify-center rounded-full border border-blue-200 bg-blue-100 p-2 text-xl"
       >
         🏝️
       </div>
@@ -17,21 +39,28 @@
     </div>
   </div>
   <p class="px-4">
-    Mithilfe dieses Formulars kannst du deinen eigenen Urlaubscountdown setzen.
-    Anschließend erhälst du einen Link, den du teilen kannst:
+    Mithilfe dieses Formulars kannst du deinen eigenen Urlaubscountdown setzen. Anschließend erhälst du einen Link, den du teilen kannst:
   </p>
   <div
-    class="space-y-4 rounded-b-xl border-y border-b-4 bg-gray-100 dark:border-gray-600 dark:bg-gray-700"
+    class="
+      space-y-4
+      rounded-b-xl
+      border-y
+      border-b-4
+      bg-gray-100
+      dark:border-gray-600
+      dark:bg-gray-700
+    "
   >
     <ol class="ml-4 list-decimal space-y-2 p-4 pb-0">
       <li>
         <strong class="block">Urlaubstag auswählen</strong>
         <label for="date">Urlaubsdatum (erforderlich)</label>
         <input
+          id="date"
           class="block bg-gray-200 px-2 text-xl dark:bg-gray-800"
           type="date"
           name="date"
-          id="date"
           x-ref="inputdate"
           data-testid="vacationDate"
           required
@@ -41,33 +70,34 @@
         <strong class="block">Urlaubsort auswählen</strong>
         <label for="vacationlocation">Urlaubsort (optional)</label>
         <input
+          id="vacationlocation"
           class="block bg-gray-200 px-2 text-xl dark:bg-gray-800"
           type="text"
           name="vacationlocation"
-          id="vacationlocation"
           x-ref="inputvacationlocation"
           data-testid="vacationLocation"
         />
       </li>
       <li>
-        <strong class="block"
-          >Hintergrundbild auswählen (optional, experimentell)</strong
-        >
+        <strong class="block">
+          Hintergrundbild auswählen (optional, experimentell)
+        </strong>
         <form
-          x-data
-          @submit.prevent="$dispatch('submitvacationimagesearch')"
           class="rounded border bg-gray-50 p-4 dark:bg-gray-900"
+          x-data
+          submit
+          prevent="$dispatch('submitvacationimagesearch')"
         >
           <div>
-            <label class="block" for="vacationimagesearch"
-              >Suche auf Fotohäcker nach einem Hintergrundbild</label
-            >
+            <label class="block" for="vacationimagesearch">
+              Suche auf Fotohäcker nach einem Hintergrundbild
+            </label>
             <div class="flex flex-wrap gap-2">
               <input
+                id="vacationimagesearch"
                 class="block bg-gray-200 px-2 dark:bg-gray-800"
                 type="text"
                 name="vacationimagesearch"
-                id="vacationimagesearch"
                 data-testid="vacationImageSearch"
                 placeholder="Schottland"
                 :value="$store.vacation.vacationImageSearch"
@@ -106,19 +136,19 @@
                           x-text="`Foto ${image.title} auf Fotohäcker`"
                         ></p>
                         <img
+                          class="cursor-pointer rounded"
                           :src="image.urls.thumb3x"
                           :alt="image.title"
-                          class="cursor-pointer rounded"
                           :class="{ 'ring-4': $store.vacation.vacationImage == image.id}"
                         />
                       </label>
                       <input
+                        class="sr-only"
                         type="radio"
                         :id="`inputvacationimage-${image.id}`"
                         :value="image.id"
                         name="inputvacationimage"
                         x-model="$store.vacation.vacationImage"
-                        class="sr-only"
                       />
                     </li>
                   </template>
@@ -130,28 +160,28 @@
       </li>
     </ol>
     <template x-if="$store.vacation.generatedLink">
-      <div data-testid="result" class="px-4">
+      <div class="px-4" data-testid="result">
         Dein Link:
         <a
+          class="break-words"
           :href="$store.vacation.generatedLink"
           target="_blank"
           rel="noopener noreferrer"
           x-text="$store.vacation.generatedLink"
-          class="break-words"
         ></a>
       </div>
     </template>
     <div class="flex items-center justify-between gap-x-2 border-t p-4">
-      <button data-testid="submitButton" class="btn btn--lg btn--blue">
+      <button class="btn btn--lg btn--blue" data-testid="submitButton">
         Speichern
       </button>
       {# only show this close button if it's not a fresh page visit.
-                TODO refactor this to the store. #}
+      TODO refactor this to the store. #}
       <button
+        class="btn dark:text-gray-900"
         type="button"
         label="Eingabe abbrechen"
-        class="btn dark:text-gray-900"
-        @click="$store.vacation.editMode = false"
+        click="$store.vacation.editMode = false"
         x-show="!!$store.vacation.vacationLocation || !!$store.vacation.date"
       >
         Abbrechen

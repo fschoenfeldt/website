@@ -1,23 +1,29 @@
 <div
+  class="modal"
   x-data="{ressource: {}}"
   x-ref="addPriceModal"
-  class="modal"
   x-cloak
   x-show="$store.manager.modalVisible"
-  @showaddpricemodal.window="$store.manager.showAddPriceModal"
-  @submitaddpricemodal="$store.manager.submitAddPriceModal"
+  showaddpricemodal
+  window="$store.manager.showAddPriceModal"
+  submitaddpricemodal="$store.manager.submitAddPriceModal"
   role="dialog"
   aria-modal="true"
   aria-labelledby="addPriceModalLabel"
   aria-describedby="priceHistoryChart"
   :aria-hidden="!$store.manager.modalVisible"
-  @keydown.tab="$store.manager.handleTabModal"
-  @keydown.shift.tab="$store.manager.handleShiftTabModal"
+  keydown
+  tab="$store.manager.handleTabModal"
+  keydown
+  shift
+  tab="$store.manager.handleShiftTabModal"
 >
   <div
     class="modal__content"
-    @click.outside="$store.manager.hideAddPriceModal"
-    @keyup.escape="$store.manager.hideAddPriceModal"
+    click
+    outside="$store.manager.hideAddPriceModal"
+    keyup
+    escape="$store.manager.hideAddPriceModal"
   >
     <div class="flex h-full w-full items-center space-x-2 text-xl">
       <img alt="" :src="ressource.path" />
@@ -27,9 +33,21 @@
         x-text="ressource.name"
       ></div>
       <button
+        class="
+          !ml-auto
+          flex
+          h-12
+          w-12
+          shrink-0
+          items-center
+          justify-center
+          border-2
+          border-red-400
+          p-2
+          hover:!bg-red-400/20
+        "
         label="close"
-        class="!ml-auto flex h-12 w-12 shrink-0 items-center justify-center border-2 border-red-400 p-2 hover:!bg-red-400/20"
-        @click="$store.manager.hideAddPriceModal"
+        click="$store.manager.hideAddPriceModal"
       >
         <span class="font-bold !text-red-400" aria-hidden="true">✕</span>
         <span class="sr-only">close</span>
@@ -62,8 +80,17 @@
         ></canvas>
       </div>
       <div
+        class="
+          w-full
+          border
+          border-dashed
+          border-cyan-200
+          p-6
+          text-center
+          italic
+          text-cyan-200
+        "
         x-show="!ressource?.priceHistory?.length"
-        class="w-full border border-dashed border-cyan-200 p-6 text-center italic text-cyan-200"
       >
         no data for graph.. yet
       </div>
@@ -73,13 +100,13 @@
       <div class="flex flex-col items-center justify-center">
         <template x-if="ressource.recipe">
           {# <div class="text-cyan-200" x-text="JSON.stringify(ressource.recipe)"></div>
-                    <hr> #}
+          <hr> #}
           <template x-for="(ingredient, index) in ressource.recipe">
             <div
-              x-data="{ingredientFound: $store.manager.getByName($store.manager, ingredient.name)}"
               class="flex flex-col items-center justify-center"
+              x-data="{ingredientFound: $store.manager.getByName($store.manager, ingredient.name)}"
             >
-              <img alt="" :src="ingredientFound.path" class="w-12" />
+              <img class="w-12" alt="" :src="ingredientFound.path" />
               <div
                 class="text-cyan-200"
                 x-text="`${ingredient.amount}x ${ingredient.name}`"
@@ -94,8 +121,8 @@
                 <div class="text-cyan-200/60">no price data</div>
               </template>
               <div
-                x-show="ressource?.recipe?.length > 1 && index < ressource?.recipe?.length-1"
                 class="flex items-center text-4xl font-bold text-cyan-200"
+                x-show="ressource?.recipe?.length > 1 && index < ressource?.recipe?.length-1"
               >
                 +
               </div>
@@ -108,12 +135,14 @@
           <div class="flex h-full items-center space-x-4">
             <div class="flex flex-col">
               <div
-                x-data="{sum: ressource.recipe.reduce((prev, ingredient) => {
-                                                const ingredientFound = $store.manager.getByName($store.manager, ingredient.name)
-                                                return ingredientFound.average * ingredient.amount + prev;
-                                                }, 0)}"
-                x-show="ressource?.recipe?.length > 1 && sum"
                 class="flex items-center text-2xl font-bold text-cyan-200"
+                x-data="
+                  {sum: ressource.recipe.reduce((prev, ingredient) => {
+                                                                  const ingredientFound = $store.manager.getByName($store.manager, ingredient.name)
+                                                                  return ingredientFound.average * ingredient.amount + prev;
+                                                                  }, 0)}
+                "
+                x-show="ressource?.recipe?.length > 1 && sum"
               >
                 ∑⌀ =
                 <span
@@ -128,7 +157,7 @@
               </div>
             </div>
             <div class="flex flex-col items-center">
-              <img alt="" :src="ressource.path" class="w-12" />
+              <img class="w-12" alt="" :src="ressource.path" />
               <div class="text-cyan-200" x-text="ressource.name"></div>
               <div
                 class="text-xl text-cyan-200"
@@ -142,17 +171,25 @@
 
     <form
       class="flex flex-col space-y-4"
-      @submit.prevent="$dispatch('submitaddpricemodal', {name: ressource.name})"
+      submit
+      prevent="$dispatch('submitaddpricemodal', {name: ressource.name})"
     >
-      <label class="text-lg text-cyan-200" for="number_input">
-        new price:
-      </label>
+      <label class="text-lg text-cyan-200" for="number_input">new price:</label>
       <input
-        class="border border-cyan-200 bg-slate-700 bg-transparent p-2 text-center text-3xl text-cyan-200"
+        id="number_input"
+        class="
+          border
+          border-cyan-200
+          bg-slate-700
+          bg-transparent
+          p-2
+          text-center
+          text-3xl
+          text-cyan-200
+        "
         x-ref="input"
         type="number"
         name="value"
-        id="number_input"
         min="1"
         max="9999"
         required

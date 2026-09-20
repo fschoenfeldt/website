@@ -8,8 +8,8 @@ eleventyExcludeFromCollections: true
 <main
   class="min-w-screen flex min-h-screen items-center justify-center"
   :class="{ 'bg-gray-50 dark:bg-gray-900': $store.vacation.editMode }"
-  @submitvacationform="$store.vacation.submitVactionForm"
-  @submitvacationimagesearch="$store.vacation.submitVacationImageSearch"
+  submitvacationform="$store.vacation.submitVactionForm"
+  submitvacationimagesearch="$store.vacation.submitVacationImageSearch"
 >
   <div x-ref="test"></div>
   <template x-if="$store.vacation.editMode">
@@ -20,15 +20,17 @@ eleventyExcludeFromCollections: true
       <h1>👒☀️😎🏝️🏖️🌄🚴‍♀️🚴</h1>
       <template x-if="$store.vacation.vacationImage">
         <img
-          :srcset="`
-                            ${$store.vacation.vacationImage.urls.thumb1x} 400w,
-                            ${$store.vacation.vacationImage.urls.thumb2x} 600w,
-                            ${$store.vacation.vacationImage.urls.thumb3x} 800w,
-                            ${$store.vacation.vacationImage.urls.full} 2800w
-                        `"
+          class="mx-auto max-h-[calc(100vh-10rem)]"
+          :srcset="
+            `
+                                        ${$store.vacation.vacationImage.urls.thumb1x} 400w,
+                                        ${$store.vacation.vacationImage.urls.thumb2x} 600w,
+                                        ${$store.vacation.vacationImage.urls.thumb3x} 800w,
+                                        ${$store.vacation.vacationImage.urls.full} 2800w
+                                    `
+          "
           :src="$store.vacation.vacationImage.urls.thumb3x"
           :alt="$store.vacation.vacationImage.title"
-          class="mx-auto max-h-[calc(100vh-10rem)]"
         />
         <img x-data :src="$store.vacation.vacationImage" />
       </template>
@@ -41,9 +43,11 @@ eleventyExcludeFromCollections: true
 
       <h2
         class="!mt-2"
-        style="background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
-                ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;"
+        style="
+          background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
+                          ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+        "
       >
         <span
           x-show="$store.vacation.vacationLocation"
@@ -53,24 +57,28 @@ eleventyExcludeFromCollections: true
       </h2>
 
       <h1
+        class="thick-heading text-3xl italic"
         hidden
         x-text="`Bis Urlaubsbeginn: ${$store.vacation.format($store.vacation.date)}`"
-        class="thick-heading text-3xl italic"
-        style="background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
-                ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;"
+        style="
+          background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
+                          ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+        "
       ></h1>
       <h1
-        x-text="$store.vacation.format($store.vacation.date)"
         class="thick-heading text-[25vw] sm:text-9xl"
-        style="background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
-                ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;"
+        x-text="$store.vacation.format($store.vacation.date)"
+        style="
+          background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
+                          ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;
+                          -webkit-text-fill-color: transparent;
+        "
       ></h1>
 
       <button
-        @click="$store.vacation.editMode = true"
         class="btn mt-16 text-sm"
+        click="$store.vacation.editMode = true"
         type="button"
         data-testid="newVacation"
         label="Eigenen Urlaubstimer setzen"

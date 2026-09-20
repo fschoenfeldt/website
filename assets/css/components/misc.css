@@ -25,7 +25,7 @@
     p,
     a,
     svg {
-      @apply text-white stroke-white;
+      @apply stroke-white text-white;
     }
     a {
       @apply flex w-full flex-col justify-between gap-2 break-all p-4 md:h-60;

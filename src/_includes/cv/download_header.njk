@@ -1,11 +1,23 @@
 <div
+  class="flex cursor-pointer border-b border-b-gray-600 bg-gray-800 print:hidden"
   x-data="{ expanded: true }"
   x-show="expanded"
-  class="flex cursor-pointer border-b border-b-gray-600 bg-gray-800 print:hidden"
 >
   <a
+    class="
+      group
+      flex
+      w-full
+      items-center
+      gap-2
+      p-2
+      no-underline
+      transition-colors
+      hover:bg-gray-600
+      active:bg-gray-500
+      md:p-4
+    "
     href="/cv/cv_fschoenfeldt.pdf"
-    class="group flex w-full items-center gap-2 p-2 no-underline transition-colors hover:bg-gray-600 active:bg-gray-500 md:p-4"
   >
     <span
       class="material-icons text-gray-200 transition-colors group-hover:text-blue-400"
@@ -20,8 +32,21 @@
     </div>
   </a>
   <span
-    class="material-icons m-1 ml-auto h-max rounded-full p-4 text-gray-200 decoration-transparent hover:bg-gray-600 active:bg-gray-500 md:m-2 md:p-2"
-    @click="expanded = false"
+    class="
+      material-icons
+      m-1
+      ml-auto
+      h-max
+      rounded-full
+      p-4
+      text-gray-200
+      decoration-transparent
+      hover:bg-gray-600
+      active:bg-gray-500
+      md:m-2
+      md:p-2
+    "
+    click="expanded = false"
     tabIndex="0"
   >
     close

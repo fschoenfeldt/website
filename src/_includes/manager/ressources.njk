@@ -11,24 +11,24 @@
           :id="`ressource__item_${$store.manager.ressourceToSafeName(r.name)}`"
         >
           <button
-            @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
+            click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
             :aria-label="
-                            if ($store.manager.changeVisibility) {
-                                if (r.visible) {
-                                    return `hide ${r.name} in price list`
-                                } else {
-                                    return `show ${r.name} in price list`
-                                }
-                            } else {
-                                return `show information for ${r.name}`
-                            }
-                            "
+              if ($store.manager.changeVisibility) {
+                  if (r.visible) {
+                      return `hide ${r.name} in price list`
+                  } else {
+                      return `show ${r.name} in price list`
+                  }
+              } else {
+                  return `show information for ${r.name}`
+              }
+            "
           >
             <div
               class="space-y-2 py-2 text-center"
               :class="{ 'mt-auto' : !$store.manager.changeVisibility && r.priceHistory.length}"
             >
-              <img alt="" class="inline" :src="r.path" />
+              <img class="inline" alt="" :src="r.path" />
               <div x-text="r.name" aria-hidden="true"></div>
             </div>
             <template
@@ -45,31 +45,31 @@
                   ></div>
                   <div :aria-label="r.min && `minimum price: ${r.min}`">
                     <div
+                      class="priceinfo__values"
                       aria-hidden="true"
                       x-show="r.min"
-                      class="priceinfo__values"
                     >
-                      <img alt="" class="" src="/img/arrow_downward.svg" />
+                      <img class="" alt="" src="/img/arrow_downward.svg" />
                       <span x-text="r.min && `${r.min}`"></span>
                     </div>
                   </div>
                   <div :aria-label="r.average && `average price: ${r.average}`">
                     <div
+                      class="priceinfo__values"
                       aria-hidden="true"
                       x-show="r.average"
-                      class="priceinfo__values"
                     >
-                      <img alt="" class="" src="/img/insights.svg" />
+                      <img class="" alt="" src="/img/insights.svg" />
                       <span x-text="r.average && `${r.average}`"></span>
                     </div>
                   </div>
                   <div :aria-label="r.max && `maximum price: ${r.max}`">
                     <div
+                      class="priceinfo__values"
                       aria-hidden="true"
                       x-show="r.max"
-                      class="priceinfo__values"
                     >
-                      <img alt="" class="" src="/img/arrow_upward.svg" />
+                      <img class="" alt="" src="/img/arrow_upward.svg" />
                       <span
                         class="font-bold !text-amber-200"
                         x-text="r.max && `${r.max}`"
@@ -90,7 +90,7 @@
     </template>
     <li class="ressources__item ressources__item--add">
       <button
-        @click="$store.manager.onClickToggleChangeVisibility"
+        click="$store.manager.onClickToggleChangeVisibility"
         x-text="$store.manager.changeVisibility ? '-' : '+'"
         :aria-label="$store.manager.changeVisibility ? 'stop showing all ressources and get back to price list' : 'show all ressources and change their visibility in this list'"
         data-testid="toggleRessourceVisibility"
