@@ -72,9 +72,9 @@ importers:
       prettier:
         specifier: 3.8.3
         version: 3.8.3
-      prettier-plugin-jinja-template:
-        specifier: ^2.2.0
-        version: 2.2.0(prettier@3.8.3)
+      prettier-plugin-nunjucks:
+        specifier: ^0.2.1
+        version: 0.2.1(prettier@3.8.3)
       prettier-plugin-tailwindcss:
         specifier: ^0.8.0
         version: 0.8.0(prettier@3.8.3)
@@ -1372,10 +1372,11 @@ packages:
     deprecated: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
     hasBin: true
 
-  prettier-plugin-jinja-template@2.2.0:
-    resolution: {integrity: sha512-FVZtWvSW8RKvHToWHgI9j1eau7t2mekYoVKg7GdDS16QVOYM8f08yzVptBUvSXKQR2xJAXCLi0rGGvJGFtCUrA==}
+  prettier-plugin-nunjucks@0.2.1:
+    resolution: {integrity: sha512-kdeOIbbTof/iU4GD/SVof0W2VXD6XFHFnGbGNbCGfq2nkm7xbjBf8Gik+/Z/FP6Ic7TPPB/4szwTOtvEc2wIQg==}
+    engines: {node: '>=18'}
     peerDependencies:
-      prettier: ^3.0.0
+      prettier: '>=3.0.0'
 
   prettier-plugin-tailwindcss@0.8.0:
     resolution: {integrity: sha512-V8ITGH87yuBDF6JpEZTOVlUz/saAwqb8f3HRgUj8Lh+tGCcrmorhsLpYqzygwFwK0PE2Ib6Mv3M7T/uE2tZV1g==}
@@ -1673,6 +1674,15 @@ packages:
   tar-stream@2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
     engines: {node: '>=6'}
+
+  template-format-core@0.2.0:
+    resolution: {integrity: sha512-jdrBDhV7SW06qm8uL10PaU8yJchqCp22JIMNpJoW+SSiWhAyiqcBLkp1m+x1Ww7YzTtRhp01hmZ3XHmJje2BwQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      prettier: '>=3.0.0'
+    peerDependenciesMeta:
+      prettier:
+        optional: true
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -3000,9 +3010,10 @@ snapshots:
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
 
-  prettier-plugin-jinja-template@2.2.0(prettier@3.8.3):
+  prettier-plugin-nunjucks@0.2.1(prettier@3.8.3):
     dependencies:
       prettier: 3.8.3
+      template-format-core: 0.2.0(prettier@3.8.3)
 
   prettier-plugin-tailwindcss@0.8.0(prettier@3.8.3):
     dependencies:
@@ -3279,6 +3290,10 @@ snapshots:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.0
+
+  template-format-core@0.2.0(prettier@3.8.3):
+    optionalDependencies:
+      prettier: 3.8.3
 
   thenify-all@1.6.0:
     dependencies:
