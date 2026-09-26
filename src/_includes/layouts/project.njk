@@ -16,7 +16,9 @@
     {% include "seo/project_meta.njk" %}
     {% include 'favicons.njk' %}
     <script defer src="{{ hash['/js/app.js'] | url }}"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {% include 'plausible.njk' %}
+    {#
+    Google Analytics (replaced by Plausible, needs cookie consent)
     <script
       type="text/plain"
       data-category="analytics"
@@ -31,6 +33,7 @@
       gtag('js', new Date());
       gtag('config', 'G-51WZFYSLT7');
     </script>
+    #}
     {% block head %}
     {% endblock %}
   </head>

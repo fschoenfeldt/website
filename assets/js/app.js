@@ -1,10 +1,11 @@
 import Alpine from "alpinejs";
-import * as CookieConsent from "vanilla-cookieconsent";
-import ccOptions from "./lib/cookie_consent";
+// import * as CookieConsent from "vanilla-cookieconsent";
+// import ccOptions from "./lib/cookie_consent";
 import projectManager from "./lib/project_manager";
 
+// Cookie consent disabled: Plausible is cookieless.
 // https://github.com/orestbida/cookieconsent
-CookieConsent.run(ccOptions);
+// CookieConsent.run(ccOptions);
 
 // initialize alpine
 window.Alpine = Alpine;

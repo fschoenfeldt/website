@@ -7,7 +7,7 @@
 @import "tailwindcss/utilities";
 
 /* Third Party Libraries */
-@import "../../node_modules/vanilla-cookieconsent/dist/cookieconsent.css";
+/* @import "../../node_modules/vanilla-cookieconsent/dist/cookieconsent.css"; */
 
 /* make all buttons same to be gdpr compliant */
 #c-bns button,
