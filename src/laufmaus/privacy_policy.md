@@ -23,10 +23,10 @@ All health data is processed on your device only. Body measurements are read whe
 
 **Read**
 
-| Data type | Purpose                                                    | Benefit                                                                                 | Without it                                                                              | Details                               |
-| --------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------- |
-| Weight    | Calculates the calories you burn in each workout.          | See your calories live and have them saved with every workout.                          | No calories are calculated or saved.                                                    | [Calorie estimate](#calorie-estimate) |
-| Height    | Calculates your personal stride length for counting steps. | Correct step counts, even on treadmills that report no steps or count every step twice. | An average stride length is used, so step counts on these treadmills can be inaccurate. | [Step count](#step-count)             |
+| Data type | Purpose                                                       | Benefit                                                        | Without it                                                                     | Details                               |
+| --------- | ------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------- |
+| Weight    | Calculates the calories you burn in each workout.             | See your calories live and have them saved with every workout. | No calories are calculated or saved.                                           | [Calorie estimate](#calorie-estimate) |
+| Height    | Used to calculate your step count from the distance you walk. | Precise step counts that match your body, in every workout.    | Only average values can be used, so your step counts can be significantly off. | [Step count](#step-count)             |
 
 **Write**
 
@@ -44,13 +44,13 @@ The Application's use of information received from Health Connect adheres to the
 
 **Read**
 
-| Data type      | Purpose                                                             | Benefit                                                                                 | Without it                                                                                | Details                                                          |
-| -------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Weight         | Calculates the calories you burn in each workout.                   | See your calories live and have them saved with every workout.                          | No calories are calculated or saved.                                                      | [Calorie estimate](#calorie-estimate)                            |
-| Height         | Calculates your personal stride length for counting steps.          | Correct step counts, even on treadmills that report no steps or count every step twice. | An average stride length is used, so step counts on these treadmills can be inaccurate.   | [Step count](#step-count)                                        |
-| Date of birth  | Calculates your age for heart-rate-based calorie estimates.         | More accurate calories that reflect how hard you actually worked.                       | Calories are calculated from speed and weight only.                                       | [Calorie estimate](#calorie-estimate)                            |
-| Biological sex | Used for heart-rate-based calorie estimates and your stride length. | More accurate calories and step counts.                                                 | Calories are calculated from speed and weight only, and an average stride length is used. | [Calorie estimate](#calorie-estimate), [Step count](#step-count) |
-| VO₂max         | Refines heart-rate-based calorie estimates with your fitness level. | Calories that match your personal fitness.                                              | VO₂max is estimated from age and biological sex.                                          | [Calorie estimate](#calorie-estimate)                            |
+| Data type      | Purpose                                                             | Benefit                                                           | Without it                                                                            | Details                                                          |
+| -------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Weight         | Calculates the calories you burn in each workout.                   | See your calories live and have them saved with every workout.    | No calories are calculated or saved.                                                  | [Calorie estimate](#calorie-estimate)                            |
+| Height         | Used to calculate your step count from the distance you walk.       | Precise step counts that match your body, in every workout.       | Only average values can be used, so your step counts can be significantly off.        | [Step count](#step-count)                                        |
+| Date of birth  | Calculates your age for heart-rate-based calorie estimates.         | More accurate calories that reflect how hard you actually worked. | Calories are calculated from speed and weight only.                                   | [Calorie estimate](#calorie-estimate)                            |
+| Biological sex | Used for heart-rate-based calorie estimates and your step count.    | More accurate calories and step counts.                           | Calories are calculated from speed and weight only, and step counts are less precise. | [Calorie estimate](#calorie-estimate), [Step count](#step-count) |
+| VO₂max         | Refines heart-rate-based calorie estimates with your fitness level. | Calories that match your personal fitness.                        | VO₂max is estimated from age and biological sex.                                      | [Calorie estimate](#calorie-estimate)                            |
 
 **Write**
 
@@ -88,7 +88,7 @@ The stride length follows from height and the average speed _v_ in m/s, with _k_
 >
 > running stride = 1.25 × k × height in m + 0.25 × (v − 2.5)
 
-Between 1.9 and 2.5 m/s (about 6.8 to 9 km/h) the two are blended linearly; above that, the running stride applies. Without height, a generic stride length is used:
+Between 1.9 and 2.5 m/s (about 6.8 to 9 km/h) the two are blended linearly; above that, the running stride applies. Without height, an average stride length is used:
 
 > walking stride = 0.7 + 0.1 × (v − 1.4)
 >
