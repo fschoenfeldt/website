@@ -15,38 +15,52 @@ The Application does not collect, log, or store any personal information when yo
 
 ### <span id="health-data">Health Data</span>
 
-The Application controls treadmills over Bluetooth and saves each workout to Health Connect (Android) or Apple Health (iOS), including estimated calories and step count. With your permission, it reads a few body measurements for these estimates and writes the workout; heart rate from a connected monitor is written in short batches while the workout runs, so a crash does not lose it. Every permission is optional, and the Application requests nothing beyond the tables below.
+The Application controls treadmills over Bluetooth and saves each workout to Health Connect (Android) or Apple Health (iOS), including estimated calories and step count. With your permission, it reads a few body measurements for these estimates and writes the workout; heart rate from a connected monitor is written in short batches while the workout runs, so a crash does not lose it. You can decline any permission; the corresponding feature is then unavailable or less accurate. The Application requests nothing beyond the tables below.
 
 All health data is processed on your device only. Body measurements are read when a calculation needs them, kept in memory while the Application is open, and never stored or transmitted. The only health data the Application stores itself is a small record of the workout in progress (elapsed time, distance, steps, heart rate sum and count), so an interrupted workout can be recovered; it is excluded from device backups and removed once the workout is saved or discarded. The Service Provider runs no servers that receive health data, and health data is never shared or used for advertising or analytics.
 
 #### <span id="health-connect">Health Connect (Android)</span>
 
-| Data type              | Access | Purpose                                                                | Details                               |
-| ---------------------- | ------ | ---------------------------------------------------------------------- | ------------------------------------- |
-| Weight                 | Read   | Estimate calories. Without it, no calorie estimate.                    | [Calorie estimate](#calorie-estimate) |
-| Height                 | Read   | Stride length for the step count. Without it, a generic stride length. | [Step count](#step-count)             |
-| Exercise session       | Write  | The completed workout.                                                 |                                       |
-| Distance               | Write  | Distance walked.                                                       |                                       |
-| Steps                  | Write  | Step count.                                                            | [Step count](#step-count)             |
-| Active calories burned | Write  | Calorie estimate.                                                      | [Calorie estimate](#calorie-estimate) |
-| Heart rate             | Write  | Readings from a connected heart rate monitor.                          |                                       |
+**Read**
+
+| Data type | Purpose                                                    | Benefit                                                                                 | Without it                                                                              | Details                               |
+| --------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------- |
+| Weight    | Calculates the calories you burn in each workout.          | See your calories live and have them saved with every workout.                          | No calories are calculated or saved.                                                    | [Calorie estimate](#calorie-estimate) |
+| Height    | Calculates your personal stride length for counting steps. | Correct step counts, even on treadmills that report no steps or count every step twice. | An average stride length is used, so step counts on these treadmills can be inaccurate. | [Step count](#step-count)             |
+
+**Write**
+
+| Data type              | Purpose                                       | Details                               |
+| ---------------------- | --------------------------------------------- | ------------------------------------- |
+| Exercise session       | The completed workout.                        |                                       |
+| Distance               | Distance walked.                              |                                       |
+| Steps                  | Step count.                                   | [Step count](#step-count)             |
+| Active calories burned | Calorie estimate.                             | [Calorie estimate](#calorie-estimate) |
+| Heart rate             | Readings from a connected heart rate monitor. |                                       |
 
 The Application's use of information received from Health Connect adheres to the [Health Connect Permissions policy](https://support.google.com/googleplay/android-developer/answer/16558241#ahp), including the Limited Use requirements.
 
 #### <span id="apple-health">Apple Health (iOS)</span>
 
-| Data type                  | Access | Purpose                                                                                               | Details                                                          |
-| -------------------------- | ------ | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Weight                     | Read   | Estimate calories. Without it, no calorie estimate.                                                   | [Calorie estimate](#calorie-estimate)                            |
-| Height                     | Read   | Stride length for the step count. Without it, a generic stride length.                                | [Step count](#step-count)                                        |
-| Date of birth              | Read   | Heart-rate-based calorie estimate. Without it, calories come from speed and weight.                   | [Calorie estimate](#calorie-estimate)                            |
-| Biological sex             | Read   | Heart-rate-based calorie estimate and stride length. Without it, calories come from speed and weight. | [Calorie estimate](#calorie-estimate), [Step count](#step-count) |
-| VO₂max                     | Read   | More accurate heart-rate-based calorie estimate. Without it, VO₂max is estimated from age and sex.    | [Calorie estimate](#calorie-estimate)                            |
-| Workouts                   | Write  | The completed workout.                                                                                |                                                                  |
-| Walking + running distance | Write  | Distance walked.                                                                                      |                                                                  |
-| Steps                      | Write  | Step count.                                                                                           | [Step count](#step-count)                                        |
-| Active energy              | Write  | Calorie estimate.                                                                                     | [Calorie estimate](#calorie-estimate)                            |
-| Heart rate                 | Write  | Readings from a connected heart rate monitor.                                                         |                                                                  |
+**Read**
+
+| Data type      | Purpose                                                             | Benefit                                                                                 | Without it                                                                                | Details                                                          |
+| -------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Weight         | Calculates the calories you burn in each workout.                   | See your calories live and have them saved with every workout.                          | No calories are calculated or saved.                                                      | [Calorie estimate](#calorie-estimate)                            |
+| Height         | Calculates your personal stride length for counting steps.          | Correct step counts, even on treadmills that report no steps or count every step twice. | An average stride length is used, so step counts on these treadmills can be inaccurate.   | [Step count](#step-count)                                        |
+| Date of birth  | Calculates your age for heart-rate-based calorie estimates.         | More accurate calories that reflect how hard you actually worked.                       | Calories are calculated from speed and weight only.                                       | [Calorie estimate](#calorie-estimate)                            |
+| Biological sex | Used for heart-rate-based calorie estimates and your stride length. | More accurate calories and step counts.                                                 | Calories are calculated from speed and weight only, and an average stride length is used. | [Calorie estimate](#calorie-estimate), [Step count](#step-count) |
+| VO₂max         | Refines heart-rate-based calorie estimates with your fitness level. | Calories that match your personal fitness.                                              | VO₂max is estimated from age and biological sex.                                          | [Calorie estimate](#calorie-estimate)                            |
+
+**Write**
+
+| Data type                  | Purpose                                       | Details                               |
+| -------------------------- | --------------------------------------------- | ------------------------------------- |
+| Workouts                   | The completed workout.                        |                                       |
+| Walking + running distance | Distance walked.                              |                                       |
+| Steps                      | Step count.                                   | [Step count](#step-count)             |
+| Active energy              | Calorie estimate.                             | [Calorie estimate](#calorie-estimate) |
+| Heart rate                 | Readings from a connected heart rate monitor. |                                       |
 
 #### <span id="calorie-estimate">Calorie estimate</span>
 
@@ -124,7 +138,7 @@ The Service Provider may update this Privacy Policy from time to time. The Servi
 
 Previous versions of this Privacy Policy will be maintained and made available upon request by contacting the Service Provider at apps@fschoenfeldt.de.
 
-This privacy policy is effective as of 2026-09-14
+This privacy policy is effective as of 2026-10-24
 
 ### Your Consent
 
