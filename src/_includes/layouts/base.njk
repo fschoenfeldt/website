@@ -36,7 +36,7 @@
     {% if description %}
       <meta name="og:description" content="{{ description }}" />
     {% endif %}
-    <meta property="og:image" content='{{ "/img/o_graph.jpg" | url }}' />
+    <meta property="og:image" content="{{ "/img/o_graph.jpg" | url }}" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="fschoenfeldt.de" />
@@ -45,7 +45,7 @@
     {% if description %}
       <meta name="twitter:description" content="{{ description }}" />
     {% endif %}
-    <meta name="twitter:image" content='{{ "/img/o_graph.jpg" | url }}' />
+    <meta name="twitter:image" content="{{ "/img/o_graph.jpg" | url }}" />
     <!-- Meta Tags Generated via https://www.opengraph.xyz -->
     {% include 'favicons.njk' %}
     <script defer src="{{ hash['/js/app.js'] | url }}"></script>

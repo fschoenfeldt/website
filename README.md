@@ -62,9 +62,9 @@ The script will look for files to include a hash (based on the md5 of the built 
 
 The entry point for matching regular file path to versionned path is generated as an 11ty global data object in `_data/hash.json` with the simple structure
 
-```js
+```json
 {
-  'path/to/resource.css': 'path/to/resource.hash.css'
+  "path/to/resource.css": "path/to/resource.hash.css"
 }
 ```
 

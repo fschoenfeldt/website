@@ -5,44 +5,51 @@
     <p>menu</p>
     <ul class="menu">
       <li class="col-span-5">
-        {{ linkComponent.link(
-          href="https://blog.fschoenfeldt.de/",
-          text="blog",
-          external=true,
-          title="my blog",
-          customClasses="no-underline",
-          sublabel="blog.fschoenfeldt.de",
-          sublabelClasses="fill-white hover:fill-white underline text-white",
-          showIcon=true
-        ) }}
+        {{
+          linkComponent.link(
+            href="https://blog.fschoenfeldt.de/",
+            text="blog",
+            external=true,
+            title="my blog",
+            customClasses="no-underline",
+            sublabel="blog.fschoenfeldt.de",
+            sublabelClasses="fill-white hover:fill-white underline text-white",
+            showIcon=true
+          )
+        }}
       </li>
       <li class="col-span-2">
-        {{ linkComponent.link(
-          href="mailto:frederikschoenfeldt@gmail.com",
-          text="hello",
-          title="contact me via email",
-          customClasses="no-underline",
-          sublabel="frederikschoenfeldt@gmail.com",
-          sublabelClasses="underline text-white"
-        ) }}
+        {{
+          linkComponent.link(
+            href="mailto:frederikschoenfeldt@gmail.com",
+            text="hello",
+            title="contact me via email",
+            customClasses="no-underline",
+            sublabel="frederikschoenfeldt@gmail.com",
+            sublabelClasses="underline text-white"
+          )
+        }}
       </li>
       <li class="projects relative col-span-5">
-        <div class="relative z-10 flex p-4 items-center gap-2 justify-between">
+        <div class="relative z-10 flex items-center justify-between gap-2 p-4">
           <p>projects</p>
           {# i need to override many of assets/css/components/misc.css here #}
-          {{ linkComponent.link(
-            href="/projects" | url,
-            text="all projects",
-            title="see all projects",
-            customClasses="!flex-row !h-auto !p-0 !w-auto",
-            sublabelClasses="fill-white hover:fill-white underline text-white"
-          ) }}
+          {{
+            linkComponent.link(
+              href="/projects" | url,
+              text="all projects",
+              title="see all projects",
+              customClasses="!flex-row !h-auto !p-0 !w-auto",
+              sublabelClasses="fill-white hover:fill-white underline text-white"
+            )
+          }}
         </div>
         <div class="md:grid md:grid-cols-2">
           <div
-            class="relative bg-laufmaus-accent dark:bg-gray-800 md:rounded-bl"
+            class="relative bg-laufmaus-accent md:rounded-bl dark:bg-gray-800"
           >
-            {% call linkComponent.link(
+            {%
+              call linkComponent.link(
                 href="/laufmaus" | url,
                 title="learn more",
                 customClasses="relative z-10 no-underline",
@@ -51,16 +58,7 @@
               )
             %}
               <div
-                class="
-                  w-full
-                  flex
-                  gap-2
-                  justify-between
-                  items-center
-                  font-spacegrotesk
-                  font-bold
-                  !text-3xl
-                "
+                class="flex w-full items-center justify-between gap-2 font-spacegrotesk !text-3xl font-bold"
               >
                 <div
                   class="light:!text-laufmaus-complement dark:!text-gray-100"
@@ -70,15 +68,7 @@
                   us
                 </div>
                 <div
-                  class="
-                    bg-laufmaus-complement
-                    text-gray-100
-                    text-lg
-                    md:text-sm
-                    p-2
-                    py-1
-                    text-nowrap
-                  "
+                  class="text-nowrap bg-laufmaus-complement p-2 py-1 text-lg text-gray-100 md:text-sm"
                 >
                   new!
                 </div>
@@ -88,11 +78,12 @@
           <div class="relative bg-blue-400">
             {% set image = "src/images/fotohaecker_bg.jpg" | sharp %}
             <img
-              class="absolute top-0 h-full w-full rounded-b md:rounded-bl-none object-cover"
+              class="absolute top-0 h-full w-full rounded-b object-cover md:rounded-bl-none"
               src="{% getUrl image | resize({ width: 500 }) | webp %}"
               aria-hidden="true"
             />
-            {% call linkComponent.link(
+            {%
+              call linkComponent.link(
                 href="/fotohaecker" | url,
                 title="learn more",
                 customClasses="relative z-10 no-underline",
@@ -105,32 +96,35 @@
               </div>
             {% endcall %}
           </div>
-
         </div>
       </li>
       <li class="col-span-8">
-        {{ linkComponent.link(
-          href="https://unsplash.com/@fschoenfeldt",
-          text="photography",
-          external=true,
-          title="my photos",
-          customClasses="no-underline",
-          sublabel="gallery",
-          sublabelClasses="fill-white hover:fill-white underline text-white",
-          showIcon=true
-        ) }}
+        {{
+          linkComponent.link(
+            href="https://unsplash.com/@fschoenfeldt",
+            text="photography",
+            external=true,
+            title="my photos",
+            customClasses="no-underline",
+            sublabel="gallery",
+            sublabelClasses="fill-white hover:fill-white underline text-white",
+            showIcon=true
+          )
+        }}
       </li>
       <li class="col-span-4">
-        {{ linkComponent.link(
-          href="https://soundcloud.com/frederikschoenfeldt",
-          text="tunes",
-          external=true,
-          title="my tunes",
-          customClasses="no-underline",
-          sublabel="soundcloud",
-          sublabelClasses="fill-white hover:fill-white underline text-white",
-          showIcon=true
-        ) }}
+        {{
+          linkComponent.link(
+            href="https://soundcloud.com/frederikschoenfeldt",
+            text="tunes",
+            external=true,
+            title="my tunes",
+            customClasses="no-underline",
+            sublabel="soundcloud",
+            sublabelClasses="fill-white hover:fill-white underline text-white",
+            showIcon=true
+          )
+        }}
       </li>
     </ul>
   </nav>

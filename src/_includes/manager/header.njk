@@ -7,15 +7,7 @@
       Space Haven Manager
     </h1>
     <button
-      class="
-        flex
-        items-center
-        justify-center
-        p-4
-        hover:!bg-cyan-100
-        md:space-x-4
-        md:p-2
-      "
+      class="flex items-center justify-center p-4 hover:!bg-cyan-100 md:space-x-4 md:p-2"
       aria-label="open settings menu"
       type="button"
       @click="settingsMenuVisible = !settingsMenuVisible"
@@ -26,7 +18,7 @@
         class="h-8 w-8 lg:h-10 lg:w-10"
         alt="settings menu icon"
         aria-hidden="true"
-        src='{{ "/img/settings.svg" | url }}'
+        src="{{ "/img/settings.svg" | url }}"
       />
     </button>
   </div>
@@ -40,17 +32,7 @@
       <li class="text-cyan-200">Menu/Options:</li>
       <li>
         <button
-          class="
-            w-max
-            max-w-full
-            border
-            border-red-300
-            p-2
-            text-xl
-            uppercase
-            text-cyan-200
-            hover:!bg-red-200/20
-          "
+          class="w-max max-w-full border border-red-300 p-2 text-xl uppercase text-cyan-200 hover:!bg-red-200/20"
           data-testid="clearStorage"
           @click="$store.manager.clearStorage"
         >

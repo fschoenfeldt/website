@@ -27,19 +27,7 @@
         x-text="ressource.name"
       ></div>
       <button
-        class="
-          !ml-auto
-          flex
-          h-12
-          w-12
-          shrink-0
-          items-center
-          justify-center
-          border-2
-          border-red-400
-          p-2
-          hover:!bg-red-400/20
-        "
+        class="!ml-auto flex h-12 w-12 shrink-0 items-center justify-center border-2 border-red-400 p-2 hover:!bg-red-400/20"
         label="close"
         @click="$store.manager.hideAddPriceModal"
       >
@@ -74,16 +62,7 @@
         ></canvas>
       </div>
       <div
-        class="
-          w-full
-          border
-          border-dashed
-          border-cyan-200
-          p-6
-          text-center
-          italic
-          text-cyan-200
-        "
+        class="w-full border border-dashed border-cyan-200 p-6 text-center italic text-cyan-200"
         x-show="!ressource?.priceHistory?.length"
       >
         no data for graph.. yet
@@ -170,16 +149,7 @@
       <label class="text-lg text-cyan-200" for="number_input">new price:</label>
       <input
         id="number_input"
-        class="
-          border
-          border-cyan-200
-          bg-slate-700
-          bg-transparent
-          p-2
-          text-center
-          text-3xl
-          text-cyan-200
-        "
+        class="border border-cyan-200 bg-slate-700 bg-transparent p-2 text-center text-3xl text-cyan-200"
         x-ref="input"
         type="number"
         name="value"

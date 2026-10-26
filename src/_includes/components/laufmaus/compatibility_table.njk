@@ -8,14 +8,16 @@
   Mirrors src/services/walkingpad/compatibility.ts in the Laufmaus app.
 #}
 {% set tierMedals = { confirmed: "🏅", likely: "🥈", untested: "🥉" } %}
-{% set tierLabels ={
+{%
+  set tierLabels ={
     confirmed: "Confirmed",
     likely: "Very likely",
     untested: "Untested"
   }
 %}
 
-{% set tableColumns =[
+{%
+  set tableColumns =[
     {
       key: "tier",
       label: "Status",
@@ -40,7 +42,8 @@
 {% set tableRows = [] %}
 {% for entry in compatibility %}
   {% if entry.tier == compatibilityTier %}
-    {% set _ = tableRows.push({
+    {%
+      set _ = tableRows.push({
         cells: {
           tier: {
             kind: "badge",

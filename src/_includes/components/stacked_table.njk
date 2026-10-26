@@ -30,30 +30,25 @@
       "support"   { value: true|false|"soon" } check / cross / clock with a11y text
       "badge"     { symbol, srLabel }          emoji plus screen reader only wording
 #}
-<table class="w-full border border-gray-200 {{ tableClass }}">
+<table class="{{ tableClass }} w-full border border-gray-200">
   {% if tableCaption %}
     <caption class="sr-only">
       {{ tableCaption }}
     </caption>
   {% endif %}
   <!-- Desktop Header -->
-  <thead class="hidden md:table-header-group bg-gray-800">
+  <thead class="hidden bg-gray-800 md:table-header-group">
     <tr>
       {% for col in tableColumns %}
         <th
-          class='
-            px-4
-            py-3
-            font-semibold
-            !text-white
-            {{ col.headerClass }}
-            {% if col.align == "
-                    center" %}
-              text-center
-            {% else %}
-              text-left
-            {% endif %}
-          '
+          class="{{ col.headerClass }} {%
+            if col.align == "
+            center"
+          %}
+            text-center
+          {% else %}
+            text-left
+          {% endif %} px-4 py-3 font-semibold !text-white"
           scope="col"
         >
           {{ col.label }}
@@ -64,10 +59,7 @@
   <tbody class="divide-y divide-gray-200">
     {% for row in tableRows %}
       <tr
-        class='
-          odd:bg-white
-          even:bg-gray-50
-          {{
+        class="{{
           tableRowClass
           or
           "
@@ -77,8 +69,7 @@
           gap-1
           md:table-row
           p-1"
-          }}
-        '
+        }} odd:bg-white even:bg-gray-50"
       >
         {% for col in tableColumns %}
           {% set spec = row.cells[col.key] %}
@@ -88,20 +79,20 @@
             {% endif %}
             {% if spec.kind == "icon-text" %}
               <div>
-                {% icon spec.icon,
+                {%
+                  icon spec.icon,
                   {
                     "class": "stroke-gray-700",
                     "stroke-width": 2
                   }
                 %}
               </div>
-              <div>
-                {{ spec.value }}
-              </div>
+              <div>{{ spec.value }}</div>
             {% elif spec.kind == "support" %}
-              <div class="flex flex-col justify-center gap-1 items-start">
+              <div class="flex flex-col items-start justify-center gap-1">
                 {% if spec.value == true %}
-                  {% icon "check",
+                  {%
+                    icon "check",
                     {
                       "class": "stroke-green-700",
                       "stroke-width": 3
@@ -109,19 +100,21 @@
                   %}
                   <span class="sr-only">supported</span>
                 {% elif spec.value == "soon" %}
-                  {% icon "clock",
+                  {%
+                    icon "clock",
                     {
                       "class": "stroke-gray-700",
                       "stroke-width": 3
                     }
                   %}
                   <span
-                    class="!text-gray-800 text-sm leading-none break-words w-min md:w-auto"
+                    class="w-min break-words text-sm leading-none !text-gray-800 md:w-auto"
                   >
                     Coming soon!
                   </span>
                 {% else %}
-                  {% icon "x",
+                  {%
+                    icon "x",
                     {
                       "class": "stroke-red-700",
                       "stroke-width": 3
@@ -134,13 +127,9 @@
               <span aria-hidden="true">{{ spec.symbol }}</span>
               <span class="sr-only">{{ spec.srLabel }}</span>
             {% else %}
-              <div>
-                {{ spec.value }}
-              </div>
+              <div>{{ spec.value }}</div>
               {% if spec.note %}
-                <div class="text-xs !text-gray-600">
-                  {{ spec.note }}
-                </div>
+                <div class="text-xs !text-gray-600">{{ spec.note }}</div>
               {% endif %}
             {% endif %}
           </td>

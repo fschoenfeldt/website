@@ -1,23 +1,17 @@
 {% import "components/link.njk" as linkComponent %}
 
 <div
-  class="
-    my-2
-    flex
-    w-full
-    justify-between
-    text-sm
-    text-gray-500
-    dark:text-gray-200
-  "
+  class="my-2 flex w-full justify-between text-sm text-gray-500 dark:text-gray-200"
 >
   Made with ❤️ in Hamburg, Germany.
-  {{ linkComponent.link(
-    href="https://github.com/fschoenfeldt/website",
-    text="Source Code",
-    external=true,
-    customClasses="text-gray-500 dark:text-gray-200",
-    sublabelClasses="fill-gray-500 dark:fill-gray-200",
-    showIcon=true
-  ) }}
+  {{
+    linkComponent.link(
+      href="https://github.com/fschoenfeldt/website",
+      text="Source Code",
+      external=true,
+      customClasses="text-gray-500 dark:text-gray-200",
+      sublabelClasses="fill-gray-500 dark:fill-gray-200",
+      showIcon=true
+    )
+  }}
 </div>

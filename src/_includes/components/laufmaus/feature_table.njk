@@ -6,7 +6,8 @@
 #}
 {% set rows = featureRows or [] %}
 
-{% set tableColumns =[
+{%
+  set tableColumns =[
     {
       key: "feature",
       label: "Feature",
@@ -29,7 +30,8 @@
 
 {% set tableRows = [] %}
 {% for row in rows %}
-  {% set _ = tableRows.push({
+  {%
+    set _ = tableRows.push({
       cells: {
         feature: {
           kind: "icon-text",
