@@ -8,8 +8,8 @@ eleventyExcludeFromCollections: true
 <main
   class="min-w-screen flex min-h-screen items-center justify-center"
   :class="{ 'bg-gray-50 dark:bg-gray-900': $store.vacation.editMode }"
-  submitvacationform="$store.vacation.submitVactionForm"
-  submitvacationimagesearch="$store.vacation.submitVacationImageSearch"
+  @submitvacationform="$store.vacation.submitVactionForm"
+  @submitvacationimagesearch="$store.vacation.submitVacationImageSearch"
 >
   <div x-ref="test"></div>
   <template x-if="$store.vacation.editMode">
@@ -78,7 +78,7 @@ eleventyExcludeFromCollections: true
 
       <button
         class="btn mt-16 text-sm"
-        click="$store.vacation.editMode = true"
+        @click="$store.vacation.editMode = true"
         type="button"
         data-testid="newVacation"
         label="Eigenen Urlaubstimer setzen"

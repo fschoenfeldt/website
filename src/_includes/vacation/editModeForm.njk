@@ -9,8 +9,7 @@
     md:mx-0
     dark:bg-gray-800
   "
-  submit
-  prevent="$dispatch('submitvacationform')"
+  @submit.prevent="$dispatch('submitvacationform')"
   data-testid="vacationForm"
 >
   <div class="flex items-center">
@@ -85,8 +84,7 @@
         <form
           class="rounded border bg-gray-50 p-4 dark:bg-gray-900"
           x-data
-          submit
-          prevent="$dispatch('submitvacationimagesearch')"
+          @submit.prevent="$dispatch('submitvacationimagesearch')"
         >
           <div>
             <label class="block" for="vacationimagesearch">
@@ -181,7 +179,7 @@
         class="btn dark:text-gray-900"
         type="button"
         label="Eingabe abbrechen"
-        click="$store.vacation.editMode = false"
+        @click="$store.vacation.editMode = false"
         x-show="!!$store.vacation.vacationLocation || !!$store.vacation.date"
       >
         Abbrechen

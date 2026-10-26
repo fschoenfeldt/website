@@ -11,7 +11,7 @@
           :id="`ressource__item_${$store.manager.ressourceToSafeName(r.name)}`"
         >
           <button
-            click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
+            @click="r.visible && !$store.manager.changeVisibility ? $dispatch('showaddpricemodal', {name: r.name}) : $store.manager.toggleRessourceVisibility(r)"
             :aria-label="
               if ($store.manager.changeVisibility) {
                   if (r.visible) {
@@ -90,7 +90,7 @@
     </template>
     <li class="ressources__item ressources__item--add">
       <button
-        click="$store.manager.onClickToggleChangeVisibility"
+        @click="$store.manager.onClickToggleChangeVisibility"
         x-text="$store.manager.changeVisibility ? '-' : '+'"
         :aria-label="$store.manager.changeVisibility ? 'stop showing all ressources and get back to price list' : 'show all ressources and change their visibility in this list'"
         data-testid="toggleRessourceVisibility"

@@ -4,26 +4,20 @@
   x-ref="addPriceModal"
   x-cloak
   x-show="$store.manager.modalVisible"
-  showaddpricemodal
-  window="$store.manager.showAddPriceModal"
-  submitaddpricemodal="$store.manager.submitAddPriceModal"
+  @showaddpricemodal.window="$store.manager.showAddPriceModal"
+  @submitaddpricemodal="$store.manager.submitAddPriceModal"
   role="dialog"
   aria-modal="true"
   aria-labelledby="addPriceModalLabel"
   aria-describedby="priceHistoryChart"
   :aria-hidden="!$store.manager.modalVisible"
-  keydown
-  tab="$store.manager.handleTabModal"
-  keydown
-  shift
-  tab="$store.manager.handleShiftTabModal"
+  @keydown.tab="$store.manager.handleTabModal"
+  @keydown.shift.tab="$store.manager.handleShiftTabModal"
 >
   <div
     class="modal__content"
-    click
-    outside="$store.manager.hideAddPriceModal"
-    keyup
-    escape="$store.manager.hideAddPriceModal"
+    @click.outside="$store.manager.hideAddPriceModal"
+    @keyup.escape="$store.manager.hideAddPriceModal"
   >
     <div class="flex h-full w-full items-center space-x-2 text-xl">
       <img alt="" :src="ressource.path" />
@@ -47,7 +41,7 @@
           hover:!bg-red-400/20
         "
         label="close"
-        click="$store.manager.hideAddPriceModal"
+        @click="$store.manager.hideAddPriceModal"
       >
         <span class="font-bold !text-red-400" aria-hidden="true">✕</span>
         <span class="sr-only">close</span>
@@ -171,8 +165,7 @@
 
     <form
       class="flex flex-col space-y-4"
-      submit
-      prevent="$dispatch('submitaddpricemodal', {name: ressource.name})"
+      @submit.prevent="$dispatch('submitaddpricemodal', {name: ressource.name})"
     >
       <label class="text-lg text-cyan-200" for="number_input">new price:</label>
       <input

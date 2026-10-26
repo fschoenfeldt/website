@@ -16,9 +16,8 @@
       active:bg-gray-500
       md:p-4
     "
-    click="window.print()"
-    keydown
-    enter="window.print()"
+    @click="window.print()"
+    @keydown.enter="window.print()"
     tabindex="0"
   >
     <span class="material-icons text-gray-200" aria-hidden="true">print</span>
@@ -38,7 +37,7 @@
       md:m-2
       md:p-2
     "
-    click="expanded = false"
+    @click="expanded = false"
     tabIndex="0"
   >
     close
