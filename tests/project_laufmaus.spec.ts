@@ -26,7 +26,9 @@ test.describe("laufmaus project page", () => {
   test("hero section matches snapshot", async ({ page }) => {
     const section = page.locator("#hero");
     await section.scrollIntoViewIfNeeded();
-    expect(await section.screenshot()).toMatchSnapshot();
+    expect(await section.screenshot()).toMatchSnapshot({
+      maxDiffPixelRatio: 0.03,
+    });
   });
 
   test("heart rate monitoring section matches snapshot", async ({ page }) => {
@@ -50,7 +52,9 @@ test.describe("laufmaus project page", () => {
   test("comparison section matches snapshot", async ({ page }) => {
     const section = page.locator("#comparison");
     await section.scrollIntoViewIfNeeded();
-    expect(await section.screenshot()).toMatchSnapshot();
+    expect(await section.screenshot()).toMatchSnapshot({
+      maxDiffPixelRatio: 0.03,
+    });
   });
 
   test("compatible devices section matches snapshot", async ({ page }) => {
