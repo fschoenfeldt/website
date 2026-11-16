@@ -91,6 +91,10 @@ module.exports = function (eleventyConfig) {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyJSON: true,
+        minifySVG: true,
       });
       return minified;
     }
