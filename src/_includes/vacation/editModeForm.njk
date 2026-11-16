@@ -11,7 +11,7 @@
       >
         🏝️
       </div>
-      <h1 class="break-normal font-sans text-xl font-bold text-white">
+      <h1 class="font-sans text-xl font-bold break-normal text-white">
         Eigenen Urlaubscountdown setzen
       </h1>
     </div>
@@ -54,7 +54,7 @@
           Hintergrundbild auswählen (optional, experimentell)
         </strong>
         <form
-          class="rounded border bg-gray-50 p-4 dark:bg-gray-900"
+          class="rounded-sm border bg-gray-50 p-4 dark:bg-gray-900"
           x-data
           @submit.prevent="$dispatch('submitvacationimagesearch')"
         >
@@ -106,7 +106,7 @@
                           x-text="`Foto ${image.title} auf Fotohäcker`"
                         ></p>
                         <img
-                          class="cursor-pointer rounded"
+                          class="cursor-pointer rounded-sm"
                           :src="image.urls.thumb3x"
                           :alt="image.title"
                           :class="{ 'ring-4': $store.vacation.vacationImage == image.id}"
@@ -133,7 +133,7 @@
       <div class="px-4" data-testid="result">
         Dein Link:
         <a
-          class="break-words"
+          class="wrap-break-word"
           :href="$store.vacation.generatedLink"
           target="_blank"
           rel="noopener noreferrer"

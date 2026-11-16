@@ -1,6 +1,6 @@
 #fotohaecker {
   @apply mx-auto flex h-full flex-col gap-x-4 self-center sm:grid sm:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
-  @screen sm {
+  @media (width >= theme(--breakpoint-sm)) {
     grid-template-columns: 1fr 2fr;
   }
 }
@@ -22,7 +22,7 @@
     -webkit-text-fill-color: unset;
   }
 
-  @apply pt-6 sm:text-10xl lg:text-[12rem] xl:text-[17rem];
+  @apply sm:text-10xl pt-6 lg:text-[12rem] xl:text-[17rem];
 }
 .technologies-used-list {
   li {

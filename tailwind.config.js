@@ -32,9 +32,6 @@ module.exports = {
       },
     },
     extend: {
-      screens: {
-        canDisplayA4: { raw: "(min-width: 875px)" },
-      },
       fontFamily: {
         serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
         heading: ["Anton", ...defaultTheme.fontFamily.sans],

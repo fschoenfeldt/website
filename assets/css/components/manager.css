@@ -10,10 +10,10 @@
     .ressources {
       @apply grid justify-center gap-4;
       grid-template-columns: repeat(auto-fit, 10rem);
-      @screen md {
+      @media (width >= theme(--breakpoint-md)) {
         grid-template-columns: repeat(auto-fit, 12rem);
       }
-      &__item {
+      .ressources__item {
         > button {
           @apply flex h-40 w-40 flex-col items-center justify-center border-2 border-cyan-200 hover:border-cyan-50 hover:bg-cyan-100/20 active:border-cyan-50 active:bg-cyan-100/20 md:h-48 md:w-48;
         }
@@ -23,8 +23,8 @@
         * {
           @apply font-space text-cyan-200;
         }
-        &__priceinfo {
-          @apply mt-auto w-full border-b-0 border-t border-cyan-200;
+        .ressources__item__priceinfo {
+          @apply mt-auto w-full border-t border-b-0 border-cyan-200;
         }
         .priceinfo__values {
           @apply flex items-center md:gap-x-1;
@@ -32,12 +32,12 @@
             @apply h-5;
           }
         }
-        &--change {
+        &.ressources__item--change {
           > button {
             @apply border-2 border-dashed border-cyan-400 opacity-80;
           }
         }
-        &--add {
+        &.ressources__item--add {
           > button {
             @apply border-dashed text-6xl text-cyan-200;
           }
@@ -45,8 +45,8 @@
       }
     }
     .modal {
-      @apply absolute left-0 top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)];
-      &__content {
+      @apply absolute top-0 left-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)];
+      .modal__content {
         @apply mx-auto mt-2 max-w-sm space-y-4 border border-amber-200 bg-slate-800 p-6 md:max-w-md lg:max-w-xl lg:space-y-6 xl:mt-12;
       }
       button {

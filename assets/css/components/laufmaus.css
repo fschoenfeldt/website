@@ -1,5 +1,5 @@
 #laufmaus {
-  @apply min-h-screen w-full divide-y-2 divide-gray-200 bg-laufmaus-accent dark:bg-gray-900;
+  @apply bg-laufmaus-accent min-h-screen w-full divide-y-2 divide-gray-200 dark:bg-gray-900;
 
   .container {
     /* 12 columns × gap-20 would need 11 × 80px = 880px of gutters alone, which
@@ -8,11 +8,15 @@
   }
 
   .description {
-    @apply flex flex-col space-y-4 md:space-y-8 md:pb-16;
+    @apply flex flex-col md:pb-16;
+    /* v3-style space-y (margin-top on followers), so children can override it with e.g. mt-3! */
+    > * + * {
+      @apply mt-4 md:mt-8;
+    }
   }
 
   h1 {
-    @apply break-all font-spacegrotesk text-[30vw] font-bold lowercase leading-none md:text-[14rem];
+    @apply font-spacegrotesk text-[30vw] leading-none font-bold break-all lowercase md:text-[14rem];
   }
 
   h2 {
@@ -32,7 +36,7 @@
     @apply flex flex-col items-center justify-center px-4 py-12;
 
     &.dark {
-      @apply !border-gray-800 bg-gray-900 text-gray-100;
+      @apply border-gray-800! bg-gray-900 text-gray-100;
     }
 
     &.light {
@@ -43,7 +47,7 @@
     }
 
     &.onDarkToDark {
-      @apply dark:!border-gray-800 dark:bg-gray-900;
+      @apply dark:border-gray-800! dark:bg-gray-900;
       * {
         @apply dark:text-gray-100;
       }

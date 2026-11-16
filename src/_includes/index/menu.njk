@@ -39,14 +39,14 @@
               href="/projects" | url,
               text="all projects",
               title="see all projects",
-              customClasses="!flex-row !h-auto !p-0 !w-auto",
+              customClasses="flex-row! h-auto! p-0! w-auto!",
               sublabelClasses="fill-white hover:fill-white underline text-white"
             )
           }}
         </div>
         <div class="md:grid md:grid-cols-2">
           <div
-            class="relative bg-laufmaus-accent md:rounded-bl dark:bg-gray-800"
+            class="bg-laufmaus-accent relative md:rounded-bl dark:bg-gray-800"
           >
             {%
               call linkComponent.link(
@@ -54,21 +54,21 @@
                 title="learn more",
                 customClasses="relative z-10 no-underline",
                 sublabel="learn more",
-                sublabelClasses="w-max light:!text-laufmaus-complement dark:!text-gray-100 underline"
+                sublabelClasses="w-max light:!text-laufmaus-complement dark:text-gray-100! underline"
               )
             %}
               <div
-                class="flex w-full items-center justify-between gap-2 font-spacegrotesk !text-3xl font-bold"
+                class="font-spacegrotesk flex w-full items-center justify-between gap-2 text-3xl! font-bold"
               >
                 <div
-                  class="light:!text-laufmaus-complement dark:!text-gray-100"
+                  class="light:!text-laufmaus-complement dark:text-gray-100!"
                 >
                   laufma
                   <br />
                   us
                 </div>
                 <div
-                  class="text-nowrap bg-laufmaus-complement p-2 py-1 text-lg text-gray-100 md:text-sm"
+                  class="bg-laufmaus-complement p-2 py-1 text-lg text-nowrap text-gray-100 md:text-sm"
                 >
                   new!
                 </div>

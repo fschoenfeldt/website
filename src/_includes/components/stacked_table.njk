@@ -48,7 +48,7 @@
             text-center
           {% else %}
             text-left
-          {% endif %} px-4 py-3 font-semibold !text-white"
+          {% endif %} px-4 py-3 font-semibold text-white!"
           scope="col"
         >
           {{ col.label }}
@@ -108,7 +108,7 @@
                     }
                   %}
                   <span
-                    class="w-min break-words text-sm leading-none !text-gray-800 md:w-auto"
+                    class="w-min text-sm leading-none wrap-break-word text-gray-800! md:w-auto"
                   >
                     Coming soon!
                   </span>
@@ -129,7 +129,7 @@
             {% else %}
               <div>{{ spec.value }}</div>
               {% if spec.note %}
-                <div class="text-xs !text-gray-600">{{ spec.note }}</div>
+                <div class="text-xs text-gray-600!">{{ spec.note }}</div>
               {% endif %}
             {% endif %}
           </td>

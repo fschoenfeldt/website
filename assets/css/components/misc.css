@@ -4,11 +4,11 @@
 }
 
 .thick-heading {
-  @apply break-all text-[30vw] uppercase leading-none md:text-12xl;
+  @apply md:text-12xl text-[30vw] leading-none break-all uppercase;
 }
 .menu {
   @apply flex flex-col gap-2 text-lg;
-  @screen md {
+  @media (width >= theme(--breakpoint-md)) {
     @apply grid;
     grid-template-columns: repeat(12, 1fr);
   }
@@ -16,7 +16,7 @@
     @apply w-max bg-gray-800 text-white;
   }
   > li {
-    @apply rounded bg-gray-800 text-white transition-opacity hover:opacity-90 dark:hover:bg-gray-700 dark:hover:opacity-100;
+    @apply rounded-sm bg-gray-800 text-white transition-opacity hover:opacity-90 dark:hover:bg-gray-700 dark:hover:opacity-100;
     &:hover {
       a p {
         @apply underline;
@@ -28,7 +28,7 @@
       @apply stroke-white text-white;
     }
     a {
-      @apply flex w-full flex-col justify-between gap-2 break-all p-4 md:h-60;
+      @apply flex w-full flex-col justify-between gap-2 p-4 break-all md:h-60;
     }
     /* div {
       @apply text-white;

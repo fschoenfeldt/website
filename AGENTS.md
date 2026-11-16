@@ -1,6 +1,6 @@
 # Agents Instructions
 
-Personal website of Frederik Schönfeldt — built with Eleventy (11ty), Nunjucks, TailwindCSS v3, Alpine.js, and esbuild. Playwright is used for E2E and visual snapshot tests.
+Personal website of Frederik Schönfeldt — built with Eleventy (11ty), Nunjucks, TailwindCSS v4, Alpine.js, and esbuild. Playwright is used for E2E and visual snapshot tests.
 
 ## Commands
 
@@ -57,7 +57,7 @@ In dev (`pnpm start`), Tailwind and esbuild write to `src/_build/` which Elevent
 
 ### Styling
 
-- TailwindCSS v3 with custom theme: `gray` = stone, `blue` = sky, `xs` breakpoint at 400 px, `canDisplayA4` media query at 875 px.
+- TailwindCSS v4 (built with `@tailwindcss/cli`, no PostCSS config) loading the legacy JS config via `@config` in `styles.css`. Custom theme: `gray` = stone, `blue` = sky, `xs` breakpoint at 400 px.
 - Custom font families: `font-heading` (Anton), `font-space` (Space Mono), `font-spacegrotesk`, `font-dotted` (Doto), `font-serif` (Merriweather).
 - Per-project accent colours live in `tailwind.config.js` (e.g. `laufmaus.accent`).
 

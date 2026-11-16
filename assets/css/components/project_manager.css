@@ -5,7 +5,7 @@
     @apply font-space text-xl leading-relaxed text-cyan-200;
   }
   h1 {
-    @apply mb-2 max-w-xl font-space text-[20vw] leading-none md:text-8xl;
+    @apply font-space mb-2 max-w-xl text-[20vw] leading-none md:text-8xl;
   }
   .technologies-used-list {
     @apply flex flex-wrap items-start gap-2;

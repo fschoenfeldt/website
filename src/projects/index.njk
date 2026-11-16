@@ -14,15 +14,15 @@ layout: layouts/base.njk
   <section class="mt-8">
     <h2 class="mb-4 text-4xl">native mobile apps</h2>
     <ul class="menu">
-      <li class="col-span-5 !bg-laufmaus-accent dark:!bg-gray-800">
+      <li class="bg-laufmaus-accent! col-span-5 dark:bg-gray-800!">
         {{
           linkComponent.link(
             href="/laufmaus" | url,
             text="laufmaus",
             title="laufmaus – WalkingPad app",
-            customClasses="no-underline !text-laufmaus-complement dark:!text-gray-100",
+            customClasses="no-underline text-laufmaus-complement! dark:text-gray-100!",
             sublabel="learn more",
-            sublabelClasses="!text-laufmaus-complement dark:!text-gray-100 underline"
+            sublabelClasses="text-laufmaus-complement! dark:text-gray-100! underline"
           )
         }}
       </li>

@@ -27,11 +27,11 @@
         x-text="ressource.name"
       ></div>
       <button
-        class="!ml-auto flex h-12 w-12 shrink-0 items-center justify-center border-2 border-red-400 p-2 hover:!bg-red-400/20"
+        class="ml-auto! flex h-12 w-12 shrink-0 items-center justify-center border-2 border-red-400 p-2 hover:bg-red-400/20!"
         label="close"
         @click="$store.manager.hideAddPriceModal"
       >
-        <span class="font-bold !text-red-400" aria-hidden="true">✕</span>
+        <span class="font-bold text-red-400!" aria-hidden="true">✕</span>
         <span class="sr-only">close</span>
       </button>
     </div>
@@ -51,7 +51,7 @@
           x-text="ressource.average && `⌀${ressource.average}`"
         ></div>
         <div
-          class="text-xl font-bold !text-amber-200"
+          class="text-xl font-bold text-amber-200!"
           x-text="ressource.max && `↑${ressource.max}`"
         ></div>
       </div>
@@ -62,7 +62,7 @@
         ></canvas>
       </div>
       <div
-        class="w-full border border-dashed border-cyan-200 p-6 text-center italic text-cyan-200"
+        class="w-full border border-dashed border-cyan-200 p-6 text-center text-cyan-200 italic"
         x-show="!ressource?.priceHistory?.length"
       >
         no data for graph.. yet

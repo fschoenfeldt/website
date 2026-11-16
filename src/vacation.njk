@@ -6,7 +6,7 @@ eleventyExcludeFromCollections: true
 
 {% set vacation_image = "src/images/vacation.jpg" | sharp %}
 <main
-  class="min-w-screen flex min-h-screen items-center justify-center"
+  class="flex min-h-screen min-w-screen items-center justify-center"
   :class="{ 'bg-gray-50 dark:bg-gray-900': $store.vacation.editMode }"
   @submitvacationform="$store.vacation.submitVactionForm"
   @submitvacationimagesearch="$store.vacation.submitVacationImageSearch"
@@ -42,7 +42,7 @@ eleventyExcludeFromCollections: true
       </template>
 
       <h2
-        class="!mt-2"
+        class="mt-2!"
         style="
           background-image: -webkit-gradient( linear, left top, right top, from(#730D03), color-stop(#667302), to(#BABF15)
                           ); background-image: linear-gradient(33deg, #730D03, #667302, #BABF15); -webkit-background-clip: text;

@@ -1,5 +1,5 @@
 <header
-  class="mb-2 w-full space-y-4 bg-cyan-200 tracking-wider"
+  class="mb-2 flex w-full flex-col gap-4 bg-cyan-200 tracking-wider"
   x-data="{settingsMenuVisible: false}"
 >
   <div class="flex items-center">
@@ -7,7 +7,7 @@
       Space Haven Manager
     </h1>
     <button
-      class="flex items-center justify-center p-4 hover:!bg-cyan-100 md:space-x-4 md:p-2"
+      class="flex items-center justify-center p-4 hover:bg-cyan-100! md:space-x-4 md:p-2"
       aria-label="open settings menu"
       type="button"
       @click="settingsMenuVisible = !settingsMenuVisible"
@@ -24,7 +24,7 @@
   </div>
   <div
     id="settingsMenu"
-    class="mx-auto w-11/12 max-w-lg bg-slate-800 p-4 lg:ml-auto lg:mr-4"
+    class="mx-auto w-11/12 max-w-lg bg-slate-800 p-4 lg:mr-4 lg:ml-auto"
     x-cloak
     x-show="settingsMenuVisible"
   >
@@ -32,7 +32,7 @@
       <li class="text-cyan-200">Menu/Options:</li>
       <li>
         <button
-          class="w-max max-w-full border border-red-300 p-2 text-xl uppercase text-cyan-200 hover:!bg-red-200/20"
+          class="w-max max-w-full border border-red-300 p-2 text-xl text-cyan-200 uppercase hover:bg-red-200/20!"
           data-testid="clearStorage"
           @click="$store.manager.clearStorage"
         >

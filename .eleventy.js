@@ -1,4 +1,3 @@
-const htmlmin = require("html-minifier");
 const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 const sharpPlugin = require("eleventy-plugin-sharp");
 const pluginIcons = require("eleventy-plugin-icons");
@@ -80,13 +79,15 @@ module.exports = function (eleventyConfig) {
   /**
    * HTML Minifier for production builds
    */
-  eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
+  eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
     if (
       process.env.ELEVENTY_ENV == "production" &&
       outputPath &&
       outputPath.endsWith(".html")
     ) {
-      let minified = htmlmin.minify(content, {
+      // html-minifier v5 is ESM-only and its minify is async
+      const { minify } = await import("html-minifier");
+      let minified = await minify(content, {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
