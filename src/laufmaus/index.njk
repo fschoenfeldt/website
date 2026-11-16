@@ -174,7 +174,8 @@ compatibility:
               linkComponent.link(
                 href="#your-data",
                 text="No login, no cloud, no tracking",
-                title="Your data section"
+                title="Your data section",
+                customClasses="plausible-event-name=Section+Link plausible-event-section=your-data"
               )
             }}
           </li>
@@ -190,7 +191,8 @@ compatibility:
               linkComponent.link(
                 href="#heart-rate-monitoring",
                 text="Heart Rate Monitoring",
-                title="Heart Rate Monitoring section"
+                title="Heart Rate Monitoring section",
+                customClasses="plausible-event-name=Section+Link plausible-event-section=heart-rate-monitoring"
               )
             }}
           </li>
@@ -206,7 +208,8 @@ compatibility:
               linkComponent.link(
                 href="#live-activity",
                 text="Live Activity Integration",
-                title="Live Activity Integration section"
+                title="Live Activity Integration section",
+                customClasses="plausible-event-name=Section+Link plausible-event-section=live-activity"
               )
             }}
           </li>
@@ -222,7 +225,8 @@ compatibility:
               linkComponent.link(
                 href="#speed-control",
                 text="Custom Speed Control with 0,1km/h steps",
-                title="Speed Control section"
+                title="Speed Control section",
+                customClasses="plausible-event-name=Section+Link plausible-event-section=speed-control"
               )
             }}
           </li>
@@ -238,12 +242,14 @@ compatibility:
               linkComponent.link(
                 href="#compatible-devices",
                 text="Compatible with 50+ WalkingPads (Kingsmith, FTMS, …)",
-                title="Compare with manufacturer apps section"
+                title="Compatible Devices section",
+                customClasses="plausible-event-name=Section+Link plausible-event-section=compatible-devices"
               )
             }}
           </li>
         </ul>
 
+        {% set ctaPosition = "hero" %}
         {% include "components/laufmaus/appstore_cta.njk" %}
       </div>
       <div
@@ -268,7 +274,15 @@ compatibility:
   </section>
   <section id="your-data" class="light bg-gray-100">
     <div class="container">
-      <div class="description col-span-12 md:col-span-8">
+      <div class="description col-span-12 w-full md:mx-auto md:max-w-2xl">
+        {%
+          icon "shield-check",
+          {
+            "class": "size-12 md:size-16",
+            "stroke-width": 2,
+            "aria-hidden": "true"
+          }
+        %}
         <h2>Your data stays yours</h2>
         <ul class="list-inside list-disc! space-y-2 ps-4">
           <li>
@@ -287,10 +301,10 @@ compatibility:
         <p>
           {{
             linkComponent.link(
-              href="/laufmaus/privacy_policy/",
-              text="Read the full privacy policy",
-              title="Laufmaus privacy policy",
-              customClasses="underline"
+              href="#comparison",
+              text="Compare with manufacturer apps",
+              title="Comparison with manufacturer apps section",
+              customClasses="underline plausible-event-name=Section+Link plausible-event-section=comparison"
             )
           }}
         </p>
@@ -319,7 +333,7 @@ compatibility:
           <li class="text-gray-200!">
             {{
               linkComponent.link(
-                customClasses="text-gray-200! underline",
+                customClasses="text-gray-200! underline plausible-event-name=Section+Link plausible-event-section=compatible-devices",
                 href="#compatible-devices",
                 text="See compatible devices here",
                 title="See compatible devices section"
@@ -345,18 +359,6 @@ compatibility:
   <section id="live-activity" class="dark">
     <div class="container md:items-end">
       <div class="description col-span-12 md:col-span-7">
-        <div class="flex gap-2">
-          <p
-            class="bg-gray border-laufmaus-accent text-laufmaus-accent! rounded-full border px-2 py-1 text-sm tracking-normal"
-          >
-            beta
-          </p>
-          <p
-            class="bg-gray border-laufmaus-accent text-laufmaus-accent! rounded-full border px-2 py-1 text-sm tracking-normal"
-          >
-            iOS only
-          </p>
-        </div>
         <h2 class="text-gray-100!">Live Activity Integration</h2>
         <img
           class="md:hidden"
@@ -369,8 +371,7 @@ compatibility:
           and informed throughout your exercise session.
         </p>
         <p class="text-gray-200! italic">
-          Note: This feature is currently in beta and only works on iOS 16.1 and
-          later.
+          Note: This feature only works on iOS 16.1 and later.
         </p>
       </div>
       <div class="col-span-12 md:col-span-5">
@@ -482,6 +483,7 @@ compatibility:
           ]
         %}
         <div>{% include "components/laufmaus/feature_table.njk" %}</div>
+        {% set ctaPosition = "comparison" %}
         <div>{% include "components/laufmaus/appstore_cta.njk" %}</div>
       </div>
     </div>
@@ -518,7 +520,7 @@ compatibility:
                 href="mailto:apps@fschoenfeldt.de",
                 text="Please tell us how it goes!",
                 title="Write to apps@fschoenfeldt.de",
-                customClasses="underline"
+                customClasses="underline plausible-event-name=Contact+Mail"
               )
             }}
           </p>
@@ -554,7 +556,7 @@ compatibility:
           text="Visit author's website",
           title="Visit author's website",
           showIcon=true,
-          customClasses="underline text-gray-600!",
+          customClasses="underline text-gray-600! plausible-event-name=Author+Website",
           sublabelClasses="fill-gray-600",
           external=true
         )
