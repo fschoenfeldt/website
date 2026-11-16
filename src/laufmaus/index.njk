@@ -1,10 +1,10 @@
 ---
 title: Laufmaus – WalkingPad App for iOS & Android
-description: Free WalkingPad app for iOS and Android with heart rate monitoring, Live Activities and Apple Health or Health Connect sync. No login, no cloud required.
+description: "Your walking pad, your data: free WalkingPad app for iOS & Android with heart rate, Live Activities and Apple Health or Health Connect sync. No login, no cloud."
 ogImage: /img/laufmaus/o_graph.png
 ogImageWidth: 1200
 ogImageHeight: 630
-ogImageAlt: "laufmaus – an alternative, feature rich walkingpad app. Phone showing a workout: 1.20 km, 5m 00s, 115 bpm."
+ogImageAlt: "Two iPhones running Laufmaus: a 1.85 km workout and its Live Activity on the lock screen."
 jsonLdType: SoftwareApplication
 jsonLdName: Laufmaus
 jsonLdOperatingSystem: iOS, Android
@@ -154,14 +154,30 @@ compatibility:
       <h1 class="col-span-12 md:-mb-20 md:max-w-3xl">Laufmaus</h1>
       <div class="description col-span-12 md:col-span-8 md:mt-20">
         <p class="text-2xl font-bold">
-          an alternative, feature rich walkingpad app.
+          Your walking pad, your data.
         </p>
         <p>
-          Laufmaus is an alternative app for controlling walkingpads, designed
-          to offer enhanced features and a better user experience compared to
-          most manufacturers' apps:
+          Laufmaus is an alternative app for controlling walking pads, designed
+          to offer more features and a better user experience than most
+          manufacturers' apps, while keeping every workout on your device:
         </p>
         <ul class="mt-3! space-y-3 ps-2">
+          <li class="flex items-center gap-2">
+            {%
+              icon "shield-check",
+              {
+                "class": "stroke-gray-700 dark:stroke-gray-200",
+                "stroke-width": 2
+              }
+            %}
+            {{
+              linkComponent.link(
+                href="#your-data",
+                text="No login, no cloud, no tracking",
+                title="Your data section"
+              )
+            }}
+          </li>
           <li class="flex items-center gap-2">
             {%
               icon "heart-pulse",
@@ -247,6 +263,37 @@ compatibility:
         <div
           class="absolute top-4 left-4 z-0 hidden h-full w-full rounded-3xl bg-gray-900 md:block"
         ></div>
+      </div>
+    </div>
+  </section>
+  <section id="your-data" class="light bg-gray-100">
+    <div class="container">
+      <div class="description col-span-12 md:col-span-8">
+        <h2>Your data stays yours</h2>
+        <ul class="list-inside list-disc! space-y-2 ps-4">
+          <li>
+            <strong>No login.</strong> Open the app, connect your walking pad,
+            start walking.
+          </li>
+          <li>
+            <strong>No cloud, no tracking.</strong> No servers, no analytics, no
+            ads.
+          </li>
+          <li>
+            <strong>Health sync is optional.</strong> Workouts go to Apple
+            Health or Health Connect only if you allow it.
+          </li>
+        </ul>
+        <p>
+          {{
+            linkComponent.link(
+              href="/laufmaus/privacy_policy/",
+              text="Read the full privacy policy",
+              title="Laufmaus privacy policy",
+              customClasses="underline"
+            )
+          }}
+        </p>
       </div>
     </div>
   </section>
