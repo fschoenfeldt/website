@@ -10,6 +10,12 @@
       src="/img/laufmaus/appstore-en-us.svg"
       alt="Download on the App Store"
     />
+    {% if appStoreRating %}
+      <span class="text-sm">
+        <span aria-hidden="true">★</span>
+        {{ appStoreRating }} · {{ appStoreRatingCount }} ratings
+      </span>
+    {% endif %}
   </a>
   <a
     class="flex flex-col gap-1"
