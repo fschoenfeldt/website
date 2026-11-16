@@ -4,7 +4,8 @@
   .container {
     /* 12 columns × gap-20 would need 11 × 80px = 880px of gutters alone, which
        forces the grid wider than the viewport between md and lg. */
-    @apply mx-auto grid grid-cols-12 gap-4 md:max-w-5xl md:gap-8 lg:gap-20;
+    /* max-w-none: Tailwind's built-in .container caps at 400px between the xs and sm breakpoints */
+    @apply mx-auto grid max-w-none grid-cols-12 gap-4 md:max-w-5xl md:gap-8 lg:gap-20;
   }
 
   .description {
@@ -20,7 +21,8 @@
   }
 
   h2 {
-    @apply font-spacegrotesk text-[15vw] font-bold tracking-tighter md:text-8xl;
+    /* arbitrary text-[15vw] sets no line-height; hyphens/wrap stop long words overflowing narrow columns */
+    @apply font-spacegrotesk text-[15vw] leading-none font-bold tracking-tighter wrap-break-word hyphens-auto md:text-8xl;
   }
 
   h3 {
